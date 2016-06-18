@@ -1,0 +1,21 @@
+version: '2'
+services:
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - 9200
+  postgres:
+    image: postgres
+    ports:
+      - 5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+  api:
+    build: checkdesk-api
+    ports:
+      - 3000:3000
+    links:
+      - elasticsearch
+      - postgres
+    environment:
+      RAILS_ENV: development
