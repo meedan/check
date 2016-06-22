@@ -3,4 +3,4 @@
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/checkdesk-app.git`
 - `docker-compose up`
-- API explorer is at [http://localhost:3000](http://localhost:3000), Elasticsearch at [http://localhost:9200](http://localhost:9200), Postgres at port 5432
+- API explorer is at [http://localhost:3000/api](http://localhost:3000/api), Elasticsearch at [http://localhost:9200](http://localhost:9200), Postgres at port 5432
