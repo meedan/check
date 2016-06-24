@@ -10,3 +10,7 @@
 - GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
 - Elasticsearch at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
 - Postgres at port 5432 (you can use a standard Pg admin tool to connect)
+
+## Testing
+
+- `docker-compose run api-test bundle exec rake test`

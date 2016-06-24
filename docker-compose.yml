@@ -21,3 +21,12 @@ services:
       - ./checkdesk-api:/app
     environment:
       RAILS_ENV: development
+  api-test:
+    build: checkdesk-api
+    links:
+      - elasticsearch
+      - postgres
+    volumes:
+      - ./checkdesk-api:/app
+    environment:
+      RAILS_ENV: test
