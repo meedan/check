@@ -1,7 +1,7 @@
 # Checkdesk 3
 
 - Install `docker-compose`
-- `git clone --recursive git@github.com:meedan/checkdesk-app.git`
+- `git clone --recursive git@github.com:meedan/checkdesk-app.git && cd checkdesk-app`
 - `docker-compose up`
 
 ## Available services
