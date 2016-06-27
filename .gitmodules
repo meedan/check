@@ -2,3 +2,11 @@
 	path = checkdesk-api
 	url = git@github.com:meedan/checkdesk-api.git
   branch = feature/docker-compose
+[submodule "pender"]
+	path = pender
+	url = git@github.com:meedan/pender.git
+	branch = develop
+[submodule "checkdesk-client"]
+	path = checkdesk-client
+	url = git@github.com:meedan/checkdesk-client.git
+  branch = develop
