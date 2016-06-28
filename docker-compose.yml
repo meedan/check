@@ -27,6 +27,7 @@ services:
     links:
       - elasticsearch
       - postgres
+      - pender
     volumes:
       - ./checkdesk-api:/app
     environment:
@@ -41,15 +42,7 @@ services:
       RAILS_ENV: development
   pender-test:
     build: pender
-    ports:
-      - 3100:3000
     volumes:
       - ./pender:/app
     environment:
       RAILS_ENV: test
-  web:
-    build: checkdesk-client
-    links:
-      - api
-    volumes:
-      - ./checkdesk-client:/app
