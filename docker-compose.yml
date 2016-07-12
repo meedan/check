@@ -51,6 +51,9 @@ services:
     command: [npm, run, publish]
     ports:
       - 3333:3333
+      - 4040:4040
+      - 5999:5999
+      - 9515:9515
     links:
       - api
     volumes:
