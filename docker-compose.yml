@@ -46,3 +46,14 @@ services:
       - ./pender:/app
     environment:
       RAILS_ENV: test
+  web:
+    build: checkdesk-client
+    command: [npm, run, publish]
+    ports:
+      - 3333:3333
+    links:
+      - api
+    volumes:
+      - ./checkdesk-client:/app
+    environment:
+      PLATFORM: web
