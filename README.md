@@ -2,6 +2,12 @@
 
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/checkdesk-app.git && cd checkdesk-app`
+- Configuration:
+  - Copy `checkdesk-api/config/config.yml.example` to `checkdesk-api/config/config.yml` and edit the Twitter/Facebook keys to enable social login
+  - Copy `checkdesk-api/config/database.yml.example` to `checkdesk-api/config/database.yml`
+  - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
+  - Copy `pender/config/database.yml.example` to `pender/config/config.yml`
+  - Copy `checkdesk-client/src/app/config/config.js.example` to `checkdesk-client/src/app/config/config.js`
 - `docker-compose up`
 
 ## Available services
