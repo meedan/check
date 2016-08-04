@@ -35,7 +35,7 @@ services:
   pender:
     build: pender
     ports:
-      - 3200:3000
+      - 3200:3200
     volumes:
       - ./pender:/app
     environment:
