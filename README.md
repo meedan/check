@@ -7,7 +7,7 @@
   - Copy `checkdesk-api/config/database.yml.example` to `checkdesk-api/config/database.yml`
   - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
   - Copy `pender/config/database.yml.example` to `pender/config/config.yml`
-  - Copy `checkdesk-client/src/app/config/config.js.example` to `checkdesk-client/src/app/config/config.js`
+  - Copy `checkdesk-client/config.js.example` to `checkdesk-client/config.js`
 - `docker-compose up`
 
 ## Available services
