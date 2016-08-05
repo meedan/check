@@ -23,6 +23,15 @@ These steps will eventually be all automated, but for now:
   - `docker-compose run web bash`
   - `npm run build` (for some reason this doesn't work when invoked from `docker-compose` directly)
 
+## Troubleshooting
+
+If you're using VirtualBox, and can reach the servers via the ngrok.io URL in stdout, but not locally (e.g. localhost:3333 fails), you might need to set up port forwards (e.g. host 3333 to guest 3333) on the VirtualBox VM:
+
+0. Run `docker ps` to see the necessary ports
+0. Open VirtualBox.app (can also do on command line)
+0. Select the running VM and click "Settings" in the main window toolbar
+0. Click "Network" and "Port Forwarding"
+
 ## Available services
 
 - Checkdesk client at [http://localhost:3333](http://localhost:3333)
