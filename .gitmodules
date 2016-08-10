@@ -1,7 +1,7 @@
 [submodule "checkdesk-api"]
 	path = checkdesk-api
 	url = git@github.com:meedan/checkdesk-api.git
-  branch = feature/docker-compose
+  branch = develop
 [submodule "pender"]
 	path = pender
 	url = git@github.com:meedan/pender.git
