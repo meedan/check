@@ -8,6 +8,8 @@
   - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
   - Copy `pender/config/database.yml.example` to `pender/config/config.yml`
   - Copy `checkdesk-client/config.js.example` to `checkdesk-client/config.js`
+- `git pull --recurse-submodules`
+- `docker-compose build`
 - `docker-compose up`
   - Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
   - Container names (as per `docker-compose.yml`):
