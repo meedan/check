@@ -18,10 +18,11 @@
     - `postgres` = Postgres
 
 ## Additional steps
-These steps will eventually be all automated, but for now:
 - Build the client bundle:
   - `docker-compose run web bash`
   - `npm run build` (for some reason this doesn't work when invoked from `docker-compose` directly)
+- Update submodules to their latest commit
+  - `git submodule update --recursive --remote && git commit -am "Update submodules"`
 
 ## Troubleshooting
 
