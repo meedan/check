@@ -48,15 +48,20 @@ services:
       RAILS_ENV: test
   web:
     build: checkdesk-client
-    command: [npm, run, publish]
     ports:
       - 3333:3333
-      - 4040:4040
-      - 5999:5999
-      - 9515:9515
     links:
       - api
+      - chromedriver
     volumes:
       - ./checkdesk-client:/app
     environment:
       PLATFORM: web
+      CHECKDESK_CLIENT_PORT: 3333
+  chromedriver:
+    #image: robcherry/docker-chromedriver
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+    environment:
+      CHROMEDRIVER_WHITELISTED_IPS: ''
