@@ -6,7 +6,7 @@
   - Copy `checkdesk-api/config/config.yml.example` to `checkdesk-api/config/config.yml` and edit the Twitter/Facebook keys to enable social login
   - Copy `checkdesk-api/config/database.yml.example` to `checkdesk-api/config/database.yml`
   - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
-  - Copy `pender/config/database.yml.example` to `pender/config/config.yml`
+  - Copy `pender/config/database.yml.example` to `pender/config/database.yml`
   - Copy `checkdesk-client/config.js.example` to `checkdesk-client/config.js`
 - `git pull --recurse-submodules`
 - `docker-compose build`
