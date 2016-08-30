@@ -8,7 +8,6 @@
   - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
   - Copy `pender/config/database.yml.example` to `pender/config/database.yml`
   - Copy `checkdesk-client/config.js.example` to `checkdesk-client/config.js`
-- `git pull --recurse-submodules`
 - `docker-compose build`
 - `docker-compose up`
   - Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
@@ -22,9 +21,11 @@
 ## Additional steps
 - Build the client bundle:
   - `docker-compose run web bash`
-  - `npm run build` (for some reason this doesn't work when invoked from `docker-compose` directly)
+  - `npm run build` (for `node` legacy reasons this doesn't work when invoked from `docker-compose` directly)
 - Update submodules to their latest commit
-  - `git submodule update --recursive --remote && git commit -am "Update submodules"`
+  - `./git-update.sh`
+- Cleanup docker images and volumes
+  - `./docker-clean.sh`
 
 ## Troubleshooting
 
