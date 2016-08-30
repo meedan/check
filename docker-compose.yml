@@ -1,7 +1,7 @@
 version: '2'
 services:
   elasticsearch:
-    build: elasticsearch-gui
+    image: meedan/elasticsearch
     ports:
       - 9200:9200
   postgres:
