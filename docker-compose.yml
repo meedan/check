@@ -63,5 +63,6 @@ services:
     image: selenium/standalone-chrome-debug
     ports:
       - 4444:4444
+      - 5900:5900
     environment:
       CHROMEDRIVER_WHITELISTED_IPS: ''
