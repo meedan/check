@@ -36,6 +36,11 @@ If you're using VirtualBox, and can reach the servers via the ngrok.io URL in st
 0. Select the running VM and click "Settings" in the main window toolbar
 0. Click "Network" and "Port Forwarding"
 
+If you're having difficulties building images try..
+   - `docker-compose build --pull`
+This will download the base image specified by the `FROM` instuction in each Dockerfile (usually `meedan/ruby`)
+
+
 ## Available services
 
 - Checkdesk client at [http://localhost:3333](http://localhost:3333)
