@@ -67,10 +67,10 @@ services:
       PLATFORM: web
       SERVER_PORT: 3333
   chromedriver:
-    #image: robcherry/docker-chromedriver
     image: selenium/standalone-chrome-debug
     ports:
       - 4444:4444
       - 5900:5900
     environment:
-      CHROMEDRIVER_WHITELISTED_IPS: ''
+      no_proxy: 'localhost'
+      HUB_ENV_no_proxy: 'localhost'
