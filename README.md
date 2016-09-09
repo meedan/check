@@ -27,8 +27,8 @@
 
 - Build the client bundle:
   `docker-compose run web npm run build`
-- Reset the `api-test` database:
-  `docker-compose run api-test bundle exec rake db:drop db:create db:migrate`
+- Reset the `api.test` database:
+  `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
 - Update submodules to their latest commit
   `./git-update.sh`
 - Cleanup docker images and volumes
