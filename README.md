@@ -17,8 +17,8 @@
     - `web` = Checkdesk client
     - `api` = Checkdesk service, `development` mode
     - `pender` = Pender service, `development` mode
-    - `api-test` = Checkdesk service, `test` mode
-    - `pender-test` = Pender service, `test` mode
+    - `api.test` = Checkdesk service, `test` mode
+    - `pender.test` = Pender service, `test` mode
     - `elasticsearch` = Elasticsearch
     - `postgres` = Postgres
     - `chromedriver` = Selenium Chromedriver
@@ -64,6 +64,6 @@
 ## Testing
 
 - Checkdesk client: `docker-compose run web npm run test`
-- Checkdesk service: `docker-compose run api-test bundle exec rake test`
-- Pender service: `docker-compose run pender-test bundle exec rake test`
-- Running a specific test from within a container: `cd test && rspec spec/app_spec.rb:63` or `cd test/spec && rspec -e 'part of the test name'`
+- Checkdesk service: `docker-compose run api.test bundle exec rake test`
+- Pender service: `docker-compose run pender.test bundle exec rake test`
+- Running a specific test from within the `web` container: `cd test && rspec spec/app_spec.rb:63` or `cd test/spec && rspec -e 'part of the test name'`
