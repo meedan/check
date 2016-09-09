@@ -23,14 +23,13 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
-  api-test:
+  api.test:
     build: checkdesk-api
     ports:
       - 13000:13000
     links:
       - elasticsearch
       - postgres
-      - pender
     volumes:
       - ./checkdesk-api:/app
     environment:
@@ -45,7 +44,7 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200
-  pender-test:
+  pender.test:
     build: pender
     ports:
       - 13200:13200
@@ -67,7 +66,7 @@ services:
       PLATFORM: web
       SERVER_PORT: 3333
   chromedriver:
-    image: selenium/standalone-chrome-debug
+    build: selenium
     ports:
       - 4444:4444
       - 5900:5900
