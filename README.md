@@ -1,4 +1,6 @@
-# Checkdesk 3
+# Check
+
+Verify breaking news online
 
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/checkdesk-app.git && cd checkdesk-app`
