@@ -60,7 +60,7 @@ Verify breaking news online
 - Pender service API / Test mode at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
 - Elasticsearch at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
 - Postgres at port 5432 (use a standard Pg admin tool to connect)
-- Chromedriver at [http://chromedriver:4444/wd/hub](http://chromedriver:4444/wd/hub)
+- Chromedriver at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at port 5900 (use a standard VNC client to connect with password `secret`)
 
 ## Testing
@@ -68,6 +68,4 @@ Verify breaking news online
 - Checkdesk client: `docker-compose run web npm run test`
 - Checkdesk service: `docker-compose run api.test bundle exec rake test`
 - Pender service: `docker-compose run pender.test bundle exec rake test`
-- Running a specific test from within the `web` container: `cd test && rspec spec/app_spec.rb:63` or `cd test/spec && rspec -e 'part of the test name'`
-- Running a specific web test from the host: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
-
+- Running a specific web test: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
