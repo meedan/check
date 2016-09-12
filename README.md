@@ -69,3 +69,5 @@ Verify breaking news online
 - Checkdesk service: `docker-compose run api.test bundle exec rake test`
 - Pender service: `docker-compose run pender.test bundle exec rake test`
 - Running a specific test from within the `web` container: `cd test && rspec spec/app_spec.rb:63` or `cd test/spec && rspec -e 'part of the test name'`
+- Running a specific web test from the host: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
+
