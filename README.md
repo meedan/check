@@ -14,7 +14,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - Copy `check-web/config.js.example` to `check-web/config.js`
   - Copy `check-web/config.js.example` to `check-web/test/config.js` and edit fo testing purposes
   - Copy `check-web/test/config.yml.example` to `check-web/test/config.yml` and edit for testing purposes
-- `docker-compose build`
+- `docker-compose pull && docker-compose build --pull`
 - `docker-compose up`
   - Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
   - Container names (as per `docker-compose.yml`):
@@ -26,30 +26,6 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
     - `elasticsearch` = Elasticsearch
     - `postgres` = Postgres
     - `chromedriver` = Selenium Chromedriver
-
-## Helpful one-liners
-
-- Build the client bundle:
-  `docker-compose run web npm run build`
-- Reset the `api.test` database:
-  `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
-- Update submodules to their latest commit
-  `./git-update.sh`
-- Cleanup docker images and volumes
-  `./docker-clean.sh`
-
-## Troubleshooting
-
-- If you're using VirtualBox on Mac OS X, and cannot reach the server locally (e.g. localhost:3333 fails), you might need to set up port forwards (e.g. host 3333 to guest 3333) on the VirtualBox VM:
-
-0. Run `docker ps` to see the necessary ports
-0. Open VirtualBox.app (can also do on command line)
-0. Select the running VM and click "Settings" in the main window toolbar
-0. Click "Network" and "Port Forwarding"
-
-- If you're having difficulties building images try:
-  `docker-compose build --pull`
-  This will refresh the base image specified by the `FROM` instruction in each Dockerfile (usually `meedan/ruby`.)
 
 ## Available services
 
@@ -71,3 +47,25 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check service: `docker-compose run api.test bundle exec rake test`
 - Pender service: `docker-compose run pender.test bundle exec rake test`
 - Running a specific web test: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
+
+## Helpful one-liners and scripts
+
+- Build the client bundle:
+  `docker-compose run web npm run build`
+- Reset the `api.test` database:
+  `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
+- Update submodules to their latest commit
+  `./git-update.sh`
+- Cleanup docker images and volumes
+  `./docker-clean.sh`
+- Packing your local config files into `config.tar.gz`
+  `./tar-config.sh`
+
+## Troubleshooting
+
+- If you're using VirtualBox on Mac OS X, and cannot reach the server locally (e.g. localhost:3333 fails), you might need to set up port forwards (e.g. host 3333 to guest 3333) on the VirtualBox VM:
+
+0. Run `docker ps` to see the necessary ports
+0. Open VirtualBox.app (can also do on command line)
+0. Select the running VM and click "Settings" in the main window toolbar
+0. Click "Network" and "Port Forwarding"
