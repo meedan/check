@@ -6,26 +6,26 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/check-app.git && cd check-app`
-- Configuration:
-  - Copy `check-api/config/config.yml.example` to `check-api/config/config.yml` and edit the Twitter/Facebook keys to enable social login
-  - Copy `check-api/config/database.yml.example` to `check-api/config/database.yml`
-  - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
-  - Copy `pender/config/database.yml.example` to `pender/config/database.yml`
-  - Copy `check-web/config.js.example` to `check-web/config.js`
-  - Copy `check-web/config.js.example` to `check-web/test/config.js` and edit fo testing purposes
-  - Copy `check-web/test/config.yml.example` to `check-web/test/config.yml` and edit for testing purposes
+- Configuration - copy and edit the following files:
+  - `check-api/config/config.yml.example` to `check-api/config/config.yml`
+  - `check-api/config/database.yml.example` to `check-api/config/database.yml`
+  - `pender/config/config.yml.example` to `pender/config/config.yml`
+  - `pender/config/database.yml.example` to `pender/config/database.yml`
+  - `check-web/config.js.example` to `check-web/config.js`
+  - `check-web/config.js.example` to `check-web/test/config.js`
+  - `check-web/test/config.yml.example` to `check-web/test/config.yml`
 - `docker-compose pull && docker-compose build --pull`
 - `docker-compose up`
-  - Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
-  - Container names (as per `docker-compose.yml`):
-    - `web` = Check web client
-    - `api` = Check service, `development` mode
-    - `pender` = Pender service, `development` mode
-    - `api.test` = Check service, `test` mode
-    - `pender.test` = Pender service, `test` mode
-    - `elasticsearch` = Elasticsearch
-    - `postgres` = Postgres
-    - `chromedriver` = Selenium Chromedriver
+- Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
+- Container names:
+  - `web` = Check web client
+  - `api` = Check service, `development` mode
+  - `pender` = Pender service, `development` mode
+  - `api.test` = Check service, `test` mode
+  - `pender.test` = Pender service, `test` mode
+  - `elasticsearch` = Elasticsearch
+  - `postgres` = Postgres
+  - `chromedriver` = Selenium Chromedriver
 
 ## Available services
 
@@ -58,11 +58,11 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Troubleshooting
 
-- If you're using VirtualBox on Mac OS X, and cannot reach the server locally (e.g. localhost:3333 fails), you might need to set up port forwards (e.g. host 3333 to guest 3333) on the VirtualBox VM:
+- On Mac OS X, the very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. Until this is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
 
-0. Run `docker ps` to see the necessary ports
+- If you're using VirtualBox on Mac OS X, and cannot reach some services locally (e.g. `localhost:3333` fails), you might need to set up port forwards on the VirtualBox VM:
+
 0. Open VirtualBox.app (can also do on command line)
 0. Select the running VM and click "Settings" in the main window toolbar
 0. Click "Network" and "Port Forwarding"
-
-- On Mac OS X, the very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. Until this is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
+0. Add the relevant port forwarding rules (e.g. `host:3333` => `guest:3333`)
