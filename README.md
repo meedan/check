@@ -7,13 +7,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/check-app.git && cd check-app`
 - Configuration:
-  - Copy `check-api/config/config.yml.example` to `check-api/config/config.yml` and edit the Twitter/Facebook keys to enable social login
-  - Copy `check-api/config/database.yml.example` to `check-api/config/database.yml`
-  - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
-  - Copy `pender/config/database.yml.example` to `pender/config/database.yml`
-  - Copy `check-web/config.js.example` to `check-web/config.js`
-  - Copy `check-web/config.js.example` to `check-web/test/config.js` and edit fo testing purposes
-  - Copy `check-web/test/config.yml.example` to `check-web/test/config.yml` and edit for testing purposes
+  – Download and unpack the latest config folder from [Mantis](https://mantis.meedan.com/view.php?id=4859) or Slack
+  – Move each config file to the corresponding path inside `check-app/`, e.g. `config/check-api/config/config.yml` to `check-app/check-api/config/config.yml`. Or:
+  – To copy all config files per above in a single step, put `config/` in the same directory as `check-app/` and run `rsync -a config/ check-app/`. Note: any existing files in `check-app/` with the same path/name as files in `config/` will be overwritten (usually what we want).
 - `docker-compose build`
 - `docker-compose up`
   - Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
