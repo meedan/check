@@ -2,24 +2,26 @@
 
 Verify breaking news online
 
+This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X.
+
 - Install `docker-compose`
-- `git clone --recursive git@github.com:meedan/checkdesk-app.git && cd checkdesk-app`
+- `git clone --recursive git@github.com:meedan/check-app.git && cd check-app`
 - Configuration:
-  - Copy `checkdesk-api/config/config.yml.example` to `checkdesk-api/config/config.yml` and edit the Twitter/Facebook keys to enable social login
-  - Copy `checkdesk-api/config/database.yml.example` to `checkdesk-api/config/database.yml`
+  - Copy `check-api/config/config.yml.example` to `check-api/config/config.yml` and edit the Twitter/Facebook keys to enable social login
+  - Copy `check-api/config/database.yml.example` to `check-api/config/database.yml`
   - Copy `pender/config/config.yml.example` to `pender/config/config.yml` and edit the Twitter/Facebook keys to enable better parsing of their respective media
   - Copy `pender/config/database.yml.example` to `pender/config/database.yml`
-  - Copy `checkdesk-client/config.js.example` to `checkdesk-client/config.js`
-  - Copy `checkdesk-client/config.js.example` to `checkdesk-client/test/config.js` and edit fo testing purposes
-  - Copy `checkdesk-client/test/config.yml.example` to `checkdesk-client/test/config.yml` and edit for testing purposes
+  - Copy `check-web/config.js.example` to `check-web/config.js`
+  - Copy `check-web/config.js.example` to `check-web/test/config.js` and edit fo testing purposes
+  - Copy `check-web/test/config.yml.example` to `check-web/test/config.yml` and edit for testing purposes
 - `docker-compose build`
 - `docker-compose up`
   - Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
   - Container names (as per `docker-compose.yml`):
-    - `web` = Checkdesk client
-    - `api` = Checkdesk service, `development` mode
+    - `web` = Check web client
+    - `api` = Check service, `development` mode
     - `pender` = Pender service, `development` mode
-    - `api.test` = Checkdesk service, `test` mode
+    - `api.test` = Check service, `test` mode
     - `pender.test` = Pender service, `test` mode
     - `elasticsearch` = Elasticsearch
     - `postgres` = Postgres
@@ -47,16 +49,16 @@ Verify breaking news online
 
 - If you're having difficulties building images try:
   `docker-compose build --pull`
-  This will download the base image specified by the `FROM` instuction in each Dockerfile (usually `meedan/ruby`)
+  This will refresh the base image specified by the `FROM` instruction in each Dockerfile (usually `meedan/ruby`.)
 
 ## Available services
 
-- Checkdesk client at [http://localhost:3333](http://localhost:3333)
-- Checkdesk service API at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
-- Checkdesk service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
+- Check web client at [http://localhost:3333](http://localhost:3333)
+- Check service API at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
+- Check service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
 - Pender service API at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
-- Checkdesk service API / Test mode at [http://localhost:13000/api](http://localhost:13000/api) - use `test` as API key
-- Checkdesk service GraphQL / Test mode at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
+- Check service API / Test mode at [http://localhost:13000/api](http://localhost:13000/api) - use `test` as API key
+- Check service GraphQL / Test mode at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
 - Pender service API / Test mode at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
 - Elasticsearch at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
 - Postgres at port 5432 (use a standard Pg admin tool to connect)
@@ -65,7 +67,7 @@ Verify breaking news online
 
 ## Testing
 
-- Checkdesk client: `docker-compose run web npm run test`
-- Checkdesk service: `docker-compose run api.test bundle exec rake test`
+- Check web client: `docker-compose run web npm run test`
+- Check service: `docker-compose run api.test bundle exec rake test`
 - Pender service: `docker-compose run pender.test bundle exec rake test`
 - Running a specific web test: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
