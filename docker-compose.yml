@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
   api:
-    build: checkdesk-api
+    build: check-api
     ports:
       - 3000:3000
     links:
@@ -19,19 +19,19 @@ services:
       - postgres
       - pender
     volumes:
-      - ./checkdesk-api:/app
+      - ./check-api:/app
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
   api.test:
-    build: checkdesk-api
+    build: check-api
     ports:
       - 13000:13000
     links:
       - elasticsearch
       - postgres
     volumes:
-      - ./checkdesk-api:/app
+      - ./check-api:/app
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13000
@@ -54,19 +54,20 @@ services:
       RAILS_ENV: test
       SERVER_PORT: 13200
   web:
-    build: checkdesk-client
+    build: check-web
     ports:
       - 3333:3333
     links:
       - api
       - chromedriver
     volumes:
-      - ./checkdesk-client:/app
+      - ./check-web:/app
     environment:
       PLATFORM: web
+      NODE_ENV: development
       SERVER_PORT: 3333
   chromedriver:
-    build: selenium
+    build: chromedriver
     ports:
       - 4444:4444
       - 5900:5900

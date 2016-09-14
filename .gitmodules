@@ -1,5 +1,5 @@
 [submodule "checkdesk-api"]
-	path = checkdesk-api
+	path = check-api
 	url = git@github.com:meedan/check-api.git
   branch = develop
 [submodule "pender"]
@@ -7,6 +7,6 @@
 	url = git@github.com:meedan/pender.git
 	branch = develop
 [submodule "checkdesk-client"]
-	path = checkdesk-client
+	path = check-web
 	url = git@github.com:meedan/check-web.git
   branch = develop
