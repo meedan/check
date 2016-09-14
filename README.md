@@ -50,16 +50,11 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Helpful one-liners and scripts
 
-- Build the client bundle:
-  `docker-compose run web npm run build`
-- Reset the `api.test` database:
-  `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
-- Update submodules to their latest commit
-  `./git-update.sh`
-- Cleanup docker images and volumes
-  `./docker-clean.sh`
-- Packing your local config files into `config.tar.gz`
-  `./tar-config.sh`
+- Build the client bundle: `docker-compose run web npm run build`
+- Reset the `api.test` database: `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
+- Update submodules to their latest commit: `./git-update.sh`
+- Cleanup docker images and volumes: `./docker-clean.sh`
+- Packing your local config files into `config.tar.gz`: `./tar-config.sh`
 
 ## Troubleshooting
 
@@ -69,3 +64,5 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 0. Open VirtualBox.app (can also do on command line)
 0. Select the running VM and click "Settings" in the main window toolbar
 0. Click "Network" and "Port Forwarding"
+
+- On Mac OS X, the very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. Until this is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
