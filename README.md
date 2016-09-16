@@ -60,7 +60,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 - On Mac OS X, the very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. Until this is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
 
-- If you're using Docker with VirtualBox on OS X, first consider reinstalling Docker with Docker for Mac, which doesn't need VirtualBox. In the meantime, if you cannot reach some services locally (e.g. `localhost:3333` fails), you might need to set up port forwards on the VirtualBox VM:
+- If you're using Docker with VirtualBox on OS X, first consider reinstalling Docker with [Docker for Mac](https://www.docker.com/products/docker#/mac), which doesn't need VirtualBox. In the meantime, if you cannot reach some services locally (e.g. `localhost:3333` fails), you might need to set up port forwards on the VirtualBox VM:
 
 0. Open VirtualBox.app (can also do on command line)
 0. Select the running VM and click "Settings" in the main window toolbar
