@@ -4,6 +4,8 @@ Verify breaking news online
 
 This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X.
 
+## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
+
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/check-app.git && cd check-app`
 - Configuration - copy and edit the following files:
@@ -58,7 +60,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Troubleshooting
 
-- On Mac OS X, the very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. Until this is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
+- The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. Until this is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
 
 - If you're using Docker with VirtualBox on OS X, first consider reinstalling Docker with [Docker for Mac](https://www.docker.com/products/docker#/mac), which doesn't need VirtualBox. In the meantime, if you cannot reach some services locally (e.g. `localhost:3333` fails), you might need to set up port forwards on the VirtualBox VM:
 
