@@ -18,7 +18,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
 - `docker-compose pull && docker-compose build --pull`
 - `docker-compose up`
-- Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./docker-clean.sh`
+- Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./scripts/docker-clean.sh`
 - Container names:
   - `web` = Check web client
   - `api` = Check service, `development` mode
@@ -54,9 +54,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 - Build the client bundle: `docker-compose run web npm run build`
 - Reset the `api.test` database: `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
-- Update submodules to their latest commit: `./git-update.sh`
-- Cleanup docker images and volumes: `./docker-clean.sh`
-- Packing your local config files into `config.tar.gz`: `./tar-config.sh`
+- Update submodules to their latest commit: `./scripts/git-update.sh`
+- Cleanup docker images and volumes: `./scripts/docker-clean.sh`
+- Packing your local config files: `./scripts/tar-config.sh`
 
 ## Troubleshooting
 
