@@ -57,6 +57,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Update submodules to their latest commit: `./scripts/git-update.sh`
 - Cleanup docker images and volumes: `./scripts/docker-clean.sh`
 - Packing your local config files: `./scripts/tar-config.sh`
+- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
 
 ## Troubleshooting
 
