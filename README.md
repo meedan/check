@@ -48,7 +48,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check web client: `docker-compose run web npm run test`
 - Check service: `docker-compose run api.test bundle exec rake test`
 - Pender service: `docker-compose run pender.test bundle exec rake test`
-- Running a specific web test: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
+- Running a specific Check web client test: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
+- Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
 
 ## Helpful one-liners and scripts
 
@@ -57,7 +58,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Update submodules to their latest commit: `./scripts/git-update.sh`
 - Cleanup docker images and volumes: `./scripts/docker-clean.sh`
 - Packing your local config files: `./scripts/tar-config.sh`
-- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
+- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
 
 ## Troubleshooting
 
