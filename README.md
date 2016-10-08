@@ -68,7 +68,8 @@ test.localdev.checkmedia.org. 299 IN	A	172.17.0.1
 We will work on refining this approach, and we welcome suggestions for a more robust one - including the avoidance of relying on an external DNS.
 
 For now, it means that your `check-app` configuration files as listed above should all point to `http://test.localdev.checkmedia.org`,
-suffixed with the right ports for the various services.
+suffixed with the right ports for the various services. You can of course create your own DNS entry elsewhere that points to your correct Docker IP
+in case `172.17.0.1` is not right for you.
 
 ## Available services
 
