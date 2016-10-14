@@ -2,7 +2,7 @@
 
 Verify breaking news online
 
-This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X.
+This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
@@ -14,20 +14,20 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
   - `check-web/config.js.example` to `check-web/config.js`
-  - `check-web/config.js.example` to `check-web/test/config.js`
+  - `check-web/test/config.js.example` to `check-web/test/config.js`
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
-- `docker-compose pull && docker-compose build --pull`
-- `docker-compose up`
-- Databases (Postgres, Elasticsearch, etc.) will persist across runs - to clean, invoke `./scripts/docker-clean.sh`
+- `docker-compose pull && docker-compose build --pull && docker-compose up`
+- Databases (Postgres, Elasticsearch, etc.) will persist across runs
 - Container names:
-  - `web` = Check web client
+  - `web` = Check web client, `development` mode
   - `api` = Check service, `development` mode
   - `pender` = Pender service, `development` mode
-  - `api.test` = Check service, `test` mode
-  - `pender.test` = Pender service, `test` mode
   - `elasticsearch` = Elasticsearch
   - `postgres` = Postgres
   - `chromedriver` = Selenium Chromedriver
+  - `web.test` = Check web client, `test` mode
+  - `api.test` = Check service, `test` mode
+  - `pender.test` = Pender service, `test` mode
 
 ## The subdomain issue
 
@@ -77,26 +77,29 @@ in case `172.17.0.1` is not right for you.
 - Check service API at [http://test.localdev.checkmedia.org:3000/api](http://test.localdev.checkmedia.org:3000/api) - use `dev` as API key
 - Check service GraphQL at [http://test.localdev.checkmedia.org:3000/graphiql](http://test.localdev.checkmedia.org:3000/graphiql)
 - Pender service API at [http://test.localdev.checkmedia.org:3200/api](http://test.localdev.checkmedia.org:3200/api) - use `dev` as API key
+- Elasticsearch at [http://test.localdev.checkmedia.org:9200/_plugin/gui](http://test.localdev.checkmedia.org:9200/_plugin/gui)
+- Postgres at `test.localdev.checkmedia.org:5432` (use a standard Pg admin tool to connect)
+- Check web client / Test mode at [http://test.localdev.checkmedia.org:13333](http://test.localdev.checkmedia.org:13333)
 - Check service API / Test mode at [http://test.localdev.checkmedia.org:13000/api](http://test.localdev.checkmedia.org:13000/api) - use `test` as API key
 - Check service GraphQL / Test mode at [http://test.localdev.checkmedia.org:13000/graphiql](http://test.localdev.checkmedia.org:13000/graphiql)
 - Pender service API / Test mode at [http://test.localdev.checkmedia.org:13200/api](http://test.localdev.checkmedia.org:13200/api) - use `test` as API key
-- Elasticsearch at [http://test.localdev.checkmedia.org:9200/_plugin/gui](http://test.localdev.checkmedia.org:9200/_plugin/gui)
-- Postgres at `test.localdev.checkmedia.org:5432` (use a standard Pg admin tool to connect)
 - Chromedriver at [http://test.localdev.checkmedia.org:4444/wd/hub](http://test.localdev.checkmedia.org:4444/wd/hub)
 - Chromedriver VNC at `test.localdev.checkmedia.org:5900` (use a standard VNC client to connect with password `secret`)
 
 ## Testing
 
-- Check web client: `docker-compose run web npm run test`
-- Check service: `docker-compose run api.test bundle exec rake test`
-- Pender service: `docker-compose run pender.test bundle exec rake test`
-- Running a specific Check web client test: `docker-compose run web bash -c "cd test && rspec spec/app_spec.rb:63"`
+- Build the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull`
+- Start the app in test mode: `docker-compose -f docker-test.yml up`
+- Check web client: `docker-compose -f docker-test.yml run web.test npm run test`
+- Check service: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
+- Pender service: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
+- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
 - Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
 
 ## Helpful one-liners and scripts
 
 - Build the client bundle: `docker-compose run web npm run build`
-- Reset the `api.test` database: `docker-compose run api.test bundle exec rake db:drop db:create db:migrate`
+- Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
 - Update submodules to their latest commit: `./scripts/git-update.sh`
 - Cleanup docker images and volumes: `./scripts/docker-clean.sh`
 - Packing your local config files: `./scripts/tar-config.sh`
