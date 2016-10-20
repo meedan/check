@@ -2,7 +2,7 @@
 
 Verify breaking news online
 
-This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
+This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X (with [Docker for Mac](https://www.docker.com/products/docker#/mac)). The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
@@ -68,8 +68,7 @@ test.localdev.checkmedia.org. 299 IN	A	172.17.0.1
 We will work on refining this approach, and we welcome suggestions for a more robust one - including the avoidance of relying on an external DNS.
 
 For now, it means that your `check-app` configuration files as listed above should all point to `http://test.localdev.checkmedia.org`,
-suffixed with the right ports for the various services. You can of course create your own DNS entry elsewhere that points to your correct Docker IP
-in case `172.17.0.1` is not right for you.
+suffixed with the right ports for the various services. You can of course create your own DNS entry elsewhere that points to your correct Docker IP in case `172.17.0.1` is not right for you.
 
 ## Available services
 
@@ -109,10 +108,3 @@ in case `172.17.0.1` is not right for you.
 ## Troubleshooting
 
 - The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
-
-- If you're using Docker with VirtualBox on OS X, first consider reinstalling Docker with [Docker for Mac](https://www.docker.com/products/docker#/mac), which doesn't need VirtualBox. In the meantime, if you cannot reach some services locally (e.g. `localhost:3333` fails), you might need to set up port forwards on the VirtualBox VM:
-
-0. Open VirtualBox.app (can also do on command line)
-0. Select the running VM and click "Settings" in the main window toolbar
-0. Click "Network" and "Port Forwarding"
-0. For each port above in "Available services", add a line like this: `<name> | TCP | 127.0.0.1 | <portNumber> | | <portNumber>`. For example, `check_web | TCP | 127.0.0.1 | 3333 | | 3333` The first column (name) is just a label in the VirtualBox UI.
