@@ -6,6 +6,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
+- Updated information (only to Meedan Dev team) : #check-dev quick reference document in Slack #check-dev
+
 - Install `docker-compose`
 - `git clone --recursive git@github.com:meedan/check-app.git && cd check-app`
 - Configuration - copy and edit the following files:
