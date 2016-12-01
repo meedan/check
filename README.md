@@ -98,7 +98,7 @@ suffixed with the right ports for the various services. You can of course create
 ## Helpful one-liners and scripts
 
 - Build the web client bundle: `docker-compose run web npm run build`
-- Restart a service, e.g. Check API: `touch check-app/tmp/restart.txt`
+- Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
 - Update submodules to their latest commit: `./scripts/git-update.sh`
