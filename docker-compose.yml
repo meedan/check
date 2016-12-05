@@ -4,10 +4,14 @@ services:
     image: meedan/elasticsearch
     ports:
       - 9200:9200
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
   postgres:
     image: postgres
     ports:
       - 5432:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql
     environment:
       POSTGRES_PASSWORD: postgres
   api:
