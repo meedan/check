@@ -5,13 +5,16 @@ services:
     ports:
       - 9200:9200
     volumes:
-      - ./data/elasticsearch:/usr/share/elasticsearch/data
+      - ./elasticsearch/config:/usr/share/elasticsearch/config
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots      
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts      
   postgres:
     image: postgres
     ports:
       - 5432:5432
     volumes:
-      - ./data/postgres:/var/lib/postgresql
+      - ./postgres/data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgres
   api:
