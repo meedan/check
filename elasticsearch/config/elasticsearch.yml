@@ -1,0 +1,14 @@
+network.host: 0.0.0.0
+path:
+   logs: /usr/share/elasticsearch/logs
+   data: /usr/share/elasticsearch/data
+   repo: /usr/share/elasticsearch/snapshots
+   scripts: /usr/share/elasticsearch/scripts
+cluster:
+   name: ${HOSTNAME}-cluster
+node:
+   name: ${HOSTNAME}
+http:
+   cors:
+      enabled:        true
+      allow-origin:   '*'
