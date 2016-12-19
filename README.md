@@ -14,7 +14,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
   - `check-web/config.js.example` to `check-web/config.js`
-  - `check-web/test/config.js.example` to `check-web/test/config.js`
+  - `check-web/config.js.example` to `check-web/test/config.js`
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 - Databases (Postgres, Elasticsearch, etc.) will persist across runs
