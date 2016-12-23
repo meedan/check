@@ -50,8 +50,6 @@ services:
     ports:
       - 4444:4444
       - 5900:5900
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
       no_proxy: 'localhost'
       HUB_ENV_no_proxy: 'localhost'
