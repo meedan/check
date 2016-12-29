@@ -104,15 +104,22 @@ suffixed with the right ports for the various services. You can of course create
     - Open `check-web/test/WorkBenchCheckAPP.jmx` test plan
   - Testing Recording (at JMeter GUI):
     - Go to `Thread Group` \ `Recording Controller`
-    - Press `clear all the recorded samples` button at the bottom of the screen
+    - Remove all `Recording Controller` objects
+	    - Important: *Objects `BeanShell Preprocessor`, `View Results in Table` and `View Results Tree` must stay*
     - Go to `Workbench` \ `HTTP(S) Test Script Recorder`
     - Press `start` button at the bottom of the screen
     - Run [Check web client tests] (https://github.com/meedan/check-app/blob/feature/5504-jmeter/README.md#testing)
     - Wait until the test is complete
-  - Load Testing(at JMeter GUI):
-    - Go to `Thread Group`
-    - Set load testing parameters
-    - Press `Start` button (green arrow icon)
+  - Load Testing localy 
+    - At terminal, clean databases running `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
+    - At JMeter GUI:
+	    - Go to `Thread Group`
+	    - Set load testing parameters
+	    - Press `Start` button (green arrow icon)
+- Load Testing in Flood IO *(To Be Finished)
+    - At terminal, clean databases running `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
+    - At terminal, update Check URLs and ports running `./scripts/ruby replace_url.rb [file.jmx] [url_original] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [newp port2]`
+    - *To be continued*
 
 
 ## Helpful one-liners and scripts
