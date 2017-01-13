@@ -108,5 +108,5 @@ suffixed with the right ports for the various services. You can of course create
 
 ## Troubleshooting
 
-### `checkapp_web` fails with `Error: Cannot find module 'express'`
+### `checkapp_web` fails with `Cannot find module 'express'` and exits
 The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
