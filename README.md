@@ -101,11 +101,12 @@ suffixed with the right ports for the various services. You can of course create
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
-- Update submodules to their latest commit: `./scripts/git-update.sh`
-- Cleanup docker images and volumes: `./scripts/docker-clean.sh`
-- Packing your local config files: `./scripts/tar-config.sh`
+- Update submodules to their latest commit: `./bin/git-update.sh`
+- Cleanup docker images and volumes: `./bin/docker-clean.sh`
+- Packing your local config files: `./bin/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
 
 ## Troubleshooting
 
-- The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
+### `checkapp_web` fails with `Error: Cannot find module 'express'`
+The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
