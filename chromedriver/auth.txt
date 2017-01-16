@@ -1,0 +1,3 @@
+# JMeter generated Authorization file
+http://check-api.qa.checkmedia.org	meedan	m33d4n.12			BASIC_DIGEST
+http://qa.checkmedia.org/	meedan				BASIC_DIGEST
