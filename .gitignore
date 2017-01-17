@@ -4,3 +4,4 @@ postgres/data
 elasticsearch/data
 elasticsearch/snapshots
 /.project
+chromedriver/auth.txt
