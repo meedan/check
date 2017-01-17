@@ -21,6 +21,7 @@ services:
     build: check-api
     ports:
       - 3000:3000
+      - 6379:6379
     links:
       - elasticsearch
       - postgres

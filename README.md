@@ -11,6 +11,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Configuration - copy and edit the following files:
   - `check-api/config/config.yml.example` to `check-api/config/config.yml`
   - `check-api/config/database.yml.example` to `check-api/config/database.yml`
+  - `check-api/config/sidekiq.yml.example` to `check-api/config/sidekiq.yml`
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
   - `check-web/config.js.example` to `check-web/config.js`
