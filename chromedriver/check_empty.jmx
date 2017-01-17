@@ -45,11 +45,11 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(threads,50)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,2)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${__P(rampup,30)}</stringProp>
         <longProp name="ThreadGroup.start_time">1345498621000</longProp>
         <longProp name="ThreadGroup.end_time">1345498621000</longProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">${__P(duration,30)}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
@@ -174,11 +174,12 @@ sampler.setArguments(arguments);  </stringProp>
         <stringProp name="ProxyControlGui.port">8080</stringProp>
         <collectionProp name="ProxyControlGui.exclude_list">
           <stringProp name="-756587223">(?i).*\.(bmp|css|js|gif|ico|jpe?g|png|swf|woff|woff2|svg|bdic|css)</stringProp>
+          <stringProp name="-346017272">.*(graphql).*</stringProp>
         </collectionProp>
         <collectionProp name="ProxyControlGui.include_list">
           <stringProp name="1539484975">.*(localdev).*</stringProp>
           <stringProp name="20192030">.*(localhost).*</stringProp>
-          <stringProp name="1468">.*</stringProp>
+          <stringProp name="1537354899">.*(api.test).*</stringProp>
         </collectionProp>
         <boolProp name="ProxyControlGui.capture_http_headers">true</boolProp>
         <intProp name="ProxyControlGui.grouping_mode">0</intProp>
