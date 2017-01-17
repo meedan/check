@@ -121,8 +121,8 @@ suffixed with the right ports for the various services. You can of course create
 	    - Set load testing parameters
 	    - Press `Start` button (green arrow icon)
   - Load Testing in Flood IO 
-    - At terminal, update Check URLs and ports running `./scripts/ruby replace_url.rb [file.jmx] [url_original] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [newp port2]`   
-	- Example: `ruby replace_url.rb ../WorkBenchCheckAPIForFlood.jmx test.localdev.checkmedia.org 13000 qa.checkmedia.org '' 13333 check-api.qa.checkmedia.org ''`
+    - At terminal, update Check URLs and ports running `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`
+	- Example: `ruby ./scripts/replace_url.rb check_with_records.jmx test.localdev.checkmedia.org api.test 13000 check-api.qa.checkmedia.org '' 13333 qa.checkmedia.org ''`
     - Upload updated test plan (new .jmx file) to Flood.io and run it
 	- In the web browser go to https://flood.io/
 	- Sign in
@@ -133,8 +133,8 @@ suffixed with the right ports for the various services. You can of course create
 	- Check _`Use settings from uploaded test plan` check box bellow `Jmeter 3.0` tool
 	- Select Grid
 	- Press `Launch Flood` button
-
- 
+  - *Observation:*
+    - An empty and a recorded jmeter test plan are available at `check-app/tests` directory
 
 ## Helpful one-liners and scripts
 
