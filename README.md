@@ -16,6 +16,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-web/config.js.example` to `check-web/config.js`
   - `check-web/test/config.js.example` to `check-web/test/config.js`
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
+  - `chromedriver/auth.txt.example` to `chromedriver/auth.txt`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 - Databases (Postgres, Elasticsearch, etc.) will persist across runs
 - Container names:
@@ -111,7 +112,7 @@ suffixed with the right ports for the various services. You can of course create
     - Run [Check web client tests] (https://github.com/meedan/check-app/blob/feature/5504-jmeter/README.md#testing)
     - Wait until the test is complete
     - Save test plan
-  - Load Testing in a local machine 
+  - Load Testing in a local machine
     - Copy the saved test plan with the recordings to your local machine:
 	- `docker cp container_id:/check_empty.jmx check.jmx`
     - At terminal, clean databases running `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
@@ -120,7 +121,7 @@ suffixed with the right ports for the various services. You can of course create
 	    - Go to `Thread Group`
 	    - Set load testing parameters
 	    - Press `Start` button (green arrow icon)
-  - Load Testing in Flood IO 
+  - Load Testing in Flood IO
     - At terminal, update Check URLs and ports running `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`
 	- Example: `ruby ./scripts/replace_url.rb check_with_records.jmx test.localdev.checkmedia.org api.test 13000 check-api.qa.checkmedia.org '' 13333 qa.checkmedia.org ''`
     - Upload updated test plan (new .jmx file) to Flood.io and run it
