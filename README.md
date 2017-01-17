@@ -130,7 +130,7 @@ suffixed with the right ports for the various services. You can of course create
 	- Create Flood
 	- Send the new `.jmx` file created before
 	- Insert test name
-	- Check _`Use settings from uploaded test plan` check box bellow `Jmeter 3.0` tool
+	- Check `Use settings from uploaded test plan` check box bellow `Jmeter 3.0` tool
 	- Select Grid
 	- Press `Launch Flood` button
   - *Observation:*
