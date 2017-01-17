@@ -124,15 +124,15 @@ suffixed with the right ports for the various services. You can of course create
     - At terminal, update Check URLs and ports running `./scripts/ruby replace_url.rb [file.jmx] [url_original] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [newp port2]`   
 	- Example: `ruby replace_url.rb ../WorkBenchCheckAPIForFlood.jmx test.localdev.checkmedia.org 13000 qa.checkmedia.org '' 13333 check-api.qa.checkmedia.org ''`
     - Upload updated test plan (new .jmx file) to Flood.io and run it
-	- At Web Browser got to https://flood.io/ [https://flood.io/]
+	- In the web browser go to https://flood.io/
 	- Sign in
 	- Create a new project and open it
 	- Create Flood
-	- Send the new .jmx file created before
+	- Send the new `.jmx` file created before
 	- Insert test name
-	- Check _"Use settings from uploaded test plan"_ check box bellow _Jmeter 3.0_ tool
+	- Check _`Use settings from uploaded test plan` check box bellow `Jmeter 3.0` tool
 	- Select Grid
-	- Press _Launch Flood_ button
+	- Press `Launch Flood` button
 
  
 
