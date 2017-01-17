@@ -95,6 +95,47 @@ suffixed with the right ports for the various services. You can of course create
 - Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
 - Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
 
+- Load Testing
+  - Requirements:
+    - JMeter 3.0 installed in Chromedriver docker container (`http://test.localdev.checkmedia.org:5900/`)
+  - How to use it:
+    - [Start app in test mode] (https://github.com/meedan/check-app/blob/feature/5504-jmeter/README.md#testing)
+    - Connect to `http://test.localdev.checkmedia.org:5900/` using a Remote Desktop app under `VNC` protocol
+    - Open JMeter GUI:
+	- Open Terminal Emulator in the Remote desktop
+	- Run: `apache-jmeter-3.0/bin/jmeter -t check_empty.jmx`
+  - Testing Recording (at JMeter GUI):
+    - Go to `Thread Group` \ `Recording Controller`
+    - Go to `Workbench` \ `HTTP(S) Test Script Recorder`
+    - Press `start` button at the bottom of the screen
+    - Run [Check web client tests] (https://github.com/meedan/check-app/blob/feature/5504-jmeter/README.md#testing)
+    - Wait until the test is complete
+    - Save test plan
+  - Load Testing in a local machine 
+    - Copy the saved test plan with the recordings to your local machine:
+	- `docker cp container_id:/check_empty.jmx check.jmx`
+    - At terminal, clean databases running `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
+    - Open local Jmeter 3.0 GUI
+    - At JMeter GUI:
+	    - Go to `Thread Group`
+	    - Set load testing parameters
+	    - Press `Start` button (green arrow icon)
+  - Load Testing in Flood IO 
+    - At terminal, update Check URLs and ports running `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`
+	- Example: `ruby ./scripts/replace_url.rb check_with_records.jmx test.localdev.checkmedia.org api.test 13000 check-api.qa.checkmedia.org '' 13333 qa.checkmedia.org ''`
+    - Upload updated test plan (new .jmx file) to Flood.io and run it
+	- In the web browser go to https://flood.io/
+	- Sign in
+	- Create a new project and open it
+	- Create Flood
+	- Send the new `.jmx` file created before
+	- Insert test name
+	- Check _`Use settings from uploaded test plan` check box bellow `Jmeter 3.0` tool
+	- Select Grid
+	- Press `Launch Flood` button
+  - *Observation:*
+    - An empty and a recorded jmeter test plan are available at `check-app/tests` directory
+
 ## Helpful one-liners and scripts
 
 - Build the web client bundle: `docker-compose run web npm run build`
