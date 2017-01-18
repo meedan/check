@@ -94,19 +94,19 @@ suffixed with the right ports for the various services. You can of course create
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
 - Update submodules to their latest commit: `./scripts/git-update.sh`
 - Cleanup docker images and volumes: `./scripts/docker-clean.sh`
-- Packing your local config files: `./scripts/tar-config.sh`
+- Pack your local config files: `./scripts/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
 
 ## Testing
 
 - Build and run the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull && docker-compose -f docker-test.yml up`
-- Check service unit tests: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
-- Pender service unit tests: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
-- Check web client integration tests: `docker-compose -f docker-test.yml run web.test npm run test`
-- Running a specific Check web client integration test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
-- Running a specific Check API or Pender unit test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
+- Run Check service unit tests: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
+- Run Pender service unit tests: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
+- Run Check web client integration tests: `docker-compose -f docker-test.yml run web.test npm run test`
+- Run a specific Check web client integration test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
+- Run a specific Check API or Pender unit test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
 
-### Load Testing
+### Load testing
 The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be ran locally or via a 3rd party service such as [Flood IO](http://flood.io/).
 
 #### Create test plan
