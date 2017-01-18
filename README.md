@@ -25,10 +25,10 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `pender` = Pender service, `development` mode
   - `elasticsearch` = Elasticsearch
   - `postgres` = Postgres
-  - `chromedriver` = Selenium Chromedriver
   - `web.test` = Check web client, `test` mode
   - `api.test` = Check service, `test` mode
   - `pender.test` = Pender service, `test` mode
+  - `chromedriver` = Selenium Chromedriver for use in `test` mode
 
 ## The subdomain issue
 
@@ -83,59 +83,8 @@ suffixed with the right ports for the various services. You can of course create
 - Check service API / Test mode at [http://test.localdev.checkmedia.org:13000/api](http://test.localdev.checkmedia.org:13000/api) - use `test` as API key
 - Check service GraphQL / Test mode at [http://test.localdev.checkmedia.org:13000/graphiql](http://test.localdev.checkmedia.org:13000/graphiql)
 - Pender service API / Test mode at [http://test.localdev.checkmedia.org:13200/api](http://test.localdev.checkmedia.org:13200/api) - use `test` as API key
-- Chromedriver at [http://test.localdev.checkmedia.org:4444/wd/hub](http://test.localdev.checkmedia.org:4444/wd/hub)
-- Chromedriver VNC at `test.localdev.checkmedia.org:5900` (use a standard VNC client to connect with password `secret`)
-
-## Testing
-
-- Build the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull`
-- Start the app in test mode: `docker-compose -f docker-test.yml up`
-- Check web client: `docker-compose -f docker-test.yml run web.test npm run test`
-- Check service: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
-- Pender service: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
-- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
-- Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
-
-- Load Testing
-  - Requirements:
-    - JMeter 3.0 installed in Chromedriver docker container (`http://test.localdev.checkmedia.org:5900/`)
-  - How to use it:
-    - [Start app in test mode] (https://github.com/meedan/check-app/blob/feature/5504-jmeter/README.md#testing)
-    - Connect to `http://test.localdev.checkmedia.org:5900/` using a Remote Desktop app under `VNC` protocol
-    - Open JMeter GUI:
-	- Open Terminal Emulator in the Remote desktop
-	- Run: `apache-jmeter-3.0/bin/jmeter -t check_empty.jmx`
-  - Testing Recording (at JMeter GUI):
-    - Go to `Thread Group` \ `Recording Controller`
-    - Go to `Workbench` \ `HTTP(S) Test Script Recorder`
-    - Press `start` button at the bottom of the screen
-    - Run [Check web client tests] (https://github.com/meedan/check-app/blob/feature/5504-jmeter/README.md#testing)
-    - Wait until the test is complete
-    - Save test plan
-  - Load Testing in a local machine
-    - Copy the saved test plan with the recordings to your local machine:
-	- `docker cp container_id:/check_empty.jmx check.jmx`
-    - At terminal, clean databases running `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
-    - Open local Jmeter 3.0 GUI
-    - At JMeter GUI:
-	    - Go to `Thread Group`
-	    - Set load testing parameters
-	    - Press `Start` button (green arrow icon)
-  - Load Testing in Flood IO
-    - At terminal, update Check URLs and ports running `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`
-	- Example: `ruby ./scripts/replace_url.rb check_with_records.jmx test.localdev.checkmedia.org api.test 13000 check-api.qa.checkmedia.org '' 13333 qa.checkmedia.org ''`
-    - Upload updated test plan (new .jmx file) to Flood.io and run it
-	- In the web browser go to https://flood.io/
-	- Sign in
-	- Create a new project and open it
-	- Create Flood
-	- Send the new `.jmx` file created before
-	- Insert test name
-	- Check `Use settings from uploaded test plan` check box bellow `Jmeter 3.0` tool
-	- Select Grid
-	- Press `Launch Flood` button
-  - *Observation:*
-    - An empty and a recorded jmeter test plan are available at `check-app/tests` directory
+- Chromedriver WebDriver API at [http://test.localdev.checkmedia.org:4444/wd/hub](http://test.localdev.checkmedia.org:4444/wd/hub)
+- Chromedriver VNC server at `test.localdev.checkmedia.org:5900` (use a standard VNC client to connect with password `secret`)
 
 ## Helpful one-liners and scripts
 
@@ -147,6 +96,48 @@ suffixed with the right ports for the various services. You can of course create
 - Cleanup docker images and volumes: `./scripts/docker-clean.sh`
 - Packing your local config files: `./scripts/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
+
+## Testing
+
+- Build and run the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull && docker-compose -f docker-test.yml up`
+- Check service unit tests: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
+- Pender service unit tests: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
+- Check web client integration tests: `docker-compose -f docker-test.yml run web.test npm run test`
+- Running a specific Check web client integration test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
+- Running a specific Check API or Pender unit test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
+
+### Load Testing
+The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be ran locally or via a 3rd party service such as [Flood IO](http://flood.io/).
+
+#### Create test plan
+  - Start the app in test mode
+  - Connect to Chromedriver using a VNC client
+  - Open JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
+  - Go to **Workbench** > **HTTP(S) Test Script Recorder**
+  - Press **Start** button at the bottom of the screen
+  - Run Check web client integration tests
+  - Wait until the test is complete
+  - Save test plan, e.g. to `/check-test-plan.jmx`
+  - NOTE: an updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
+
+#### Load testing on a local machine
+  - Copy the saved test plan with the recordings to your local machine: `docker cp chromedriver:/check-test-plan.jmx check-test-plan.jmx`
+  - Clean test databases: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
+  - Open local copy of JMeter
+  - Go to **Thread Group**
+  - Set load testing parameters
+  - Press **Start** button (green arrow icon)
+
+#### Load testing on Flood IO
+  - At terminal, update Check URLs and ports: `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.domain.com '' 13333 domain.com ''`
+  - Go to [Flood IO](https://flood.io/)
+  - Create a new project and open it
+  - Create Flood
+  - Upload `check-test-plan.jmx`
+  - Insert test name
+  - Check **Use settings from uploaded test plan** checkbox below **JMeter 3.0** tool
+  - Select Grid
+  - Press **Launch Flood**
 
 ## Troubleshooting
 

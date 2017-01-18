@@ -12,15 +12,15 @@ end
 
 #ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]
 #ruby ./scripts/replace_url.rb check_with_records.jmx test.localdev.checkmedia.org api.test 13000 check-api.qa.checkmedia.org '' 13333 qa.checkmedia.org ''
-file_str = ARGV[0] #WorkBenchCheckAPI.jmx
-url_original = ARGV[1] #test.localdev.checkmedia.org
-url_original2 = ARGV[2] #test.api
-p1 = ARGV[3] #13000
-url_p1 = ARGV[4] #http://94cf42c8.ngrok.io/
-new_p1 = ARGV[5] #8080
-p2 = ARGV[6] #13333
-url_p2 = ARGV[7] #http://03e445ec.ngrok.io
-new_p2 = ARGV[8] #8080
+file_str = ARGV[0]
+url_original = ARGV[1]
+url_original2 = ARGV[2]
+p1 = ARGV[3]
+url_p1 = ARGV[4]
+new_p1 = ARGV[5]
+p2 = ARGV[6]
+url_p2 = ARGV[7]
+new_p2 = ARGV[8]
 file = File.new(file_str, "r")
 file_str = file_str+"new"
 new_file = File.open(file_str, 'w')
