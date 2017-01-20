@@ -123,7 +123,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 #### Load testing on Flood IO
   - At terminal, update Check URLs and ports: `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.domain.com '' 13333 domain.com ''`
   - Go to [Flood IO](https://flood.io/)
-  - Create a new project and open it > **Launch new Flood**
+  - Create a new project, then **Launch new Flood**
   - Configure the new Flood:
     - In **Upload Test Files**, upload Check test plan `check-test-plan.jmx`
     - In **Configure Flood** > **Tool**, select **JMeter 3.0**
