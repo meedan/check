@@ -120,24 +120,16 @@ The idea of load testing is to run several concurrent instances of the integrati
   - Save test plan, e.g. to `/check-test-plan.jmx`
   - NOTE: an updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
 
-#### Load testing on a local machine
-  - Copy the saved test plan with the recordings to your local machine: `docker cp chromedriver:/check-test-plan.jmx check-test-plan.jmx`
-  - Clean test databases: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
-  - Open local copy of JMeter
-  - Go to **Thread Group**
-  - Set load testing parameters
-  - Press **Start** button (green arrow icon)
-
 #### Load testing on Flood IO
   - At terminal, update Check URLs and ports: `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.domain.com '' 13333 domain.com ''`
   - Go to [Flood IO](https://flood.io/)
-  - Create a new project and open it
-  - Create Flood
-  - Upload `check-test-plan.jmx`
-  - Insert test name
-  - Check **Use settings from uploaded test plan** checkbox below **JMeter 3.0** tool
-  - Select Grid
-  - Press **Launch Flood**
+  - Create a new project and open it > **Launch new Flood**
+  - Configure the new Flood:
+    - In **Upload Test Files**, upload Check test plan `check-test-plan.jmx`
+    - In **Configure Flood** > **Tool**, select **JMeter 3.0**
+    - Turn ON **Configure Flood** > **Use settings from uploaded test plan**
+    - In **Grids**, select at least one grid
+  - Click **Launch Flood**
 
 ## Troubleshooting
 
