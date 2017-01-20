@@ -107,6 +107,12 @@ suffixed with the right ports for the various services. You can of course create
 - Packing your local config files: `./bin/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
 
+## More documentation
+
+- [Check service API](https://github.com/meedan/check-api)
+- [Check web client](https://github.com/meedan/check-web)
+- [Pender service API](https://github.com/meedan/pender)
+
 ## Troubleshooting
 
 ### `checkapp_web` fails with `Cannot find module 'express'` and exits
