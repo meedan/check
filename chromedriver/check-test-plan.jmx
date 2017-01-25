@@ -11,6 +11,15 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
+      <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+        <stringProp name="variableName">random_value</stringProp>
+        <stringProp name="outputFormat"></stringProp>
+        <stringProp name="minimumValue">1</stringProp>
+        <stringProp name="maximumValue">9999999</stringProp>
+        <stringProp name="randomSeed"></stringProp>
+        <boolProp name="perThread">false</boolProp>
+      </RandomVariableConfig>
+      <hashTree/>
       <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments"/>
