@@ -59,14 +59,14 @@
           <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
             <collectionProp name="AuthManager.auth_list">
               <elementProp name="" elementType="Authorization">
-                <stringProp name="Authorization.url">http://check-api.qa.checkmedia.org</stringProp>
+                <stringProp name="Authorization.url">http://check-api.test.checkmedia.org</stringProp>
                 <stringProp name="Authorization.username">meedan</stringProp>
                 <stringProp name="Authorization.password">m33d4n.12</stringProp>
                 <stringProp name="Authorization.domain"></stringProp>
                 <stringProp name="Authorization.realm"></stringProp>
               </elementProp>
               <elementProp name="" elementType="Authorization">
-                <stringProp name="Authorization.url">http://qa.checkmedia.org/</stringProp>
+                <stringProp name="Authorization.url">http://test.checkmedia.org/</stringProp>
                 <stringProp name="Authorization.username">meedan</stringProp>
                 <stringProp name="Authorization.password">m33d4n.12</stringProp>
                 <stringProp name="Authorization.domain"></stringProp>
@@ -83,11 +83,8 @@
 for (int i=0; i&lt;arguments.getArgumentCount(); i++) {
       argument = arguments.getArgument(i);
       if (argument.getName().contains(&quot;email&quot;)) {
-      	print (&quot;SIM&quot;);
-          String newVal = ctx.getThreadNum().toString()+argument.getValue();                         
+          String newVal = ctx.getThreadNum().toString()+vars.get(&quot;random_value&quot;).toString()+argument.getValue();                         
           argument.setValue(newVal);
-          print(argument.getName().toString());
-          print(newVal);
       }
 }
 sampler.setArguments(arguments);  </stringProp>
