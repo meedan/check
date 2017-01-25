@@ -1,14 +1,17 @@
 #!/bin/bash
+
+# config tarfile is suffixed with timestamp.
 filename=config-`date +%Y%m%d%H%M`.tar.gz
-configs="check-api/config/config.yml \
-         check-api/config/database.yml \
-         check-api/config/sidekiq.yml \
-         pender/config/config.yml \
-         pender/config/database.yml \
-         check-web/config.js \
-         check-web/test/config.js \
-         check-web/test/config.yml"
-tar zcf $filename $configs
+
+# find all config files, which should have .example variants.
+configs=`find -name '*.example'`
+configs=${configs//.example/}
+
+# attempt to tar each file, but don't fail on missing ones.
+# http://unix.stackexchange.com/questions/167717/tar-a-list-of-files-which-dont-all-exist
+tar zcf $filename $(ls $configs)
+
+# fail on non-zero exit code.
 if [ $? -eq 0 ]
 then
   echo Created file $filename
