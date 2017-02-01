@@ -53,5 +53,3 @@ services:
     environment:
       no_proxy: 'localhost'
       HUB_ENV_no_proxy: 'localhost'
-      http_proxy: 'localhost:8080'
-      ssl_proxy: 'localhost:8080'
