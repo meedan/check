@@ -123,16 +123,20 @@ The idea of load testing is to run several concurrent instances of the integrati
   - NOTE: an updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
 
 #### Load testing on Flood IO
-  - Copy file generated in Chromedriver container to local machine:
-    -docker cp [containerid]:/WorkBenchCheckAPI.jmx check_test_plan.jmx
-  - At terminal, update Check URLs and ports: `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.test.checkmedia.org '' 13333 test.checkmedia.org ''`
-  - Rename the created file in order to have a `.jmx` extension. Ex: `check-test-planNEW.jmx`
-  - Open the new file in JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-test-planNEW.jmx`
-  - Go to **test Plan** > **Thread Group** > **Recording Controller**es
-  - Move **HTTP Authorization Manager, BeanShell PreProcessor, View Results Tree, View Results in Table** and **Random Variable** to **Test Plan**
-  - Move **Thread Group** to **Test Plan**
+  - Copy file generated in Chromedriver container to local machine running the following command in your machine terminal:
+    -docker cp [containerid]:/test-check-plan.jmx check-test-plan.jmx
+  - At terminal,from Check directory, update Check URLs and ports: `ruby ./scripts/replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.test.checkmedia.org '' 13333 test.checkmedia.org ''`
+ 
+  - Rename the created file in order to have a `.jmx` extension. Ex: `check-test-planNEW.jmx`  
+  
+  - Open the new file in JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-test-planNEW.jmx`  
+  
+  - Move all HTTP Resquest from **Recording Controller** to **Thread Group**
+  
   - Save file
+  
   - Go to [Flood IO](https://flood.io/)
+  
   - Create a new project, then **Launch new Flood**
   - Configure the new Flood:
     - In **Upload Test Files**, upload Check test plan `check-test-plan.jmx`
