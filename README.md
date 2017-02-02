@@ -110,7 +110,9 @@ suffixed with the right ports for the various services. You can of course create
 The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be ran locally or via a 3rd party service such as [Flood IO](http://flood.io/).
 
 #### Create test plan
-  - Start the app in test mode
+  - Edit check/check-web/test/config.yml and add the following line and save it.
+    - `proxy: localhost:8080`
+  - Start Check app in test mode
   - Connect to Chromedriver using a VNC client
   - Open JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
   - Go to **Workbench** > **HTTP(S) Test Script Recorder**
@@ -121,16 +123,24 @@ The idea of load testing is to run several concurrent instances of the integrati
   - NOTE: an updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
 
 #### Load testing on Flood IO
-  - At terminal, update Check URLs and ports: `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.domain.com '' 13333 domain.com ''`
+  - Copy file generated in Chromedriver container to local machine:
+    -docker cp [containerid]:/WorkBenchCheckAPI.jmx check_test_plan.jmx
+  - At terminal, update Check URLs and ports: `ruby replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.test.checkmedia.org '' 13333 test.checkmedia.org ''`
+  - Rename the created file in order to have a `.jmx` extension. Ex: `check-test-planNEW.jmx`
+  - Open the new file in JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-test-planNEW.jmx`
+  - Go to **test Plan** > **Thread Group** > **Recording Controller**es
+  - Move **HTTP Authorization Manager, BeanShell PreProcessor, View Results Tree, View Results in Table** and **Random Variable** to **Test Plan**
+  - Move **Thread Group** to **Test Plan**
+  - Save file
   - Go to [Flood IO](https://flood.io/)
   - Create a new project, then **Launch new Flood**
   - Configure the new Flood:
     - In **Upload Test Files**, upload Check test plan `check-test-plan.jmx`
     - In **Configure Flood** > **Tool**, select **JMeter 3.0**
-    - Turn ON **Configure Flood** > **Use settings from uploaded test plan**
+    - Configure **Threads**
     - In **Grids**, select at least one grid
   - Click **Launch Flood**
-
+  
 ## Troubleshooting
 
 - The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
