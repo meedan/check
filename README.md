@@ -52,8 +52,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check web client: `docker-compose -f docker-test.yml run web.test npm run test`
 - Check service: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
 - Pender service: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
-- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
-- Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
+- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
+- Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
 ## Helpful one-liners and scripts
 
