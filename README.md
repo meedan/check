@@ -11,6 +11,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Configuration - copy and edit the following files:
   - `check-api/config/config.yml.example` to `check-api/config/config.yml`
   - `check-api/config/database.yml.example` to `check-api/config/database.yml`
+  - `check-api/config/sidekiq.yml.example` to `check-api/config/sidekiq.yml`
   - `pender/config/config.yml.example` to `pender/config/config.yml`
   - `pender/config/database.yml.example` to `pender/config/database.yml`
   - `check-web/config.js.example` to `check-web/config.js`
@@ -30,61 +31,44 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `pender.test` = Pender service, `test` mode
   - `chromedriver` = Selenium Chromedriver for use in `test` mode
 
-## The subdomain issue
-
-Check works as a multi-tenant application, where each team is considered to be a different tenant.
-For each team, Check redirects to a subdomain of the base app URL (e.g. `http://team-one.localhost:3333`).
-There are several concerns to take into account while setting up a subdomain-friendly Docker environment:
-
-- Ability to address any subdomain from a browser running on the local host and have the request handled by the Check web client.
-- Ability for the backend Check service to address subdomains to verify the validity of new team subdomains.
-- Ability to run tests (including Selenium tests) from within the relevant Docker containers.
-
-We've currently opted for a simple, but incomplete approach of creating a DNS entry in our own domains that redirects to the default
-Docker local IP (i.e. `172.17.0.1`) and that supports wildcards. The entry is `test.localdev.checkmedia.org`, and this is what it looks like:
-
-```
-$ dig test.localdev.checkmedia.org
-
-; <<>> DiG 9.9.5-3ubuntu0.9-Ubuntu <<>> test.localdev.checkmedia.org
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42058
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 512
-;; QUESTION SECTION:
-;test.localdev.checkmedia.org.	IN	A
-
-;; ANSWER SECTION:
-test.localdev.checkmedia.org. 299 IN	A	172.17.0.1
-
-;; Query time: 66 msec
-;; SERVER: 127.0.1.1#53(127.0.1.1)
-;; WHEN: Sat Oct 08 13:09:04 PDT 2016
-;; MSG SIZE  rcvd: 73
-```
-
-We will work on refining this approach, and we welcome suggestions for a more robust one - including the avoidance of relying on an external DNS.
-
-For now, it means that your `check-app` configuration files as listed above should all point to `http://test.localdev.checkmedia.org`,
-suffixed with the right ports for the various services. You can of course create your own DNS entry elsewhere that points to your correct Docker IP in case `172.17.0.1` is not right for you.
-
 ## Available services
 
-- Check web client at [http://test.localdev.checkmedia.org:3333](http://test.localdev.checkmedia.org:3333)
-- Check service API at [http://test.localdev.checkmedia.org:3000/api](http://test.localdev.checkmedia.org:3000/api) - use `dev` as API key
-- Check service GraphQL at [http://test.localdev.checkmedia.org:3000/graphiql](http://test.localdev.checkmedia.org:3000/graphiql)
-- Pender service API at [http://test.localdev.checkmedia.org:3200/api](http://test.localdev.checkmedia.org:3200/api) - use `dev` as API key
-- Elasticsearch at [http://test.localdev.checkmedia.org:9200/_plugin/gui](http://test.localdev.checkmedia.org:9200/_plugin/gui)
-- Postgres at `test.localdev.checkmedia.org:5432` (use a standard Pg admin tool to connect)
-- Check web client / Test mode at [http://test.localdev.checkmedia.org:13333](http://test.localdev.checkmedia.org:13333)
-- Check service API / Test mode at [http://test.localdev.checkmedia.org:13000/api](http://test.localdev.checkmedia.org:13000/api) - use `test` as API key
-- Check service GraphQL / Test mode at [http://test.localdev.checkmedia.org:13000/graphiql](http://test.localdev.checkmedia.org:13000/graphiql)
-- Pender service API / Test mode at [http://test.localdev.checkmedia.org:13200/api](http://test.localdev.checkmedia.org:13200/api) - use `test` as API key
-- Chromedriver WebDriver API at [http://test.localdev.checkmedia.org:4444/wd/hub](http://test.localdev.checkmedia.org:4444/wd/hub)
-- Chromedriver VNC server at `test.localdev.checkmedia.org:5900` (use a standard VNC client to connect with password `secret`)
+- Check web client at [http://localhost:3333](http://localhost:3333)
+- Check service API at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
+- Check service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
+- Pender service API at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
+- Elasticsearch at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
+- Postgres at `localhost:5432` (use a standard Pg admin tool to connect)
+- Check web client / Test mode at [http://localhost:13333](http://localhost:13333)
+- Check service API / Test mode at [http://localhost:13000/api](http://localhost:13000/api) - use `test` as API key
+- Check service GraphQL / Test mode at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
+- Pender service API / Test mode at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
+- Chromedriver at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
+- Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
+
+## Testing
+
+- Build the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull`
+- Start the app in test mode: `docker-compose -f docker-test.yml up`
+- Check web client: `docker-compose -f docker-test.yml run web.test npm run test`
+- Check service: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
+- Pender service: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
+- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
+- Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
+
+### Load testing
+The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be ran locally or via a 3rd party service such as [Flood IO](http://flood.io/).
+
+- Edit `check/check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
+- Start Check app in test mode
+- Connect to Chromedriver using a VNC client
+- Open JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
+- Go to **Workbench** > **HTTP(S) Test Script Recorder**
+- Press **Start** button at the bottom of the screen
+- Run Check web client integration tests
+- Wait until the test is complete
+- Save test plan, e.g. to `/check-test-plan.jmx`
+- NOTE: An updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
 
 ## Helpful one-liners and scripts
 
@@ -92,59 +76,18 @@ suffixed with the right ports for the various services. You can of course create
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
-- Update submodules to their latest commit: `./scripts/git-update.sh`
-- Cleanup docker images and volumes: `./scripts/docker-clean.sh`
-- Pack your local config files: `./scripts/tar-config.sh`
+- Update submodules to their latest commit: `./bin/git-update.sh`
+- Cleanup docker images and volumes: `./bin/docker-clean.sh`
+- Packing your local config files: `./bin/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
 
-## Testing
+## More documentation
 
-- Build and run the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull && docker-compose -f docker-test.yml up`
-- Run Check service unit tests: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
-- Run Pender service unit tests: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
-- Run Check web client integration tests: `docker-compose -f docker-test.yml run web.test npm run test`
-- Run a specific Check web client integration test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec spec/app_spec.rb:63"`
-- Run a specific Check API or Pender unit test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*keyword.*/`
+- [Check service API](https://github.com/meedan/check-api)
+- [Check web client](https://github.com/meedan/check-web)
+- [Pender service API](https://github.com/meedan/pender)
 
-### Load testing
-The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be ran locally or via a 3rd party service such as [Flood IO](http://flood.io/).
-
-#### Create test plan
-  - Edit check/check-web/test/config.yml and add the following line and save it.
-    - `proxy: localhost:8080`
-  - Start Check app in test mode
-  - Connect to Chromedriver using a VNC client
-  - Open JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
-  - Go to **Workbench** > **HTTP(S) Test Script Recorder**
-  - Press **Start** button at the bottom of the screen
-  - Run Check web client integration tests
-  - Wait until the test is complete
-  - Save test plan, e.g. to `/check-test-plan.jmx`
-  - NOTE: an updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
-
-#### Load testing on Flood IO
-  - Copy file generated in Chromedriver container to local machine running the following command in your machine terminal:
-    -docker cp [containerid]:/test-check-plan.jmx check-test-plan.jmx
-  - At terminal,from Check directory, update Check URLs and ports: `ruby ./scripts/replace_url.rb [file.jmx] [url_original2] [url_original1] [port1] [new url port 1] [new port1] [port2] [new url port 13333] [new port2]`, e.g. `ruby ./scripts/replace_url.rb check-test-plan.jmx test.localdev.checkmedia.org api.test 13000 check-api.test.checkmedia.org '' 13333 test.checkmedia.org ''`
- 
-  - Rename the created file in order to have a `.jmx` extension. Ex: `check-test-planNEW.jmx`  
-  
-  - Open the new file in JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-test-planNEW.jmx`  
-  
-  - Move all HTTP Resquest from **Recording Controller** to **Thread Group**
-  
-  - Save file
-  
-  - Go to [Flood IO](https://flood.io/)
-  
-  - Create a new project, then **Launch new Flood**
-  - Configure the new Flood:
-    - In **Upload Test Files**, upload Check test plan `check-test-plan.jmx`
-    - In **Configure Flood** > **Tool**, select **JMeter 3.0**
-    - Configure **Threads**
-    - In **Grids**, select at least one grid
-  - Click **Launch Flood**
-  
 ## Troubleshooting
 
-- The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
+### `checkapp_web` fails with `Cannot find module 'express'` and exits
+The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
