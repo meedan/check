@@ -57,10 +57,10 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
 ### Load testing
-The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be ran locally or via a 3rd party service such as [Flood IO](http://flood.io/).
+The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be run locally or via a 3rd party service such as [Flood IO](http://flood.io/).
 
 - Edit `check/check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
-- Start Check app in test mode
+- Start Check app in `test` mode
 - Connect to Chromedriver using a VNC client
 - Open JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
 - Go to **Workbench** > **HTTP(S) Test Script Recorder**
