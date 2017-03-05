@@ -7,7 +7,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
 - Install `docker-compose`
-- `git clone --recursive git@github.com:meedan/check-app.git && cd check-app`
+- `git clone --recursive git@github.com:meedan/check.git && cd check`
 - Configuration - copy and edit the following files:
   - `check-api/config/config.yml.example` to `check-api/config/config.yml`
   - `check-api/config/database.yml.example` to `check-api/config/database.yml`
