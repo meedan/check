@@ -77,7 +77,7 @@ Running Load tests locally:
 - Start Check app in `test` mode
 - Download [Jmeter 3.0](https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-3.0.tgz)
 - Extract files
-- Run `./apache-jmeter-3.0/bin/jmeter -n -t /chromedriver/check-test-plan.jmx -l /chromedriver/check-test-plan.jmxresults.jtl`, being: `./apache-jmeter-3.0/bin/jmeter` path where `jmeter` binary is installed, `/chromedriver/check-test-plan.jmx` path to the test plan downloaded from check and `/chromedriver/check-test-plan.jmxresults.jtl` a new file created by jmeter with tests results.
+- Run `./apache-jmeter-3.0/bin/jmeter -JPWD=XXXX -n -t /chromedriver/check-test-plan.jmx -l /chromedriver/check-test-plan.jmxresults.jtl`, being: `./apache-jmeter-3.0/bin/jmeter` path where `jmeter` binary is installed, `XXXX` is the password for authentication in test server,`/chromedriver/check-test-plan.jmx` path to the test plan downloaded from check and `/chromedriver/check-test-plan.jmxresults.jtl` a new file created by jmeter with tests results.
 
 
 
