@@ -70,7 +70,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 - Save test plan, e.g. to `./check-test-plan.jmx`
 - NOTE: An updated Check test plan is already available at `./chromedriver/check-test-plan.jmx`
 
-### Running Load tests locally
+### Running load tests locally
 
 - Edit `./check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
 - Start Check app in `test` mode
