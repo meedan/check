@@ -1,3 +1,0 @@
-# JMeter generated Authorization file
-http://check-api.domain.com	http-username	http-password			BASIC_DIGEST
-http://check-web.domain.com http-username	http-password			BASIC_DIGEST

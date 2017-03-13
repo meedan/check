@@ -57,29 +57,25 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
 ### Load testing
-The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be run locally or via a 3rd party service such as [Flood IO](http://flood.io/).
+The idea of load testing is to run several concurrent instances of the integration tests. To do so, we first capture the HTTP requests made by the integration tests to the API using [Apache JMeter 3.0](http://jmeter.apache.org/)'s proxy feature. JMeter produces a test plan that can then be run locally or via a 3rd party service such as [Flood IO](http://flood.io/).
 
-- Edit `check/check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
+- Edit `./check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
 - Start Check app in `test` mode
 - Connect to Chromedriver using a VNC client
-- Open JMeter via a terminal: `apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
+- Open JMeter via a terminal: `./apache-jmeter-3.0/bin/jmeter -t check-proxy.jmx`
 - Go to **Workbench** > **HTTP(S) Test Script Recorder**
 - Press **Start** button at the bottom of the screen
 - Run Check web client integration tests
 - Wait until the test is complete
-- Save test plan, e.g. to `/check-test-plan.jmx`
-- NOTE: An updated Check test plan is already available at `/chromedriver/check-test-plan.jmx`
+- Save test plan, e.g. to `./check-test-plan.jmx`
+- NOTE: An updated Check test plan is already available at `./chromedriver/check-test-plan.jmx`
 
+### Running Load tests locally
 
-Running Load tests locally:
-
-- Edit `check/check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
+- Edit `./check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
 - Start Check app in `test` mode
-- Download [Jmeter 3.0](https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-3.0.tgz)
-- Extract files
-- Run `./apache-jmeter-3.0/bin/jmeter -JPWD=XXXX -n -t /chromedriver/check-test-plan.jmx -l /chromedriver/check-test-plan.jmxresults.jtl`, being: `./apache-jmeter-3.0/bin/jmeter` path where `jmeter` binary is installed, `XXXX` is the password for authentication in test server,`/chromedriver/check-test-plan.jmx` path to the test plan downloaded from check and `/chromedriver/check-test-plan.jmxresults.jtl` a new file created by jmeter with tests results.
-
-
+- Download and install Apache JMeter 3.0 on your LOCAL machine
+- Run `/path/to/apache-jmeter-3.0/bin/jmeter -JAUTH_USER=your-test-stage-http-auth-username -JAUTH_PASS=your-test-stage-http-auth-password -n -t ./chromedriver/check-test-plan.jmx -l ~/check-test-results.jtl` where `check-test-results.jtl` is the [JMeter test run results file](https://wiki.apache.org/jmeter/JtlFiles).
 
 ## Helpful one-liners and scripts
 

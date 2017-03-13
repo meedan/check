@@ -52,15 +52,15 @@
         <collectionProp name="AuthManager.auth_list">
           <elementProp name="" elementType="Authorization">
             <stringProp name="Authorization.url">http://check-api.test.checkmedia.org</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">${__P(PWD)}</stringProp>
+            <stringProp name="Authorization.username">${__P(AUTH_USER)}</stringProp>
+            <stringProp name="Authorization.password">${__P(AUTH_PASS)}</stringProp>
             <stringProp name="Authorization.domain"></stringProp>
             <stringProp name="Authorization.realm"></stringProp>
           </elementProp>
           <elementProp name="" elementType="Authorization">
             <stringProp name="Authorization.url">http://test.checkmedia.org/</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">${__P(PWD)}</stringProp>
+            <stringProp name="Authorization.username">${__P(AUTH_USER)}</stringProp>
+            <stringProp name="Authorization.password">${__P(AUTH_PASS)}</stringProp>
             <stringProp name="Authorization.domain"></stringProp>
             <stringProp name="Authorization.realm"></stringProp>
           </elementProp>
@@ -75,7 +75,7 @@
 for (int i=0; i&lt;arguments.getArgumentCount(); i++) {
       argument = arguments.getArgument(i);
       if (argument.getName().contains(&quot;email&quot;)) {
-          String newVal = ctx.getThreadNum().toString()+vars.get(&quot;random_value&quot;).toString()+argument.getValue();                         
+          String newVal = ctx.getThreadNum().toString()+vars.get(&quot;random_value&quot;).toString()+argument.getValue();
           argument.setValue(newVal);
       }
 }
