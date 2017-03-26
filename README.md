@@ -86,7 +86,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 - Update submodules to their latest commit: `./bin/git-update.sh`
 - Cleanup docker images and volumes: `./bin/docker-clean.sh`
 - Packing your local config files: `./bin/tar-config.sh`
-- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app checkapp_pender`
+- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app check_pender`
 
 ## More documentation
 
@@ -96,5 +96,5 @@ The idea of load testing is to run several concurrent instances of the integrati
 
 ## Troubleshooting
 
-### `checkapp_web` fails with `Cannot find module 'express'` and exits
+### `check_web` fails with `Cannot find module 'express'` and exits
 The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
