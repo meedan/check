@@ -7,8 +7,8 @@ services:
     volumes:
       - ./elasticsearch/config:/usr/share/elasticsearch/config
       - ./elasticsearch/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots      
-      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts      
+      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
   postgres:
     image: postgres
     ports:
@@ -48,6 +48,7 @@ services:
       - api
     volumes:
       - ./check-web:/app
+      - ./check-api:/api
     environment:
       PLATFORM: web
       NODE_ENV: development

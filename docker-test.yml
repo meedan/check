@@ -41,6 +41,7 @@ services:
       - chromedriver
     volumes:
       - ./check-web:/app
+      - ./check-api:/api
     environment:
       PLATFORM: web
       NODE_ENV: development
