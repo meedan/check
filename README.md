@@ -93,8 +93,3 @@ The idea of load testing is to run several concurrent instances of the integrati
 - [Check service API](https://github.com/meedan/check-api)
 - [Check web client](https://github.com/meedan/check-web)
 - [Pender service API](https://github.com/meedan/pender)
-
-## Troubleshooting
-
-### `check_web` fails with `Cannot find module 'express'` and exits
-The very first `docker-compose up` currently fails because `check-web` does not correctly install and build itself. We are working on a fix for this issue. Until it is resolved, you need to run `docker-compose run web npm i && docker-compose run web npm run build` prior to spinning up the app.
