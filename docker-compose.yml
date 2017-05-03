@@ -49,6 +49,7 @@ services:
     volumes:
       - ./check-web:/app
       - ./check-api:/api
+      - /app/node_modules
     environment:
       PLATFORM: web
       NODE_ENV: development
