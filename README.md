@@ -17,33 +17,30 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-web/config.js.example` to `check-web/config.js`
   - `check-web/test/config.js.example` to `check-web/test/config.js`
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
-  - `chromedriver/auth.txt.example` to `chromedriver/auth.txt`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
-- Databases (Postgres, Elasticsearch, etc.) will persist across runs
-- Container names:
-  - `web` = Check web client, `development` mode
-  - `api` = Check service, `development` mode
-  - `pender` = Pender service, `development` mode
-  - `elasticsearch` = Elasticsearch
-  - `postgres` = Postgres
-  - `web.test` = Check web client, `test` mode
-  - `api.test` = Check service, `test` mode
-  - `pender.test` = Pender service, `test` mode
-  - `chromedriver` = Selenium Chromedriver for use in `test` mode
 
-## Available services
+## Available services and container names
 
-- Check web client at [http://localhost:3333](http://localhost:3333)
-- Check service API at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
+### `development` mode using `docker-compose.yml`
+
+- Check web client (container `web`) at [http://localhost:3333](http://localhost:3333)
+- Check service API (container `api`) at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
 - Check service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
-- Pender service API at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
-- Elasticsearch at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
-- Postgres at `localhost:5432` (use a standard Pg admin tool to connect)
-- Check web client / Test mode at [http://localhost:13333](http://localhost:13333)
-- Check service API / Test mode at [http://localhost:13000/api](http://localhost:13000/api) - use `test` as API key
-- Check service GraphQL / Test mode at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
-- Pender service API / Test mode at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
-- Chromedriver at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
+- Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
+- Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
+- Elasticsearch GUI at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
+- PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
+
+### `test` mode using `docker-test.yml`
+
+- Check web client (container `web.test`) at [http://localhost:13333](http://localhost:13333)
+- Check service API (container `api.test`) at [http://localhost:13000/api](http://localhost:13000/api) - use `test` as API key
+- Check service GraphQL at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
+- Pender service API (container `pender.test`) at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
+- Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
+- Elasticsearch GUI at [http://localhost:9200/_plugin/gui](http://localhost:9200/_plugin/gui)
+- PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
+- Chromedriver (container `chromedriver`) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
 
 ## Testing
