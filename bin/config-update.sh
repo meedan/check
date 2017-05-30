@@ -35,6 +35,6 @@ for F in $(find . -name '*.example'); do
   # - if the files don't exist in the config tree (first-time setup),
   #   move them from source tree to config and then symlink them back.
   [ ! -f $DSTF ] && [ -f $SRCF ] && mv $SRCF $DSTF
-  [ -f $DSTF ] && echo "Linking $DSTF => $SRCF" && rm -f $SRCF && ln -s $DSTF $SRCF
+  [ -f $DSTF ] && echo "Copying $DSTF => $SRCF" && cp $DSTF $SRCF
 
 done
