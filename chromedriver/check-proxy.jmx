@@ -64,279 +64,6 @@
             <stringProp name="Authorization.domain"></stringProp>
             <stringProp name="Authorization.realm"></stringProp>
           </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_register_and_login_using_e-mail</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/me?test_id=should_register_and_login_using_e-mail</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_login_using_Facebook</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/me?test_id=should_login_using_Twitter</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_login_using_Slack</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/me?test_id=should_login_using_Slack</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_create_2_teams</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/teams/new?test_id=should_create_2_teams</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_join_team</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/teams?test_id=should_join_team</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496342636/join</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_as_the_group_creator,_go_to_the_members_page_and_approve_the_joining_request</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/teams?test_id=should_as_the_group_creator,_go_to_the_members_page_and_approve_the_joining_request</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496342636/members</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_switch_teams</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/check/teams?test_id=should_switch_teams</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496342636</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_add_slack_notifications_to_a_team_</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496342636?test_id=should_add_slack_notifications_to_a_team_</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_create_a_project_for_a_team_</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_create_project_media</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_add_comment_to_your_media</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496342636/project/987/media/3992?test_id=should_add_comment_to_your_media</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_change_a_media_status_via_the_dropdown_menu</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496342636/project/987/media/3992</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/?test_id=should_Add_a_tag_to_your_media_and_delete_it</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">m33d4n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496432858/join</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496432858/members</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496432858</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496432858?test_id=should_add_slack_notifications_to_a_team_</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496432858/project/989/media/4${count}${count}${count}?test_id=should_add_comment_to_your_media</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496432858/project/989/media/4${count}${count}${count}</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496433962/join</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496433962/members</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team11496433962</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496433962?test_id=should_add_slack_notifications_to_a_team_</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496433962/project/99${count}/media/4${count}${count}4?test_id=should_add_comment_to_your_media</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
-          <elementProp name="" elementType="Authorization">
-            <stringProp name="Authorization.url">https://test.checkmedia.org/team21496433962/project/99${count}/media/4${count}${count}4?test_id=should_change_a_media_status_via_the_dropdown_menu</stringProp>
-            <stringProp name="Authorization.username">meedan</stringProp>
-            <stringProp name="Authorization.password">g(�{s3d&#x1c;���n.12</stringProp>
-            <stringProp name="Authorization.domain"></stringProp>
-            <stringProp name="Authorization.realm"></stringProp>
-          </elementProp>
         </collectionProp>
       </AuthManager>
       <hashTree/>
@@ -347,8 +74,33 @@
             <stringProp name="Argument.value">${__P(threads,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="report" elementType="Argument">
+            <stringProp name="Argument.name">report</stringProp>
+            <stringProp name="Argument.value">${__P(report,jmeter-test-report.csv)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="start" elementType="Argument">
+            <stringProp name="Argument.name">start</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
+      <hashTree/>
+      <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Pré-Processador BeanShell" enabled="true">
+        <boolProp name="resetInterpreter">false</boolProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="script">f = new FileOutputStream(vars.get(&quot;report&quot;).toString(), true); 
+p = new PrintStream(f); 
+
+if (ctx.getThreadNum() == 1 &amp;&amp; (vars.get(&quot;start&quot;).length() &lt;1) &amp;&amp; (vars.getIteration() == 1)){
+	p.println (&quot;timeStamp;elapsed;ID;label;responseCode;responseMessage;threadName;success;bytes;latency;IdleTime;URL;HTTP VERB;Parameters;Source Test;&gt;400&quot;);		
+	vars.put(&quot;start&quot;,&quot;true&quot;);
+}	
+p.close();f.close();
+</stringProp>
+      </BeanShellPreProcessor>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -356,7 +108,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(threads,1)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threads,3)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">0.8</stringProp>
         <longProp name="ThreadGroup.start_time">1345498621000</longProp>
         <longProp name="ThreadGroup.end_time">1345498621000</longProp>
@@ -479,6 +231,11 @@
             <elementProp name="count" elementType="Argument">
               <stringProp name="Argument.name">count</stringProp>
               <stringProp name="Argument.value">0</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="test_id" elementType="Argument">
+              <stringProp name="Argument.name">test_id</stringProp>
+              <stringProp name="Argument.value"></stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -969,21 +726,14 @@ if (response.contains(&quot;\&quot;createProject\&quot;&quot;)){
 }
 
 /////////////////FOR REPORT GENERATION
-//print (ctx.getCurrentSampler().getName().toString() + &quot;;&quot; + ctx.getThreadNum().toString() + &quot;;&quot; +  ctx.getCurrentSampler().getMethod().toString() + &quot;;&quot; + arguments.toString() + &quot;;&quot; + ctx.getCurrentSampler().getPath().toString()+ &quot;;&quot; + ctx.getCurrentSampler().getUrl().toString() );
-// Open File(s)
-//f = new FileOutputStream(&quot;PREPROCESSORresult.csv&quot;, true); 
-//p = new PrintStream(f); 
-// Write data to file 
-log.info (&quot;============---------------------=========&quot;);
-//p.println (ctx.getCurrentSampler().getName().toString() + &quot;;&quot; + ctx.getThreadNum().toString() + &quot;;&quot; +  ctx.getCurrentSampler().getMethod().toString() + &quot;;&quot; + arguments.toString() + &quot;;&quot; + ctx.getCurrentSampler().getPath().toString()+ &quot;;&quot; + ctx.getCurrentSampler().getUrl().toString() );
-//timeStamp	elapsed	ID	label	responseCode	responseMessage	threadName	success	bytes	Thread	Latency	IdleTime	URL	HTTP VERB	Parameters	Response &gt;400								
+f = new FileOutputStream(vars.get(&quot;report&quot;).toString(), true); 
+p = new PrintStream(f); 
 String output;
 String timestamp = System.currentTimeMillis().toString();
 String elapsed = prev.getTime().toString();
 String name = ctx.getCurrentSampler().getName().toString();
 String url = ctx.getCurrentSampler().getUrl().toString();
 String verb = ctx.getCurrentSampler().getMethod().toString();
-String arguments = ctx.getCurrentSampler().getArguments().toString();
 String path = ctx.getCurrentSampler().getUrl().toString();
 String nr = name.substring(0, name.indexOf(&apos; &apos;));
 String label = name.substring(name.indexOf(&apos; &apos;)+1,name.length());
@@ -995,20 +745,24 @@ String nrobytes =  prev.getBytes().toString();
 String lantency =  Long.toString(prev.getLatency());
 String idle = prev.getIdleTime().toString();
 String g400 = &quot;&quot;;
+String arguments = ctx.getCurrentSampler().getArguments().toString();
+String testid = &quot;&quot;;
+
+if (arguments.indexOf(&quot;test_id=&quot;) &gt;= 0 ){
+	testid = arguments.substring(arguments.indexOf(&quot;test_id=&quot;)+8,arguments.indexOf(&quot;()&quot;)+2);
+	vars.put(&quot;test_ids&quot;,testid);
+}
+
 if (prev.getTime() &gt;= 400) {
 	g400 = &quot;true&quot;;
 } else {
 	g400 = &quot;false&quot;; 
 }
 
-output = timestamp+&quot;,&quot;+elapsed+&quot;,&quot;+nr + &quot;,&quot; + label +&quot;,&quot;+responseCode + &quot;,&quot; + responseMessage + &quot;,&quot; + thread + &quot;,&quot; + success + &quot;,&quot; + nrobytes + &quot;,&quot; + latency + &quot;,&quot; + idle + &quot;,&quot; + url + &quot;,&quot; + verb+ &quot;,&quot; + arguments+ &quot;,&quot; + g400;
-//+ ctx.getThreadNum().toString() + &quot;;&quot; +  verb + &quot;;&quot; + arguments + &quot;;&quot; + url + &quot;;&quot; ;
-//println (output);
-log.info (output);
-print (output);
-//p.println (output);
-// Close File(s)
-//p.close();f.close();
+output = timestamp+&quot;;&quot;+elapsed+&quot;;&quot;+nr + &quot;;&quot; + label +&quot;;&quot;+responseCode + &quot;;&quot; + responseMessage + &quot;;&quot; + thread + &quot;;&quot; + success + &quot;;&quot; + nrobytes + &quot;;&quot; + latency + &quot;;&quot; + idle + &quot;;&quot; + url + &quot;;&quot; + verb+ &quot;;&quot; + arguments+ &quot;;&quot; + vars.get(&quot;test_ids&quot;)+ &quot;;&quot; + g400 ;
+
+p.println (output);
+p.close();f.close();
 </stringProp>
         </BeanShellPostProcessor>
         <hashTree/>
@@ -1044,40 +798,6 @@ print (output);
             </value>
           </objProp>
           <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Ver Resultados em Tabela" enabled="true">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-            </value>
-          </objProp>
-          <stringProp name="filename">table-jmeter2.css</stringProp>
         </ResultCollector>
         <hashTree/>
         <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
