@@ -81,7 +81,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
 - Update submodules to their latest commit: `./bin/git-update.sh`
-- Cleanup docker images and volumes: `./bin/docker-clean.sh`
+- Cleanup docker images and volumes: `docker system prune -af` (best done while the app is up to avoid rebuilding the images later)
 - Packing your local config files: `./bin/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app check_pender`
 
