@@ -71,10 +71,8 @@ The idea of load testing is to run several concurrent instances of the integrati
 
 ### Running load tests locally
 
-- Edit `./check-web/test/config.yml` and add the following line to it: `proxy: localhost:8080`
-- Start Check app in `test` mode
-- Download and install Apache JMeter 3.0 on your LOCAL machine
-- Run `/path/to/apache-jmeter-3.0/bin/jmeter -JAUTH_USER=your-test-stage-http-auth-username -JAUTH_PASS=your-test-stage-http-auth-password -n -t ./chromedriver/check-test-plan.jmx -l ~/check-test-results.jtl` where `check-test-results.jtl` is the [JMeter test run results file](https://wiki.apache.org/jmeter/JtlFiles).
+- Run `/path/to/apache-jmeter-3.0/bin/jmeter -n -t /path/to/check/chromedrive/check-test-plan.jmx -Jtestproperty=number-of-threads -Jreport=report-name.csv -JAUTH_USER=your-test-stage-http-auth-username -JAUTH_PASS=your-test-stage-http-auth-password`
+ where `-Jtestproperty` is the number of threads(users) to be executed ; `Jreport` is the name of the load test report to be generated ; `-JAUTH_USER` is the test server user ; `-JAUTH_PASS` is the test server password ; `check-test-results.jtl` is the [JMeter test run results file](https://wiki.apache.org/jmeter/JtlFiles).
 
 ## Helpful one-liners and scripts
 
@@ -83,7 +81,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
 - Update submodules to their latest commit: `./bin/git-update.sh`
-- Cleanup docker images and volumes: `./bin/docker-clean.sh`
+- Cleanup docker images and volumes: `docker system prune -af` (best done while the app is up to avoid rebuilding the images later)
 - Packing your local config files: `./bin/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app check_pender`
 
