@@ -10,3 +10,6 @@
 	path = check-web
 	url = git@github.com:meedan/check-web.git
   branch = develop
+[submodule "check-mark"]
+	path = check-mark
+	url = git@github.com:meedan/check-mark.git
