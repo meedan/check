@@ -4,6 +4,11 @@ services:
     image: meedan/elasticsearch
     ports:
       - 9200:9200
+    volumes:
+      - ./elasticsearch/config:/usr/share/elasticsearch/config
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
   postgres:
     image: postgres
     ports:
