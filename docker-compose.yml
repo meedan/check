@@ -55,3 +55,8 @@ services:
       NODE_ENV: development
       SERVER_PORT: 3333
       MODE: development
+  mark:
+    build: check-mark
+    volumes:
+      - ./check-mark:/app
+      - ./check-api:/api
