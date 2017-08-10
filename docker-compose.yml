@@ -60,3 +60,4 @@ services:
     volumes:
       - ./check-mark:/app
       - ./check-api:/api
+      - /app/node_modules
