@@ -53,6 +53,24 @@ services:
       NODE_ENV: development
       SERVER_PORT: 13333
       MODE: test
+  mark.test:
+    build: check-mark
+    links:
+      - chromedriver
+      - geckodriver
+      - api.test
+      - web.test
+    volumes:
+      - ./check-mark:/app
+      - ./check-api:/api
+      - /app/node_modules
+  geckodriver:
+    build: geckodriver
+    ports:
+      - 4445:4444
+      - 5901:5900
+    volumes:
+      - ./check-mark:/app
   chromedriver:
     build: chromedriver
     ports:
@@ -61,3 +79,5 @@ services:
     environment:
       no_proxy: 'localhost'
       HUB_ENV_no_proxy: 'localhost'
+    volumes:
+      - ./check-mark:/app

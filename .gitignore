@@ -5,3 +5,5 @@ elasticsearch/data
 elasticsearch/snapshots
 /.project
 chromedriver/auth.txt
+*.swp
+*.swo
