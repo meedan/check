@@ -48,6 +48,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 - Chromedriver (container `chromedriver`) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
+- Geckodriver VNC at `localhost:5901` (use a standard VNC client to connect with password `secret`)
 
 ## Testing
 
