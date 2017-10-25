@@ -54,11 +54,11 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 - Build the app in test mode: `docker-compose -f docker-test.yml pull && docker-compose -f docker-test.yml build --pull`
 - Start the app in test mode: `docker-compose -f docker-test.yml up`
-- Check web client: `docker-compose -f docker-test.yml run web.test npm run test`
-- Check browser extension: `docker-compose -f docker-test.yml run mark.test npm run test`
-- Check service: `docker-compose -f docker-test.yml run api.test bundle exec rake test`
-- Pender service: `docker-compose -f docker-test.yml run pender.test bundle exec rake test`
-- Running a specific Check web client test: `docker-compose -f docker-test.yml run web.test bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
+- Check web client: `docker-compose -f docker-test.yml exec web.test npm run test`
+- Check browser extension: `docker-compose -f docker-test.yml exec mark.test npm run test`
+- Check service: `docker-compose -f docker-test.yml exec api.test bundle exec rake test`
+- Pender service: `docker-compose -f docker-test.yml exec pender.test bundle exec rake test`
+- Running a specific Check web client test: `docker-compose -f docker-test.yml exec web.test bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
 - Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
 ### Load testing
