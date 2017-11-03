@@ -14,3 +14,7 @@
 	path = check-mark
 	url = git@github.com:meedan/check-mark.git
 	branch = develop
+[submodule "check-bot"]
+	path = check-bot
+	url = git@github.com:meedan/check-bot.git
+	branch = develop

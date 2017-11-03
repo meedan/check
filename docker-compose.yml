@@ -61,3 +61,8 @@ services:
       - ./check-mark:/app
       - ./check-api:/api
       - /app/node_modules
+  bot:
+    build: check-bot
+    volumes:
+      - ./check-bot:/app
+      - /app/node_modules
