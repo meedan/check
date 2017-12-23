@@ -33,8 +33,10 @@ services:
       SERVER_PORT: 3000
   pender:
     build: pender
+    shm_size: 1G
     ports:
       - 3200:3200
+      - 9555:9555
     volumes:
       - ./pender:/app
     environment:
