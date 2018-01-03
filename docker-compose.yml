@@ -59,10 +59,16 @@ services:
       MODE: development
   mark:
     build: check-mark
+    privileged: true
+    ports:
+      - 8081:8081
     volumes:
       - ./check-mark:/app
       - ./check-api:/api
       - /app/node_modules
+      - /dev/bus/usb:/dev/bus/usb
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
   bot:
     build: check-bot
     volumes:
