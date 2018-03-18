@@ -71,6 +71,14 @@ services:
       - 5901:5900
     volumes:
       - ./check-mark:/app
+  bot.test:
+    build: check-bot
+    links:
+      - api.test
+    volumes:
+      - ./check-bot:/app
+      - /app/node_modules
+      - /app/dist
   chromedriver:
     build: chromedriver
     ports:
