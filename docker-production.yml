@@ -1,0 +1,35 @@
+version: '2'
+services:
+  elasticsearch:
+    image: meedan/elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./elasticsearch/config:/usr/share/elasticsearch/config
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRESQL_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRESQL_DATABASE: checkdesk_production
+  api:
+    build:
+      context: ./check-api
+      dockerfile: Dockerfile.production
+    command: /opt/bin/wait_and_start.sh
+    ports:
+      - 80:80
+    links:
+      - elasticsearch
+      - postgres
+    volumes:
+      - ./check-api/config:/app/shared/config
+      - ./check-api/public/uploads:/app/shared/files
+    environment:
+      PRIMARY: "true"

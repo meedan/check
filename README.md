@@ -103,3 +103,8 @@ The idea of load testing is to run several concurrent instances of the integrati
 - [Pender service API](https://github.com/meedan/pender)
 - [Check browser extension and mobile app](https://github.com/meedan/check-mark)
 - [Check Slack Bot](https://github.com/meedan/check-bot)
+
+## Troubleshooting and known issues
+
+- Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You will need to go into each submodule and issue an explicit `git checkout develop`.
+- Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build`.
