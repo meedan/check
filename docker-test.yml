@@ -89,3 +89,4 @@ services:
       HUB_ENV_no_proxy: 'localhost'
     volumes:
       - ./check-mark:/app
+      - ./check-web/test/spec/test.png:/app/test/spec/test.png
