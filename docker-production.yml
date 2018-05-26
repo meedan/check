@@ -18,7 +18,7 @@ services:
       POSTGRESQL_USERNAME: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRESQL_DATABASE: checkdesk_production
-  api:
+  api.production:
     build:
       context: ./check-api
       dockerfile: Dockerfile.production
