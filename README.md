@@ -95,6 +95,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 - Cleanup docker images and volumes: `docker system prune -af` (best done while the app is up to avoid rebuilding the images later)
 - Packing your local config files: `./bin/tar-config.sh`
 - Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app check_pender`
+- Update the automatic documentation of Check API: `docker-compose -f ../docker-test.yml exec api.test bash -c "cd doc && make clean && make"`
 
 ## More documentation
 
