@@ -1,7 +1,7 @@
 version: '2'
 services:
   elasticsearch:
-    build: elasticsearch
+    image: meedan/elasticsearch:6.3
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
