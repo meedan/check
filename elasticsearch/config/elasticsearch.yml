@@ -1,9 +1,13 @@
 network.host: 0.0.0.0
+xpack.security.enabled: false
+xpack.monitoring.enabled: false
+xpack.watcher.enabled: false
+xpack.graph.enabled: false
 path:
    logs: /usr/share/elasticsearch/logs
    data: /usr/share/elasticsearch/data
    repo: /usr/share/elasticsearch/snapshots
-   scripts: /usr/share/elasticsearch/scripts
+   # scripts: /usr/share/elasticsearch/scripts
 cluster:
    name: ${HOSTNAME}-cluster
 node:
@@ -12,4 +16,3 @@ http:
    cors:
       enabled:        true
       allow-origin:   '*'
-script.engine.groovy.inline.update: on
