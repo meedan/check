@@ -13,7 +13,7 @@ services:
     ports:
       - 9200:9200
     volumes:
-      - ./elasticsearch/config:/usr/share/elasticsearch/config
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - ./elasticsearch/data:/usr/share/elasticsearch/data
       - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
       - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
