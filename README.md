@@ -21,7 +21,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
   - `check-mark/config.js.example` to `check-mark/config.js`
   - `check-mark/test/config.yml.example` to `check-mark/test/config.yml`
-  - `update [Virtual memory](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) setting, set vm.max_map_count=262144 in /etc/sysctl.conf`
+- Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 
 ## Available services and container names
