@@ -65,20 +65,20 @@ services:
     build: check-mark
     links:
       - chromedriver
-      - geckodriver
+#      - geckodriver
       - api.test
       - web.test
     volumes:
       - ./check-mark:/app
       - ./check-api:/api
       - /app/node_modules
-  geckodriver:
-    build: geckodriver
-    ports:
-      - 4445:4444
-      - 5901:5900
-    volumes:
-      - ./check-mark:/app
+#  geckodriver:
+#    build: geckodriver
+#    ports:
+#      - 4445:4444
+#      - 5901:5900
+#    volumes:
+#      - ./check-mark:/app
   bot.test:
     build: check-bot
     links:
