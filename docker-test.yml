@@ -1,61 +1,68 @@
 version: '2'
+
+volumes:
+  esdata:
+  pgdata:
+
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
     environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
+      - "cluster.name=docker-cluster"
+      - "bootstrap.memory_lock=true"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     ports:
-      - 9200:9200
+      - "9200:9200"
     volumes:
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./elasticsearch/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
-      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
+      - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+      - "esdata:/usr/share/elasticsearch/data"
   postgres:
     image: postgres:9.6
+    command: postgres -c config_file=/etc/postgresql.conf
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - "./postgresql.conf:/etc/postgresql.conf"
+      - "pgdata:/var/lib/postgresql/data"
   api.test:
     build: check-api
     ports:
-      - 13000:13000
+      - "13000:13000"
     links:
       - elasticsearch
       - postgres
       - pender.test
     volumes:
-      - ./check-api:/app
+      - "./check-api:/app"
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13000
   pender.test:
     build: pender
     ports:
-      - 13200:13200
+      - "13200:13200"
     volumes:
-      - ./pender:/app
+      - "./pender:/app"
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13200
   web.test:
     build: check-web
     ports:
-      - 13333:13333
+      - "13333:13333"
     links:
       - api.test
       - chromedriver
     volumes:
-      - ./check-web:/app
-      - ./check-api:/api
-      - /app/node_modules
+      - "./check-web:/app"
+      - "./check-api:/api"
+      - "/app/node_modules"
     environment:
       PLATFORM: web
       NODE_ENV: development
@@ -69,9 +76,9 @@ services:
       - api.test
       - web.test
     volumes:
-      - ./check-mark:/app
-      - ./check-api:/api
-      - /app/node_modules
+      - "./check-mark:/app"
+      - "./check-api:/api"
+      - "/app/node_modules"
 #  geckodriver:
 #    build: geckodriver
 #    ports:
@@ -84,17 +91,17 @@ services:
     links:
       - api.test
     volumes:
-      - ./check-bot:/app
-      - /app/node_modules
-      - /app/dist
+      - "./check-bot:/app"
+      - "/app/node_modules"
+      - "/app/dist"
   chromedriver:
     build: chromedriver
     ports:
       - 4444:4444
       - 5900:5900
     environment:
-      no_proxy: 'localhost'
-      HUB_ENV_no_proxy: 'localhost'
+      no_proxy: localhost
+      HUB_ENV_no_proxy: localhost
     volumes:
-      - ./check-mark:/app
-      - ./check-web/test/spec/test.png:/app/test/spec/test.png
+      - "./check-mark:/app"
+      - "./check-web/test/spec/test.png:/app/test/spec/test.png"
