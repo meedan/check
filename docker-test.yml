@@ -1,9 +1,9 @@
 version: '2'
-
 volumes:
   esdata:
   pgdata:
-
+networks:
+  test-network:
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
@@ -20,6 +20,8 @@ services:
     volumes:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "esdata:/usr/share/elasticsearch/data"
+    networks:
+      - test-network
   postgres:
     image: postgres:9.6
     command: postgres -c config_file=/etc/postgresql.conf
@@ -30,6 +32,8 @@ services:
     volumes:
       - "./postgresql.conf:/etc/postgresql.conf"
       - "pgdata:/var/lib/postgresql/data"
+    networks:
+      - test-network
   api.test:
     build: check-api
     ports:
@@ -43,6 +47,8 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13000
+    networks:
+      - test-network
   pender.test:
     build: pender
     ports:
@@ -52,6 +58,8 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13200
+    networks:
+      - test-network
   web.test:
     build: check-web
     ports:
@@ -68,6 +76,8 @@ services:
       NODE_ENV: development
       SERVER_PORT: 13333
       MODE: test
+    networks:
+      - test-network
   mark.test:
     build: check-mark
     links:
@@ -79,13 +89,17 @@ services:
       - "./check-mark:/app"
       - "./check-api:/api"
       - "/app/node_modules"
+    networks:
+      - test-network
 #  geckodriver:
 #    build: geckodriver
 #    ports:
-#      - 4445:4444
-#      - 5901:5900
+#      - "4445:4444"
+#      - "5901:5900"
 #    volumes:
-#      - ./check-mark:/app
+#      - "./check-mark:/app"
+#    networks:
+#      - test-network
   bot.test:
     build: check-bot
     links:
@@ -94,6 +108,8 @@ services:
       - "./check-bot:/app"
       - "/app/node_modules"
       - "/app/dist"
+    networks:
+      - test-network
   chromedriver:
     build: chromedriver
     ports:
@@ -105,3 +121,5 @@ services:
     volumes:
       - "./check-mark:/app"
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+    networks:
+      - test-network

@@ -1,9 +1,9 @@
 version: '2'
-
 volumes:
   esdata:
   pgdata:
-
+networks:
+  dev-network:
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
@@ -20,6 +20,8 @@ services:
     volumes:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "esdata:/usr/share/elasticsearch/data"
+    networks:
+      - dev-network
   postgres:
     image: postgres:9.6
     command: postgres -c config_file=/etc/postgresql.conf
@@ -30,6 +32,8 @@ services:
       - "pgdata:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: postgres
+    networks:
+      - dev-network
   api:
     build: check-api
     ports:
@@ -45,6 +49,8 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
+    networks:
+      - dev-network
   pender:
     build: pender
     shm_size: 1G
@@ -56,6 +62,8 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200
+    networks:
+      - dev-network
   web:
     build: check-web
     ports:
@@ -71,6 +79,8 @@ services:
       NODE_ENV: development
       SERVER_PORT: 3333
       MODE: development
+    networks:
+      - dev-network
   mark:
     build: check-mark
     privileged: true
@@ -83,8 +93,12 @@ services:
       - "/dev/bus/usb:/dev/bus/usb"
     devices:
       - "/dev/ttyUSB0:/dev/ttyUSB0"
+    networks:
+      - dev-network
   bot:
     build: check-bot
     volumes:
       - "./check-bot:/app"
       - "/app/node_modules"
+    networks:
+      - dev-network
