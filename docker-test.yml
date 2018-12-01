@@ -3,7 +3,7 @@ volumes:
   esdata:
   pgdata:
 networks:
-  test-network:
+  test:
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
@@ -21,7 +21,7 @@ services:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "esdata:/usr/share/elasticsearch/data"
     networks:
-      - test-network
+      - test
   postgres:
     image: postgres:9.6
     command: postgres -c config_file=/etc/postgresql.conf
@@ -33,7 +33,7 @@ services:
       - "./postgresql.conf:/etc/postgresql.conf"
       - "pgdata:/var/lib/postgresql/data"
     networks:
-      - test-network
+      - test
   api.test:
     build: check-api
     ports:
@@ -48,7 +48,7 @@ services:
       RAILS_ENV: test
       SERVER_PORT: 13000
     networks:
-      - test-network
+      - test
   pender.test:
     build: pender
     ports:
@@ -59,7 +59,7 @@ services:
       RAILS_ENV: test
       SERVER_PORT: 13200
     networks:
-      - test-network
+      - test
   web.test:
     build: check-web
     ports:
@@ -77,7 +77,7 @@ services:
       SERVER_PORT: 13333
       MODE: test
     networks:
-      - test-network
+      - test
   mark.test:
     build: check-mark
     links:
@@ -90,7 +90,7 @@ services:
       - "./check-api:/api"
       - "/app/node_modules"
     networks:
-      - test-network
+      - test
 #  geckodriver:
 #    build: geckodriver
 #    ports:
@@ -99,7 +99,7 @@ services:
 #    volumes:
 #      - "./check-mark:/app"
 #    networks:
-#      - test-network
+#      - test
   bot.test:
     build: check-bot
     links:
@@ -109,7 +109,7 @@ services:
       - "/app/node_modules"
       - "/app/dist"
     networks:
-      - test-network
+      - test
   chromedriver:
     build: chromedriver
     ports:
@@ -122,4 +122,4 @@ services:
       - "./check-mark:/app"
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
     networks:
-      - test-network
+      - test
