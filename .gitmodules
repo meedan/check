@@ -18,3 +18,7 @@
 	path = check-bot
 	url = git@github.com:meedan/check-bot.git
 	branch = develop
+[submodule "alegre"]
+	path = alegre
+	url = git@github.com:meedan/alegre.git
+	branch = develop

@@ -123,3 +123,26 @@ services:
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
     networks:
       - test
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.0
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - "ELASTICSEARCH_URL: http://elasticsearch:9200"
+    networks:
+      - test
+  alegre.test:
+    build: alegre
+    ports:
+      - "13100:13100"
+    volumes:
+      - "./alegre:/app"
+    depends_on:
+      - kibana
+    environment:
+      BOILERPLATE_ENV: dev
+      ALEGRE_PORT: 13100
+    networks:
+      - test

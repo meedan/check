@@ -106,3 +106,26 @@ services:
       - "/app/node_modules"
     networks:
       - dev
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.0
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - "ELASTICSEARCH_URL: http://elasticsearch:9200"
+    networks:
+      - dev
+  alegre:
+    build: alegre
+    ports:
+      - "3100:3100"
+    volumes:
+      - "./alegre:/app"
+    depends_on:
+      - kibana
+    environment:
+      BOILERPLATE_ENV: dev
+      ALEGRE_PORT: 3100
+    networks:
+      - dev
