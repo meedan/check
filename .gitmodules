@@ -20,5 +20,5 @@
 	branch = develop
 [submodule "alegre"]
 	path = alegre
-	url = git@github.com:meedan/alegre.git
+	url = git@gitlab.com:meedan/alegre.git
 	branch = develop
