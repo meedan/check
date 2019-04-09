@@ -78,28 +78,6 @@ services:
       MODE: test
     networks:
       - test
-  mark.test:
-    build: check-mark
-    links:
-      - chromedriver
-#      - geckodriver
-      - api.test
-      - web.test
-    volumes:
-      - "./check-mark:/app"
-      - "./check-api:/api"
-      - "/app/node_modules"
-    networks:
-      - test
-#  geckodriver:
-#    build: geckodriver
-#    ports:
-#      - "4445:4444"
-#      - "5901:5900"
-#    volumes:
-#      - "./check-mark:/app"
-#    networks:
-#      - test
   bot.test:
     build: check-bot
     links:
@@ -119,7 +97,6 @@ services:
       no_proxy: localhost
       HUB_ENV_no_proxy: localhost
     volumes:
-      - "./check-mark:/app"
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
     networks:
       - test
