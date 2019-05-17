@@ -1,4 +1,4 @@
-version: '2.1'
+version: 2.1
 volumes:
   esdata:
   pgdata:
@@ -99,7 +99,7 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      - "ELASTICSEARCH_URL: http://elasticsearch:9200"
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     networks:
       - dev
   alegre:
