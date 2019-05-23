@@ -5,9 +5,6 @@ volumes:
   redis:
 networks:
   dev:
-  out:
-    external:
-      name: "${NETWORK:-check_dev}"
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
@@ -63,7 +60,6 @@ services:
       SERVER_PORT: 3000
     networks:
       - dev
-      - out
   pender:
     build: pender
     shm_size: 1G
