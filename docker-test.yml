@@ -1,7 +1,8 @@
-version: '2'
+version: "2.1"
 volumes:
   esdata:
   pgdata:
+  redis:
 networks:
   test:
 services:
@@ -27,20 +28,29 @@ services:
     command: postgres -c config_file=/etc/postgresql.conf
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: postgres
     volumes:
       - "./postgresql.conf:/etc/postgresql.conf"
       - "pgdata:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: postgres
     networks:
       - test
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis:/data"
+    networks:
+       - test
   api.test:
     build: check-api
     ports:
       - "13000:13000"
-    links:
+    depends_on:
       - elasticsearch
       - postgres
+      - redis
       - pender.test
     volumes:
       - "./check-api:/app"
@@ -64,7 +74,7 @@ services:
     build: check-web
     ports:
       - "13333:13333"
-    links:
+    depends_on:
       - api.test
       - chromedriver
     volumes:
@@ -76,16 +86,6 @@ services:
       NODE_ENV: development
       SERVER_PORT: 13333
       MODE: test
-    networks:
-      - test
-  bot.test:
-    build: check-bot
-    links:
-      - api.test
-    volumes:
-      - "./check-bot:/app"
-      - "/app/node_modules"
-      - "/app/dist"
     networks:
       - test
   chromedriver:
@@ -107,7 +107,7 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      - "ELASTICSEARCH_URL: http://elasticsearch:9200"
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     networks:
       - test
   alegre.test:
@@ -119,7 +119,8 @@ services:
     depends_on:
       - kibana
     environment:
-      BOILERPLATE_ENV: dev
+      BOILERPLATE_ENV: test
       ALEGRE_PORT: 13100
+      REDIS_DATABASE: 2
     networks:
       - test

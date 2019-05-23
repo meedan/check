@@ -1,7 +1,8 @@
-version: 2.1
+version: "2.1"
 volumes:
   esdata:
   pgdata:
+  redis:
 networks:
   dev:
   out:
@@ -37,15 +38,23 @@ services:
       POSTGRES_PASSWORD: postgres
     networks:
       - dev
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis:/data"
+    networks:
+      - dev
   api:
     build: check-api
     ports:
       - "3000:3000"
       - "3300:3300"
-      - "6379:6379"
-    links:
+    depends_on:
       - elasticsearch
       - postgres
+      - redis
       - pender
     volumes:
       - "./check-api:/app"
@@ -63,6 +72,8 @@ services:
       - "9555:9555"
     volumes:
       - "./pender:/app"
+    depends_on:
+      - redis
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200
@@ -72,7 +83,7 @@ services:
     build: check-web
     ports:
       - "3333:3333"
-    links:
+    depends_on:
       - api
     volumes:
       - "./check-web:/app"
@@ -83,13 +94,6 @@ services:
       NODE_ENV: development
       SERVER_PORT: 3333
       MODE: development
-    networks:
-      - dev
-  bot:
-    build: check-bot
-    volumes:
-      - "./check-bot:/app"
-      - "/app/node_modules"
     networks:
       - dev
   kibana:
@@ -110,8 +114,10 @@ services:
       - "./alegre:/app"
     depends_on:
       - kibana
+      - redis
     environment:
       BOILERPLATE_ENV: dev
       ALEGRE_PORT: 3100
+      REDIS_DATABASE: 2
     networks:
       - dev
