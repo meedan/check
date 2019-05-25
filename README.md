@@ -107,11 +107,8 @@ The idea of load testing is to run several concurrent instances of the integrati
 - [Check web client](https://github.com/meedan/check-web)
 - [Pender service API](https://github.com/meedan/pender)
 - [Alegre service API](https://github.com/meedan/alegre)
-- [Check browser extension and mobile app](https://github.com/meedan/check-mark)
-- [Check Slack Bot](https://github.com/meedan/check-bot)
 
 ## Troubleshooting and known issues
 
 - Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You will need to go into each submodule and issue an explicit `git checkout develop`.
 - Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build`.
-- If Elasticsearch fails to start, you may need to [increase your machine's virtual memory](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html).
