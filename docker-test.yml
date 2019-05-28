@@ -3,9 +3,23 @@ volumes:
   esdata:
   pgdata:
   redis:
+  mysql:
 networks:
   test:
 services:
+  mysql:
+    image: mysql:5
+    environment:
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=yes"
+      - "MYSQL_DATABASE=vframe"
+      - "MYSQL_USER=vframe"
+      - "MYSQL_PASSWORD=vframe"
+    ports:
+      - "3306:3306"
+    volumes:
+      - "mysql:/var/lib/mysql"
+    networks:
+      - test
   elasticsearch:
     image: meedan/elasticsearch:6.3
     environment:
@@ -122,5 +136,22 @@ services:
       BOILERPLATE_ENV: test
       ALEGRE_PORT: 13100
       REDIS_DATABASE: 2
+    networks:
+      - test
+  vframe.test:
+    build: vframe
+    volumes:
+      - "./vframe:/root/vframe"
+    environment:
+      - "DB_HOST=mysql"
+      - "DB_NAME=vframe"
+      - "DB_USER=vframe"
+      - "DB_PASS=vframe"
+      - "FLASK_ENV=development"
+      - "FLASK_DEBUG=1"
+    depends_on:
+      - mysql
+    ports:
+      - "5000:5000"
     networks:
       - test

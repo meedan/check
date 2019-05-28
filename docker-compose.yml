@@ -133,6 +133,8 @@ services:
       - dev
   vframe:
     build: vframe
+    volumes:
+      - "./vframe:/root/vframe"
     environment:
       - "DB_HOST=mysql"
       - "DB_NAME=vframe"
