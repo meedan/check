@@ -121,13 +121,8 @@ services:
     build: vframe
     volumes:
       - "./vframe:/root/vframe"
-    environment:
-      - "DB_HOST=postgres"
-      - "DB_NAME=vframe"
-      - "DB_USER=postgres"
-      - "DB_PASS=postgres"
-      - "FLASK_ENV=development"
-      - "FLASK_DEBUG=1"
+    env_file:
+      - vframe/.env_file
     depends_on:
       - postgres
     ports:
