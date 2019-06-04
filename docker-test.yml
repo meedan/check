@@ -1,100 +1,143 @@
-version: '2'
+version: "2.1"
+volumes:
+  esdata:
+  pgdata:
+  redis:
+networks:
+  test:
 services:
   elasticsearch:
     image: meedan/elasticsearch:6.3
     environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
+      - "cluster.name=docker-cluster"
+      - "bootstrap.memory_lock=true"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     ports:
-      - 9200:9200
+      - "9200:9200"
     volumes:
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./elasticsearch/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/snapshots:/usr/share/elasticsearch/snapshots
-      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
+      - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+      - "esdata:/usr/share/elasticsearch/data"
+    networks:
+      - test
   postgres:
     image: postgres:9.6
+    command: postgres -c config_file=/etc/postgresql.conf
     ports:
-      - 5432:5432
+      - "5432:5432"
+    volumes:
+      - "./postgresql.conf:/etc/postgresql.conf"
+      - "pgdata:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: postgres
+    networks:
+      - test
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis:/data"
+    networks:
+       - test
   api.test:
     build: check-api
     ports:
-      - 13000:13000
-    links:
+      - "13000:13000"
+    depends_on:
       - elasticsearch
       - postgres
+      - redis
       - pender.test
     volumes:
-      - ./check-api:/app
+      - "./check-api:/app"
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13000
+    networks:
+      - test
   pender.test:
     build: pender
     ports:
-      - 13200:13200
+      - "13200:13200"
     volumes:
-      - ./pender:/app
+      - "./pender:/app"
     environment:
       RAILS_ENV: test
       SERVER_PORT: 13200
+    networks:
+      - test
   web.test:
     build: check-web
     ports:
-      - 13333:13333
-    links:
+      - "13333:13333"
+    depends_on:
       - api.test
       - chromedriver
     volumes:
-      - ./check-web:/app
-      - ./check-api:/api
-      - /app/node_modules
+      - "./check-web:/app"
+      - "./check-api:/api"
+      - "/app/node_modules"
     environment:
       PLATFORM: web
       NODE_ENV: development
       SERVER_PORT: 13333
       MODE: test
-  mark.test:
-    build: check-mark
-    links:
-      - chromedriver
-      - geckodriver
-      - api.test
-      - web.test
-    volumes:
-      - ./check-mark:/app
-      - ./check-api:/api
-      - /app/node_modules
-  geckodriver:
-    build: geckodriver
-    ports:
-      - 4445:4444
-      - 5901:5900
-    volumes:
-      - ./check-mark:/app
-  bot.test:
-    build: check-bot
-    links:
-      - api.test
-    volumes:
-      - ./check-bot:/app
-      - /app/node_modules
-      - /app/dist
+    networks:
+      - test
   chromedriver:
     build: chromedriver
     ports:
       - 4444:4444
       - 5900:5900
     environment:
-      no_proxy: 'localhost'
-      HUB_ENV_no_proxy: 'localhost'
+      no_proxy: localhost
+      HUB_ENV_no_proxy: localhost
     volumes:
-      - ./check-mark:/app
-      - ./check-web/test/spec/test.png:/app/test/spec/test.png
+      - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+    networks:
+      - test
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.0
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - test
+  alegre.test:
+    build: alegre
+    ports:
+      - "13100:13100"
+    volumes:
+      - "./alegre:/app"
+    depends_on:
+      - kibana
+    environment:
+      BOILERPLATE_ENV: test
+      ALEGRE_PORT: 13100
+      REDIS_DATABASE: 2
+    networks:
+      - test
+  vframe.test:
+    build: vframe
+    volumes:
+      - "./vframe:/root/vframe"
+    environment:
+      - "DB_HOST=postgres"
+      - "DB_NAME=vframe"
+      - "DB_USER=postgres"
+      - "DB_PASS=postgres"
+      - "FLASK_ENV=development"
+      - "FLASK_DEBUG=1"
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
+    networks:
+      - test

@@ -21,6 +21,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-web/test/config.yml.example` to `check-web/test/config.yml`
   - `check-mark/config.js.example` to `check-mark/config.js`
   - `check-mark/test/config.yml.example` to `check-mark/test/config.yml`
+  - `alegre/google_credentials.example.json` to `alegre/google_credentials.json`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 
@@ -34,7 +35,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check Slack Bot (container `bot`) at `check-bot/dist`, a ZIP file that should be deployed to AWS Lambda
 - Check browser extension (container `mark`) at `check-mark/build` and Android application at `build.apk`
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
+- Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100)
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
+- Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 
 ### `test` mode using `docker-test.yml`
@@ -44,7 +47,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check service GraphQL at [http://localhost:13000/graphiql](http://localhost:13000/graphiql)
 - Check browser extension (container `mark`) at `check-mark/releases/test`
 - Pender service API (container `pender.test`) at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
+- Alegre service API (container `alegre`) at [http://localhost:13100](http://localhost:13100)
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
+- Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 - Chromedriver (container `chromedriver`) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
@@ -101,8 +106,7 @@ The idea of load testing is to run several concurrent instances of the integrati
 - [Check service API](https://github.com/meedan/check-api)
 - [Check web client](https://github.com/meedan/check-web)
 - [Pender service API](https://github.com/meedan/pender)
-- [Check browser extension and mobile app](https://github.com/meedan/check-mark)
-- [Check Slack Bot](https://github.com/meedan/check-bot)
+- [Alegre service API](https://github.com/meedan/alegre)
 
 ## Troubleshooting and known issues
 
