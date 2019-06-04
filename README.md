@@ -22,6 +22,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - `check-mark/config.js.example` to `check-mark/config.js`
   - `check-mark/test/config.yml.example` to `check-mark/test/config.yml`
   - `alegre/google_credentials.example.json` to `alegre/google_credentials.json`
+  - `montage-web/config.js.example` to `montage-web/config.js`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `docker-compose pull && docker-compose build --pull && docker-compose up`
 
@@ -36,6 +37,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check browser extension (container `mark`) at `check-mark/build` and Android application at `build.apk`
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100)
+- Montage web client (container `montage-web`) at [http://localhost:8080](http://localhost:8080)
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
 - Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
@@ -48,6 +50,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check browser extension (container `mark`) at `check-mark/releases/test`
 - Pender service API (container `pender.test`) at [http://localhost:13200/api](http://localhost:13200/api) - use `test` as API key
 - Alegre service API (container `alegre`) at [http://localhost:13100](http://localhost:13100)
+- Montage web client (container `montage-web.test`) at [http://localhost:18080](http://localhost:18080)
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
 - Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
@@ -92,6 +95,8 @@ The idea of load testing is to run several concurrent instances of the integrati
 - Build the browser extension: `docker-compose run mark npm run build`
 - Build the Android application: `docker-compose run mark npm run generate-apk`
 - Build the Slack bot: `docker-compose run bot npm run build`
+- Build the Montage web client bundle: `docker-compose run montage-web npm run build`
+- Watch for changes and build the Montage web client automatically when something changes: `docker-compose run montage-web npm run build:dev`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Reset the `api.test` database: `docker-compose -f docker-test.yml run api.test bundle exec rake db:drop db:create db:migrate`
@@ -107,8 +112,9 @@ The idea of load testing is to run several concurrent instances of the integrati
 - [Check web client](https://github.com/meedan/check-web)
 - [Pender service API](https://github.com/meedan/pender)
 - [Alegre service API](https://github.com/meedan/alegre)
+- [Montage web client](https://github.com/meedan/montage-web)
 
 ## Troubleshooting and known issues
 
 - Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You will need to go into each submodule and issue an explicit `git checkout develop`.
-- Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build`.
+- Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build` and `docker-compose exec montage-web npm run build`.

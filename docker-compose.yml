@@ -129,3 +129,19 @@ services:
       - "5000:5000"
     networks:
       - dev
+  montage-web:
+    build: montage-web
+    volumes:
+      - "./montage-web:/app"
+      - "/app/node_modules"
+      - "/app/src/libs"
+      - "/app/build"
+    ports:
+      - "8080:8080"
+    links:
+      - api
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8080
+    networks:
+      - dev
