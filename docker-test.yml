@@ -141,3 +141,19 @@ services:
       - "5000:5000"
     networks:
       - test
+  montage-web.test:
+    build: montage-web
+    volumes:
+      - "./montage-web:/app"
+      - "/app/node_modules"
+      - "/app/src/libs"
+      - "/app/build"
+    ports:
+      - "18080:18080"
+    links:
+      - api.test
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 18080
+    networks:
+      - test
