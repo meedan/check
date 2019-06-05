@@ -129,7 +129,7 @@ services:
       - "5000:5000"
     networks:
       - dev
-  montage-web:
+  montage:
     build: montage-web
     volumes:
       - "./montage-web:/app"

@@ -139,7 +139,7 @@ services:
       - "5000:5000"
     networks:
       - test
-  montage-web.test:
+  montage.test:
     build: montage-web
     volumes:
       - "./montage-web:/app"
