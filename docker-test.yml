@@ -3,6 +3,7 @@ volumes:
   esdata:
   pgdata:
   redis:
+  minio:
 networks:
   test:
 services:
@@ -43,6 +44,15 @@ services:
       - "redis:/data"
     networks:
        - test
+  minio:
+    image: minio/minio
+    command: server /data
+    ports:
+      - "9000:9000"
+    volumes:
+      - "minio:/data"
+    networks:
+      - test
   api.test:
     build: check-api
     ports:
