@@ -53,6 +53,9 @@ services:
       - "minio:/data"
     networks:
       - test
+    environment:
+      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
+      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
   api.test:
     build: check-api
     ports:
