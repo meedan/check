@@ -3,6 +3,7 @@ volumes:
   esdata:
   pgdata:
   redis:
+  minio:
 networks:
   dev:
 services:
@@ -43,6 +44,18 @@ services:
       - "redis:/data"
     networks:
       - dev
+  minio:
+    image: minio/minio
+    command: server /data
+    ports:
+      - "9000:9000"
+    volumes:
+      - "minio:/data"
+    networks:
+      - dev
+    environment:
+      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
+      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
   api:
     build: check-api
     ports:
