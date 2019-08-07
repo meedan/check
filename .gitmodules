@@ -1,4 +1,4 @@
-[submodule "checkdesk-api"]
+[submodule "check-api"]
 	path = check-api
 	url = git@github.com:meedan/check-api.git
 	branch = develop
@@ -6,7 +6,7 @@
 	path = pender
 	url = git@github.com:meedan/pender.git
 	branch = develop
-[submodule "checkdesk-client"]
+[submodule "check-web"]
 	path = check-web
 	url = git@github.com:meedan/check-web.git
 	branch = develop
@@ -14,9 +14,9 @@
 	path = check-mark
 	url = git@github.com:meedan/check-mark.git
 	branch = develop
-[submodule "check-bot"]
-	path = check-bot
-	url = git@github.com:meedan/check-bot.git
+[submodule "check-slack-bot"]
+	path = check-slack-bot
+	url = git@github.com:meedan/check-slack-bot.git
 	branch = develop
 [submodule "alegre"]
 	path = alegre
@@ -29,4 +29,8 @@
 [submodule "montage-web"]
 	path = montage-web
 	url = git@github.com:meedan/montage-web.git
+  branch = develop
+[submodule "check-bots"]
+	path = check-bots
+	url = git@github.com:meedan/check-bots.git
   branch = develop
