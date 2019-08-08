@@ -6,6 +6,7 @@ volumes:
   minio:
   web-node_modules:
   montage-node_modules:
+  bots-node_modules:
 services:
   elasticsearch:
     build: alegre/elasticsearch
@@ -143,3 +144,15 @@ services:
     environment:
       NODE_ENV: development
       SERVER_PORT: 8080
+  bots:
+    build: check-bots
+    volumes:
+      - "./check-bots:/app"
+      - "bots-node_modules:/app/node_modules"
+    ports:
+      - "8586:8586"
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8586
