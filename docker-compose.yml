@@ -1,15 +1,20 @@
 version: "2.1"
 volumes:
-  esdata:
-  pgdata:
+  elasticsearch:
+  postgres:
   redis:
   minio:
-networks:
-  dev:
+  web-node_modules:
+  montage-node_modules:
+  bots-node_modules:
 services:
   elasticsearch:
-    image: meedan/elasticsearch:6.3
+    build: alegre/elasticsearch
     environment:
+      - "discovery.type=single-node"
+      - "transport.host=127.0.0.1"
+      - "xpack.security.enabled=false"
+      - "ALEGRE_URL=http://alegre:5000"
       - "cluster.name=docker-cluster"
       - "bootstrap.memory_lock=true"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
@@ -21,29 +26,23 @@ services:
       - "9200:9200"
     volumes:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "esdata:/usr/share/elasticsearch/data"
-    networks:
-      - dev
+      - "elasticsearch:/usr/share/elasticsearch/data"
   postgres:
-    image: postgres:9.6
+    image: postgres:9.5
     command: postgres -c config_file=/etc/postgresql.conf
     ports:
       - "5432:5432"
     volumes:
       - "./postgresql.conf:/etc/postgresql.conf"
-      - "pgdata:/var/lib/postgresql/data"
+      - "postgres:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: postgres
-    networks:
-      - dev
   redis:
     image: redis:5
     ports:
       - "6379:6379"
     volumes:
       - "redis:/data"
-    networks:
-      - dev
   minio:
     image: minio/minio
     command: server /data
@@ -51,8 +50,6 @@ services:
       - "9000:9000"
     volumes:
       - "minio:/data"
-    networks:
-      - dev
     environment:
       MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -66,13 +63,13 @@ services:
       - postgres
       - redis
       - pender
+      - alegre
+      - vframe
     volumes:
       - "./check-api:/app"
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
-    networks:
-      - dev
   pender:
     build: pender
     shm_size: 1G
@@ -83,11 +80,10 @@ services:
       - "./pender:/app"
     depends_on:
       - redis
+      - minio
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200
-    networks:
-      - dev
   web:
     build: check-web
     ports:
@@ -97,14 +93,12 @@ services:
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
-      - "/app/node_modules"
+      - "web-node_modules:/app/node_modules"
     environment:
       PLATFORM: web
       NODE_ENV: development
       SERVER_PORT: 3333
       MODE: development
-    networks:
-      - dev
   kibana:
     image: docker.elastic.co/kibana/kibana:6.3.0
     ports:
@@ -113,8 +107,6 @@ services:
       - elasticsearch
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
-    networks:
-      - dev
   alegre:
     build: alegre
     ports:
@@ -128,8 +120,6 @@ services:
       BOILERPLATE_ENV: dev
       ALEGRE_PORT: 3100
       REDIS_DATABASE: 2
-    networks:
-      - dev
   vframe:
     build: vframe
     volumes:
@@ -140,21 +130,29 @@ services:
       - postgres
     ports:
       - "5000:5000"
-    networks:
-      - dev
   montage:
     build: montage-web
     volumes:
       - "./montage-web:/app"
-      - "/app/node_modules"
+      - "montage-node_modules:/app/node_modules"
       - "/app/src/libs"
       - "/app/build"
     ports:
       - "8080:8080"
-    links:
+    depends_on:
       - api
     environment:
       NODE_ENV: development
       SERVER_PORT: 8080
-    networks:
-      - dev
+  bots:
+    build: check-bots
+    volumes:
+      - "./check-bots:/app"
+      - "bots-node_modules:/app/node_modules"
+    ports:
+      - "8586:8586"
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8586

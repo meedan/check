@@ -1,172 +1,41 @@
 version: "2.1"
-volumes:
-  esdata:
-  pgdata:
-  redis:
-  minio:
-networks:
-  test:
 services:
-  elasticsearch:
-    image: meedan/elasticsearch:6.3
-    environment:
-      - "cluster.name=docker-cluster"
-      - "bootstrap.memory_lock=true"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    ports:
-      - "9200:9200"
-    volumes:
-      - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "esdata:/usr/share/elasticsearch/data"
-    networks:
-      - test
-  postgres:
-    image: postgres:9.6
-    command: postgres -c config_file=/etc/postgresql.conf
-    ports:
-      - "5432:5432"
-    volumes:
-      - "./postgresql.conf:/etc/postgresql.conf"
-      - "pgdata:/var/lib/postgresql/data"
-    environment:
-      POSTGRES_PASSWORD: postgres
-    networks:
-      - test
-  redis:
-    image: redis:5
-    ports:
-      - "6379:6379"
-    volumes:
-      - "redis:/data"
-    networks:
-       - test
-  minio:
-    image: minio/minio
-    command: server /data
-    ports:
-      - "9000:9000"
-    volumes:
-      - "minio:/data"
-    networks:
-      - test
-    environment:
-      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
-      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-  api.test:
-    build: check-api
-    ports:
-      - "13000:13000"
-    depends_on:
-      - elasticsearch
-      - postgres
-      - redis
-      - pender.test
-    volumes:
-      - "./check-api:/app"
-    environment:
-      RAILS_ENV: test
-      SERVER_PORT: 13000
-    networks:
-      - test
-  pender.test:
-    build: pender
-    ports:
-      - "13200:13200"
-    volumes:
-      - "./pender:/app"
-    environment:
-      RAILS_ENV: test
-      SERVER_PORT: 13200
-    networks:
-      - test
-  web.test:
-    build: check-web
-    ports:
-      - "13333:13333"
-    depends_on:
-      - api.test
-      - chromedriver
-    volumes:
-      - "./check-web:/app"
-      - "./check-api:/api"
-      - "/app/node_modules"
-    environment:
-      PLATFORM: web
-      NODE_ENV: development
-      SERVER_PORT: 13333
-      MODE: test
-    networks:
-      - test
   chromedriver:
     build: chromedriver
     ports:
-      - 4444:4444
       - 5900:5900
     environment:
       no_proxy: localhost
       HUB_ENV_no_proxy: localhost
     volumes:
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
-    networks:
-      - test
-    depends_on:
-      - api.test
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.3.0
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
+  api:
     environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
-    networks:
-      - test
-  alegre.test:
-    build: alegre
-    ports:
-      - "13100:13100"
-    volumes:
-      - "./alegre:/app"
+      RAILS_ENV: test
+      SERVER_PORT: 3000
+  pender:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3200
+  web:
     depends_on:
-      - kibana
+      - api
+      - chromedriver
+    environment:
+      PLATFORM: web
+      NODE_ENV: development
+      SERVER_PORT: 3333
+      MODE: test
+  alegre:
     environment:
       BOILERPLATE_ENV: test
-      ALEGRE_PORT: 13100
-      REDIS_DATABASE: 2
-    networks:
-      - test
-  vframe.test:
-    build: vframe
-    volumes:
-      - "./vframe:/root/vframe"
-    env_file:
-      - vframe/.env_file
+      ALEGRE_PORT: 3100
+      REDIS_DATABASE: 3
+  vframe:
     environment:
-      - "DB_NAME=vframe_test"
-      - "FLASK_ENV=test"
+      DB_NAME: vframe_test
+      FLASK_ENV: test
+  montage:
     depends_on:
-      - postgres
-    ports:
-      - "5000:5000"
-    networks:
-      - test
-  montage.test:
-    build: montage-web
-    volumes:
-      - "./montage-web:/app"
-      - "/app/node_modules"
-      - "/app/src/libs"
-      - "/app/build"
-    ports:
-      - "18080:18080"
-    links:
-      - api.test
-    environment:
-      NODE_ENV: development
-      SERVER_PORT: 18080
-    networks:
-      - test
+      - api
+      - chromedriver
