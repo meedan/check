@@ -70,6 +70,16 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
+  api-background:
+    build: check-api
+    command: /app/docker-background.sh
+    depends_on:
+      - api
+    volumes:
+      - "./check-api:/app"
+    environment:
+      RAILS_ENV: development
+      SERVER_PORT: 3000
   pender:
     build: pender
     shm_size: 1G
@@ -81,6 +91,17 @@ services:
     depends_on:
       - redis
       - minio
+    environment:
+      RAILS_ENV: development
+      SERVER_PORT: 3200
+  pender-background:
+    build: pender
+    command: /app/docker-background.sh
+    shm_size: 1G
+    volumes:
+      - "./pender:/app"
+    depends_on:
+      - pender
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200

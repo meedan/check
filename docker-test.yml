@@ -13,7 +13,15 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 3000
+  api-background:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3000
   pender:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3200
+  pender-background:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 3200
