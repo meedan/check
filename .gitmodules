@@ -26,10 +26,6 @@
 	path = vframe
 	url = git@github.com:meedan/vframe.git
   branch = develop
-[submodule "montage-web"]
-	path = montage-web
-	url = git@github.com:meedan/montage-web.git
-  branch = develop
 [submodule "check-bots"]
 	path = check-bots
 	url = git@github.com:meedan/check-bots.git
