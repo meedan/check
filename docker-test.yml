@@ -43,7 +43,3 @@ services:
     environment:
       DB_NAME: vframe_test
       FLASK_ENV: test
-  montage:
-    depends_on:
-      - api
-      - chromedriver
