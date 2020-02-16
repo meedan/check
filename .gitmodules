@@ -1,32 +1,32 @@
 [submodule "check-api"]
 	path = check-api
-	url = git@github.com:meedan/check-api.git
+	url = https://github.com/meedan/check-api.git
 	branch = develop
 [submodule "pender"]
 	path = pender
-	url = git@github.com:meedan/pender.git
+	url = https://github.com/meedan/pender.git
 	branch = develop
 [submodule "check-web"]
 	path = check-web
-	url = git@github.com:meedan/check-web.git
+	url = https://github.com/meedan/check-web.git
 	branch = develop
 [submodule "check-mark"]
 	path = check-mark
-	url = git@github.com:meedan/check-mark.git
+	url = https://github.com/meedan/check-mark.git
 	branch = develop
 [submodule "check-slack-bot"]
 	path = check-slack-bot
-	url = git@github.com:meedan/check-slack-bot.git
+	url = https://github.com/meedan/check-slack-bot.git
 	branch = develop
 [submodule "alegre"]
 	path = alegre
-	url = git@github.com:meedan/alegre.git
+	url = https://github.com/meedan/alegre.git
 	branch = develop
 [submodule "vframe"]
 	path = vframe
-	url = git@github.com:meedan/vframe.git
+	url = https://github.com/meedan/vframe.git
   branch = develop
 [submodule "check-bots"]
 	path = check-bots
-	url = git@github.com:meedan/check-bots.git
+	url = https://github.com/meedan/check-bots.git
   branch = develop
