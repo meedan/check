@@ -12,7 +12,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - `git clone --recursive git@github.com:meedan/check.git && cd check`
 - Configuration: copy and edit the `*.example` files in the submodules
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
-- `docker-compose build && docker-compose up`
+- `docker-compose build && docker-compose up --abort-on-container-exit`
 
 ## Available services and container names
 
@@ -23,8 +23,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check Slack Bot (container `bot`) at `check-bot/dist`, a ZIP file that should be deployed to AWS Lambda
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100)
-- vFrame service API (container `vframe`) at [http://localhost:5000](http://localhost:5000)
-- Montage web client (container `montage`) at [http://localhost:8080](http://localhost:8080)
+- MinIO storage service UI (container `minio`) at [http://localhost:9000](http://localhost:9000) - use `AKIAIOSFODNN7EXAMPLE` / `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` to login
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
 - Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
@@ -64,10 +63,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Check web client](https://github.com/meedan/check-web)
 - [Pender service API](https://github.com/meedan/pender)
 - [Alegre service API](https://github.com/meedan/alegre)
-- [vFrame service API](https://github.com/meedan/vframe)
-- [Montage web client](https://github.com/meedan/montage-web)
+- [Check Slack bot](https://github.com/meedan/check-slack-bot)
 
 ## Troubleshooting and known issues
 
-- Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You will need to go into each submodule and issue an explicit `git checkout develop`.
+- Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You can issue this command to fix `git submodule foreach bash -c 'git checkout develop'`
 - Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build` and `docker-compose exec montage npm run build`.

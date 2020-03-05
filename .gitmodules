@@ -22,10 +22,6 @@
 	path = alegre
 	url = git@github.com:meedan/alegre.git
 	branch = develop
-[submodule "vframe"]
-	path = vframe
-	url = git@github.com:meedan/vframe.git
-  branch = develop
 [submodule "check-bots"]
 	path = check-bots
 	url = git@github.com:meedan/check-bots.git

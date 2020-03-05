@@ -1,4 +1,7 @@
 version: "2.1"
+networks:
+  default:
+    name: dev
 services:
   chromedriver:
     build: chromedriver
@@ -39,7 +42,3 @@ services:
       BOILERPLATE_ENV: test
       ALEGRE_PORT: 3100
       REDIS_DATABASE: 3
-  vframe:
-    environment:
-      DB_NAME: vframe_test
-      FLASK_ENV: test
