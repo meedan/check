@@ -157,6 +157,7 @@ services:
     depends_on:
       - kibana
       - redis
+      - elasticsearch
     environment:
       BOILERPLATE_ENV: dev
       ALEGRE_PORT: 3100
