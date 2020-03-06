@@ -162,6 +162,8 @@ services:
       BOILERPLATE_ENV: dev
       ALEGRE_PORT: 3100
       REDIS_DATABASE: 2
+      FLASK_ENV: development
+      FLASK_DEBUG: true
     networks:
       - dev
   bots:
