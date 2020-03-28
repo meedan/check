@@ -9,10 +9,15 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
 - Install `docker-compose`
-- `git clone --recursive git@github.com:meedan/check.git && cd check`
-- Configuration: copy and edit the `*.example` files in the submodules
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
-- `docker-compose build && docker-compose up --abort-on-container-exit`
+- `git clone --recursive git@github.com:meedan/check.git && cd check`
+- `bin/build-all.sh` and wait (for about one hour the first time!!) for a string in the log that looks like `web_1_88cd0bd245b7   | [21:07:07] [webpack:build:web:dev] Time: 83439ms`
+- Open [http://localhost:3333](http://localhost:3333)
+- Click "Create a new account with email" and enter your desired credentials
+- `docker-compose exec api bash`
+- `bundle exec rails c`
+- `me = User.last; me.confirm; me.is_admin = true; me.save`
+- Go back to [http://localhost:3333](http://localhost:3333) and login using your credentials
 
 ## Available services and container names
 
