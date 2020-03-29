@@ -47,30 +47,16 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Helpful one-liners and scripts
 
-- Build the web client bundle: `docker-compose run web npm run build`
-- Build the browser extension: `docker-compose run mark npm run build`
-- Build the Android application: `docker-compose run mark npm run generate-apk`
-- Build the Slack bot: `docker-compose run bot npm run build`
-- Build the Montage web client bundle: `docker-compose run montage npm run build`
-- Watch for changes and build the Montage web client automatically when something changes: `docker-compose run montage npm run build:dev`
+- Update submodules to their latest commit: `./bin/git-update.sh`
+- Packing your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
-- Reset the `api` database while the app is down: `docker-compose run api bundle exec rake db:drop db:create db:migrate`
-- Update submodules to their latest commit: `./bin/git-update.sh`
-- Cleanup docker images and volumes: `docker system prune -af` (best done while the app is up to avoid rebuilding the images later)
-- Packing your local config files: `./bin/tar-config.sh`
-- Run a standalone image, e.g. Pender: `docker run -e SERVER_PORT=3200 -e RAILS_ENV=test -p 3200:3200 -v /absolute/path/to/check-app/pender:/app check_pender`
-- Update the automatic documentation of Check API: `docker-compose exec api bash -c "cd doc && make clean && make"`
 
 ## More documentation
 
-- [Check service API](https://github.com/meedan/check-api)
-- [Check web client](https://github.com/meedan/check-web)
-- [Pender service API](https://github.com/meedan/pender)
-- [Alegre service API](https://github.com/meedan/alegre)
+- [Check API service](https://github.com/meedan/check-api)
+- [Check Web application](https://github.com/meedan/check-web)
+- [Pender API service](https://github.com/meedan/pender)
+- [Alegre API service](https://github.com/meedan/alegre)
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
-
-## Troubleshooting and known issues
-
-- Upon initial installation, the submodules may be checked out at a specific commit instead of the `develop` branch. You can issue this command to fix `git submodule foreach bash -c 'git checkout develop'`
-- Upon initial installation, to make sure the frontend is up to date, issue an explicit `docker-compose exec web npm run build` and `docker-compose exec montage npm run build`.
+- [Check API bots](https://github.com/meedan/check-bots)
