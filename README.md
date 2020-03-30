@@ -17,7 +17,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - `docker-compose exec api bash`
 - `bundle exec rails c`
 - `me = User.last; me.confirm; me.is_admin = true; me.save`
-- Go back to [http://localhost:3333](http://localhost:3333) and login using your credentials
+- Go back to [http://localhost:3333](http://localhost:3333)
+- Click "I already have an account" and login using your credentials
+- Enjoy Check! :tada:
 
 ## Available services and container names
 
