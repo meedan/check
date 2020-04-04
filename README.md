@@ -1,6 +1,6 @@
 # Check
 
-Verify breaking news online
+A collaborative media annotation platform.
 
 This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
 
