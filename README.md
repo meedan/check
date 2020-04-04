@@ -2,7 +2,7 @@
 
 Verify breaking news online
 
-This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X (with [Docker for Mac](https://www.docker.com/products/docker#/mac)). The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
+This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
 
 ![Diagram](diagram.png?raw=true "Diagram")
 
@@ -50,7 +50,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 ## Helpful one-liners and scripts
 
 - Update submodules to their latest commit: `./bin/git-update.sh`
-- Packing your local config files: `./bin/tar-config.sh`
+- Pack your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 
