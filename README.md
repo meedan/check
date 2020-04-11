@@ -8,6 +8,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
+## Quick start
+
 - Install `docker-compose`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `git clone --recursive git@github.com:meedan/check.git && cd check`
