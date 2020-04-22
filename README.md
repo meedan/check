@@ -47,7 +47,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check service API: `docker-compose exec api bundle exec rake test`
 - Pender service API: `docker-compose exec pender bundle exec rake test`
 - Running a specific Check web client test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
-- Running a specific Check API or Pender test (from within the container): `ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
+- Running a specific Check API or Pender test (from within the container): `bundle exec ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
 ## Helpful one-liners and scripts
 
