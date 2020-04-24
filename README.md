@@ -11,7 +11,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 ## Quick start
 
 - Install `docker-compose`
-- Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
+- Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `git clone --recursive git@github.com:meedan/check.git && cd check`
 - `bin/build-all.sh` and wait (for about one hour the first time!!) for a string in the log that looks like `web_1_88cd0bd245b7   | [21:07:07] [webpack:build:web:dev] Time: 83439ms`
 - Open [http://localhost:3333](http://localhost:3333)
@@ -55,6 +55,10 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pack your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
+
+## Troubleshooting
+
+- If you're having trouble starting Elasticsearch on macOS, with the error `container_name exited with code 137`, you will need to adjust your Docker settings, as per https://www.petefreitag.com/item/848.cfm
 
 ## More documentation
 
