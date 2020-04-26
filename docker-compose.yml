@@ -12,13 +12,12 @@ services:
   elasticsearch:
     build: alegre/elasticsearch
     environment:
-      - "discovery.type=single-node"
-      - "transport.host=127.0.0.1"
-      - "xpack.security.enabled=false"
-      - "ALEGRE_URL=http://alegre:3100"
-      - "cluster.name=docker-cluster"
-      - "bootstrap.memory_lock=true"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
+      discovery.type: single-node
+      transport.host: 127.0.0.1
+      xpack.security.enabled: "false"
+      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
+      ALEGRE_URL: http://alegre:3100"
     ulimits:
       memlock:
         soft: -1
@@ -158,12 +157,8 @@ services:
       - kibana
       - redis
       - elasticsearch
-    environment:
-      - "BOILERPLATE_ENV=dev"
-      - "ALEGRE_PORT=3100"
-      - "REDIS_DATABASE=2"
-      - "FLASK_ENV=development"
-      - "FLASK_DEBUG=true"
+    env_file:
+      - alegre/.env_file
     networks:
       - dev
   bots:
