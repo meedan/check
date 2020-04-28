@@ -150,7 +150,7 @@ services:
   alegre:
     build: alegre
     ports:
-      - "3100:3100"
+      - "3100:5000"
     volumes:
       - "./alegre:/app"
     depends_on:
