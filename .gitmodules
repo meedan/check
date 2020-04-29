@@ -26,3 +26,7 @@
 	path = check-bots
 	url = git@github.com:meedan/check-bots.git
   branch = develop
+[submodule "narcissus"]
+	path = narcissus
+	url = git@github.com:meedan/narcissus.git
+  branch = develop

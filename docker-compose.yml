@@ -6,6 +6,7 @@ volumes:
   minio:
   web-node_modules:
   bots-node_modules:
+  narcissus-node_modules:
 networks:
   dev:
 services:
@@ -72,6 +73,7 @@ services:
       - redis
       - pender
       - alegre
+      - narcissus
     volumes:
       - "./check-api:/app"
     environment:
@@ -173,5 +175,20 @@ services:
     environment:
       NODE_ENV: development
       SERVER_PORT: 8586
+    networks:
+      - dev
+  narcissus:
+    build: narcissus
+    shm_size: 1G
+    volumes:
+      - "./narcissus:/app"
+      - "narcissus-node_modules:/app/node_modules"
+    ports:
+      - "8687:8687"
+    depends_on:
+      - minio
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8687
     networks:
       - dev
