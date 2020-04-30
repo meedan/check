@@ -38,6 +38,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
 - Chromedriver (container `chromedriver` in test mode) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
+- Narcissus screenshot service (container `narcissus`) at [http://localhost:8687](http://localhost:8687)
 
 ## Testing
 
@@ -66,5 +67,6 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Check Web application](https://github.com/meedan/check-web)
 - [Pender API service](https://github.com/meedan/pender)
 - [Alegre API service](https://github.com/meedan/alegre)
+- [Narcissus service](https://github.com/meedan/narcissus)
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
