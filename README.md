@@ -58,6 +58,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pack your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
+- Update the Relay schema file on Check API: `docker-compose run api bundle exec rake lapis:graphql:schema`
 
 ## Troubleshooting
 
