@@ -73,3 +73,29 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Narcissus service](https://github.com/meedan/narcissus)
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
+
+## Troubleshooting
+
+- If you're having trouble starting Elasticsearch on macOS, with the error `container_name exited with code 137`, you will need to adjust your Docker settings, as per https://www.petefreitag.com/item/848.cfm
+- If you're getting an error starting `chromedriver` in test mode, like the following:
+```
+docker-compose -f docker-compose.yml -f docker-test.yml up --abort-on-container-exit
+Starting check_elasticsearch_1_2e69e84ccb56 ...
+Starting check_chromedriver_1_6a1e9d8f5fd4  ... error
+Starting check_elasticsearch_1_2e69e84ccb56 ... done
+Starting check_postgres_1_85ec10c8f6db      ...
+Starting check_redis_1_7fa3d5314c64         ... done
+Starting check_postgres_1_85ec10c8f6db      ... done
+Starting check_minio_1_f47a612b4538         ... done
+Starting check_kibana_1_f37fbfb2f1e0        ... done
+Starting check_narcissus_1_57634d5a39cc     ... done
+Recreating check_pender_1_6a8f4ad6cc7f      ... done
+Recreating check_alegre_1_fa01a996361e            ... done
+Recreating check_pender-background_1_d0da14662d76 ... done
+Recreating check_api_1_b5b998405f9f               ... done
+Recreating check_api-background_1_2a68da3d4a99    ... done
+Recreating check_bots_1_e85742eecf01              ... done
+ERROR: for chromedriver  Cannot start service chromedriver: network 16d99f6d3d81011870fece7c627230b9410bdb5d0abc2d10a32f54af9f37931f not found
+ERROR: Encountered errors while bringing up the project.
+```
+try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
