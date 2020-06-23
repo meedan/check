@@ -23,3 +23,4 @@ if [ -d configurator ]; then
   (cd configurator && git pull --no-squash)
   configurator/do.sh deploy local
 fi
+docker-compose build
