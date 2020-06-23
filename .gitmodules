@@ -30,3 +30,7 @@
 	path = narcissus
 	url = git@github.com:meedan/narcissus.git
   branch = develop
+[submodule "check-ui"]
+	path = check-ui
+	url = git@github.com:meedan/check-ui.git
+	branch = develop
