@@ -30,7 +30,7 @@ services:
     networks:
       - dev
   postgres:
-    image: postgres:9.5
+    image: postgres:11.6
     command: postgres -c config_file=/etc/postgresql.conf
     ports:
       - "5432:5432"
