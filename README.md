@@ -72,7 +72,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Upgrading Databases in Development Environment
 
-We have recently upgraded to Postgres version 11 from 9.5. This necessesitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databses. To migrate run these commands:
+We have recently upgraded to Postgres version 11 from 9.5. This necessitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databses. To migrate run these commands:
 
 - `docker-compose down`
 - `docker-compose -f docker-compose-upgradedb.yml up`
