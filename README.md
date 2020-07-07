@@ -70,6 +70,16 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
 
+## Upgrading Databases in Development Environment
+
+We have recently upgraded to Postgres version 11 from 9.5. This necessesitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databses. To migrate run these commands:
+
+- `docker-compose down`
+- `docker-compose -f docker-compose-upgradedb.yml up`
+- `docker-compose up`
+
+This will leave behind your original data volume and which you can clean up by running `docker volume rm check_postgres`. 
+
 ## Troubleshooting
 
 - If you're having trouble starting Elasticsearch on macOS, with the error `container_name exited with code 137`, you will need to adjust your Docker settings, as per https://www.petefreitag.com/item/848.cfm
