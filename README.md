@@ -76,7 +76,8 @@ We have recently upgraded to Postgres version 11 from 9.5. This necessitates a m
 
 - `docker-compose down`
 - `docker-compose -f docker-compose-upgradedb.yml up`
-- `docker-compose up`
+- `docker run --rm -v check_postgres11:/var/lib/postgresql/data -u postgres -it postgres:11 bash -c "echo host all all 0.0.0.0/0 md5 >> /var/lib/postgresql/data/pg_hba.conf"`
+- `docker-compose up --remove-orphans`
 
 This will leave behind your original data volume and which you can clean up by running `docker volume rm check_postgres`. 
 
