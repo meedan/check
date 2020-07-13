@@ -34,3 +34,6 @@
 	path = check-ui
 	url = git@github.com:meedan/check-ui.git
 	branch = develop
+[submodule "newspeek"]
+	path = newspeek
+	url = git@github.com:meedan/newspeek.git

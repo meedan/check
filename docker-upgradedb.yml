@@ -2,7 +2,7 @@ version: "2.1"
 volumes:
     postgres:
     postgres11:
-networks: 
+networks:
     migrate:
 services:
     migration:

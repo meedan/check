@@ -70,16 +70,18 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
 
-## Upgrading Databases in Development Environment
+## Upgrading databases in development environment
 
-We have recently upgraded to Postgres version 11 from 9.5. This necessitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databses. To migrate run these commands:
+We have recently upgraded to Postgres version 11 from 9.5. This necessitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databases. To migrate run these commands:
 
-- `docker-compose down`
-- `docker-compose -f docker-compose-upgradedb.yml up`
-- `docker run --rm -v check_postgres11:/var/lib/postgresql/data -u postgres -it postgres:11 bash -c "echo host all all 0.0.0.0/0 md5 >> /var/lib/postgresql/data/pg_hba.conf"`
-- `docker-compose up --remove-orphans`
+```
+docker-compose down
+docker-compose -f docker-upgradedb.yml up
+docker run --rm -v check_postgres11:/var/lib/postgresql/data -u postgres -it postgres:11 bash -c "echo host all all 0.0.0.0/0 md5 >> /var/lib/postgresql/data/pg_hba.conf"
+docker-compose up --remove-orphans --abort-on-container-exit
+```
 
-This will leave behind your original data volume and which you can clean up by running `docker volume rm check_postgres`. 
+This will leave behind your original data volume and which you can clean up by running `docker volume rm check_postgres`.
 
 ## Troubleshooting
 

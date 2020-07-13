@@ -40,7 +40,6 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_HOST_AUTH_METHOD: trust
     networks:
       - dev
   redis:
@@ -132,6 +131,7 @@ services:
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
+      - "./check-ui:/ui"
       - "web-node_modules:/app/node_modules"
     environment:
       PLATFORM: web
@@ -141,7 +141,7 @@ services:
     networks:
       - dev
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.3.0
+    image: docker.elastic.co/kibana/kibana:6.8.9
     ports:
       - "5601:5601"
     depends_on:
