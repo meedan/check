@@ -527,6 +527,21 @@
          id="path3389-6"
          inkscape:connector-curvature="0" />
     </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker3981-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3979-2"
+         inkscape:connector-curvature="0" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -536,7 +551,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.64031887"
-     inkscape:cx="461.50987"
+     inkscape:cx="-71.037293"
      inkscape:cy="688.71936"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -1370,7 +1385,7 @@
          style="font-size:24px;line-height:1.25"> </flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot316"
-       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;"
        transform="matrix(0.26458333,0,0,0.26458333,171.06051,122.73483)"><flowRegion
          id="flowRegion318"
          style="font-size:24px"><rect
@@ -1379,11 +1394,11 @@
            height="242.71674"
            x="-678.32941"
            y="337.2485"
-           style="font-size:24px" /></flowRegion><flowPara
+           style="font-size:24px;fill:#2e3436;fill-opacity:1;" /></flowRegion><flowPara
          id="flowPara324"
-         style="font-weight:bold;font-size:24px;line-height:1.25;text-align:center;text-anchor:middle">Check Slack</flowPara><flowPara
+         style="font-weight:bold;font-size:24px;line-height:1.25;text-align:center;text-anchor:middle;fill:#2e3436;fill-opacity:1;">Check Slack</flowPara><flowPara
          id="flowPara328"
-         style="font-weight:bold;font-size:24px;line-height:1.25;text-align:center;text-anchor:middle">Bot</flowPara></flowRoot>    <text
+         style="font-weight:bold;font-size:24px;line-height:1.25;text-align:center;text-anchor:middle;fill:#2e3436;fill-opacity:1;">Bot</flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#d3d7cf;fill-opacity:1;stroke:none;stroke-width:1.88523626"
        x="244.64285"
@@ -1652,6 +1667,11 @@
        id="path2931-1"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.22949234;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3981-6)"
+       d="M 209.11647,115.33792 146.57746,81.761507"
+       id="path2923-9"
+       inkscape:connector-curvature="0" />
   </g>
   <style
      id="style1034">.st0{fill:#e9478b}.st1{fill:#3ebeb0}.st2{fill:#37a595}.st3{fill:#353535}.st4{fill:none}</style>
