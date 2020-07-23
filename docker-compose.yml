@@ -131,7 +131,6 @@ services:
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
-      - "./check-ui:/ui"
       - "web-node_modules:/app/node_modules"
     environment:
       PLATFORM: web
@@ -191,5 +190,31 @@ services:
     environment:
       NODE_ENV: development
       SERVER_PORT: 8687
+    networks:
+      - dev
+  newspeek:
+    volumes:
+      - "./newspeek:/app"
+    depends_on:
+      - newspeek-background
+    build: newspeek
+    ports:
+      - "9292:9292"
+    env_file:
+      - newspeek/.env_file
+    command: start_server
+    networks:
+      - dev
+  newspeek-background:
+    volumes:
+      - "./newspeek:/app"
+    depends_on:
+      - elasticsearch
+      - kibana
+      - redis
+    build: newspeek
+    env_file:
+      - newspeek/.env_file
+    command: run_worker
     networks:
       - dev

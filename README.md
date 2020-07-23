@@ -39,6 +39,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Chromedriver (container `chromedriver` in test mode) at [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
 - Narcissus screenshot service (container `narcissus`) at [http://localhost:8687](http://localhost:8687)
+- Newspeek fact-checking service (container `newspeek`) at [http://localhost:8687/about](http://localhost:8687/about)
 
 ## Testing
 
@@ -49,6 +50,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Pender service API: `docker-compose exec pender bundle exec rake test`
 - Check Slack Bot: `docker-compose exec bot npm run test`
 - Narcissus: `docker-compose exec narcissus npm run test`
+- Newspeek: `docker-compose exec newspeek bundle exec rake test`
 - Running a specific Check web client test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
 - Running a specific Check API or Pender test (from within the container): `bundle exec ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
@@ -67,6 +69,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Pender API service](https://github.com/meedan/pender)
 - [Alegre API service](https://github.com/meedan/alegre)
 - [Narcissus service](https://github.com/meedan/narcissus)
+- [Newspeek service](https://github.com/meedan/newspeek)
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
 
