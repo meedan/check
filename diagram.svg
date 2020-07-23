@@ -15,7 +15,7 @@
    viewBox="0 0 385.11875 364.44732"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.2 (unknown)"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="diagram.svg"
    inkscape:export-filename="/home/caiosba/Meedan/check/diagram.png"
    inkscape:export-xdpi="216"
@@ -23,13 +23,29 @@
   <defs
      id="defs2">
     <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker8052"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path8054"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
        inkscape:stockid="Arrow1Lend"
        orient="auto"
        refY="0"
        refX="0"
        id="marker5207"
        style="overflow:visible"
-       inkscape:isstock="true">
+       inkscape:isstock="true"
+       inkscape:collect="always">
       <path
          inkscape:connector-curvature="0"
          id="path5205"
@@ -466,6 +482,51 @@
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path4559-3-4" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5207-0"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5205-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5207-6"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5205-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker3391-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3389-6"
+         inkscape:connector-curvature="0" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -475,7 +536,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.64031887"
-     inkscape:cx="727.78345"
+     inkscape:cx="461.50987"
      inkscape:cy="688.71936"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -506,7 +567,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -877,21 +938,7 @@
              style="fill:#c72c48;fill-opacity:1" /></flowRegion><flowPara
            id="flowPara1299"
            style="font-size:24px;line-height:1.25;fill:#204a87;fill-opacity:1">PostgreSQL</flowPara></flowRoot>    </g>
-    <flowRoot
-       transform="matrix(0.26458333,0,0,0.26458333,-15.0192,88.178406)"
-       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#37a595;fill-opacity:1;stroke:none"
-       id="flowRoot1311"
-       xml:space="preserve"><flowRegion
-         style="fill:#37a595;fill-opacity:1"
-         id="flowRegion1307"><rect
-           style="fill:#37a595;fill-opacity:1"
-           y="58.798378"
-           x="16.198801"
-           height="128.1898"
-           width="174.30931"
-           id="rect1305" /></flowRegion><flowPara
-         style="font-size:24px;line-height:1.25;fill:#37a595;fill-opacity:1"
-         id="flowPara1309">Kibana</flowPara></flowRoot>    <rect
+    <rect
        rx="10.384755"
        ry="11.554624"
        y="194.71397"
@@ -944,7 +991,7 @@
            width="171.81424"
            id="rect2117" /></flowRegion><flowPara
          style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle"
-         id="flowPara2121">github.com/meedan/check-web</flowPara></flowRoot>    <g
+         id="flowPara2121">Web application</flowPara></flowRoot>    <g
        id="g2209"
        transform="translate(-49.549324,-52.193878)">
       <rect
@@ -986,7 +1033,7 @@
              width="171.81424"
              id="rect2165" /></flowRegion><flowPara
            style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle"
-           id="flowPara2169">github.com/meedan/check-slack-bot</flowPara></flowRoot>    </g>
+           id="flowPara2169">Slack bot</flowPara></flowRoot>    </g>
     <g
        id="g2223"
        transform="translate(3.2866377,-52.914931)">
@@ -1043,55 +1090,12 @@
              y="517.9881"
              style="font-size:16px" /></flowRegion><flowPara
            id="flowPara2193"
-           style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">github.com/meedan/check-mark</flowPara></flowRoot>    </g>
+           style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">Browser extension</flowPara></flowRoot>    </g>
     <path
        inkscape:connector-curvature="0"
        id="path268"
        d="M 104.02703,123.204 127.10111,83.238547"
        style="fill:none;stroke:#000000;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3851)" />
-    <rect
-       rx="10.384755"
-       ry="11.554624"
-       y="115.67565"
-       x="-25.159538"
-       height="48.941666"
-       width="48.941666"
-       id="rect1303"
-       style="opacity:1;fill:#b7cecc;fill-opacity:1;stroke:#37a595;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <g
-       id="g1059"
-       transform="matrix(0.5,0,0,0.5,-20.688705,120.14648)">
-      <path
-         id="path1036"
-         d="m 19.6,33.1 c 7.3,0 14.2,1.9 20.2,5.1 L 61.2,12.5 H 18.8 v 51 -30.4 z"
-         class="st0"
-         inkscape:connector-curvature="0"
-         style="fill:#e9478b" />
-      <path
-         id="path1038"
-         d="m 39.8,38.2 -21,25.3 v 4 H 61.1 C 58.7,54.9 50.7,44.2 39.8,38.2 Z"
-         class="st1"
-         inkscape:connector-curvature="0"
-         style="fill:#3ebeb0" />
-      <path
-         id="path1040"
-         d="m 39.8,38.2 -21,25.3 v 4 h 7.5 L 46.7,42.9 c 0,0 -1.4,-1.1 -3.3,-2.5 -1.4,-1 -3.6,-2.2 -3.6,-2.2 z"
-         class="st2"
-         inkscape:connector-curvature="0"
-         style="fill:#37a595" />
-      <path
-         id="path1042"
-         d="m 19.6,33.1 h -0.8 v 30.4 l 21,-25.3 C 33.8,35 26.9,33.1 19.6,33.1 Z"
-         class="st3"
-         inkscape:connector-curvature="0"
-         style="fill:#353535" />
-      <path
-         id="path1044"
-         d="M 0,0 H 80 V 80 H 0 Z"
-         class="st4"
-         inkscape:connector-curvature="0"
-         style="fill:none" />
-    </g>
     <rect
        style="opacity:1;fill:#d3d7cf;fill-opacity:1;stroke:#888a85;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1695"
@@ -1145,7 +1149,7 @@
            y="517.9881"
            style="font-size:16px" /></flowRegion><flowPara
          id="flowPara1731"
-         style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">github.com/meedan/alegre</flowPara></flowRoot>    <rect
+         style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">Text and media analysis</flowPara></flowRoot>    <rect
        rx="10.384755"
        ry="11.554624"
        y="115.67565"
@@ -1198,7 +1202,7 @@
            width="171.81424"
            id="rect1749" /></flowRegion><flowPara
          style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle"
-         id="flowPara1753">github.com/meedan/check-api</flowPara></flowRoot>    <rect
+         id="flowPara1753">Core API and CMS</flowPara></flowRoot>    <rect
        style="opacity:1;fill:#d3d7cf;fill-opacity:1;stroke:#888a85;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1759"
        width="48.941666"
@@ -1251,7 +1255,7 @@
            y="517.9881"
            style="font-size:16px" /></flowRegion><flowPara
          id="flowPara1779"
-         style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">github.com/meedan/pender</flowPara></flowRoot>    <text
+         style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">Link parsing and rendering</flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#d3d7cf;fill-opacity:1;stroke:none;stroke-width:1.88523626"
        x="243.70247"
@@ -1459,8 +1463,8 @@
              x="211.26788"
              y="517.9881"
              style="font-size:16px" /></flowRegion><flowPara
-           id="flowPara2193-2"
-           style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">github.com/meedan/check-bots</flowPara></flowRoot>    </g>
+           style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle"
+           id="flowPara4656">YouTube metadata extractor</flowPara></flowRoot>    </g>
     <g
        id="g2223-3-3"
        transform="translate(19.957225,29.775576)">
@@ -1517,7 +1521,7 @@
              y="517.9881"
              style="font-size:16px" /></flowRegion><flowPara
            id="flowPara2193-2-2"
-           style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">github.com/meedan/check-bots</flowPara></flowRoot>    </g>
+           style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle">EXIF extractor</flowPara></flowRoot>    </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.3243317;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4561-9)"
        d="m 153.48484,276.27781 c 7.97064,4.47278 51.2957,-72.01355 -39.08487,-110.68139"
@@ -1583,12 +1587,71 @@
            width="171.81424"
            id="rect5183" /></flowRegion><flowPara
          style="font-size:16px;line-height:1.25;text-align:center;text-anchor:middle"
-         id="flowPara5187">github.com/meedan/narcissus</flowPara></flowRoot>    <path
+         id="flowPara5187">Web screenshotting</flowPara></flowRoot>    <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path5203"
-       d="m 126.49214,162.38187 c 35.65541,26.57928 56.71342,12.40648 66.19871,4.74393"
+       d="m 126.49214,162.38187 c 35.65541,26.57928 59.79869,9.32121 69.28398,1.65866"
        style="fill:none;stroke:#000000;stroke-width:0.32433167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5207)" />
+    <rect
+       rx="10.384755"
+       ry="11.554625"
+       y="116.11783"
+       x="-25.410187"
+       height="48.941666"
+       width="48.941666"
+       id="rect5167-3"
+       style="opacity:1;fill:#d3d7cf;fill-opacity:1;stroke:#888a85;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       inkscape:export-ydpi="216.7742"
+       inkscape:export-xdpi="216.7742"
+       id="g5173-6"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.814358,120.2595)"
+       style="fill:#555753;fill-rule:evenodd;stroke:none;stroke-width:1">
+      <g
+         id="g5171-7"
+         style="fill:#555753">
+        <path
+           style="fill:#555753"
+           id="path5169-5"
+           d="M 0,16.059278 C 0,13.795521 0.39992481,11.744855 1.1997864,9.9072165 1.999648,8.0695784 3.0927759,6.4982883 4.4792027,5.193299 5.8656295,3.8883096 7.4986558,2.8829503 9.3783306,2.1771907 11.258005,1.4714312 13.264295,1.1185567 15.397259,1.1185567 c 2.186289,0 4.252567,0.3528745 6.198897,1.058634 1.94633,0.7057596 3.57269,1.6578548 4.879131,2.8563144 l -5.83896,7.0309279 C 20.103085,11.37199 19.436544,10.846007 18.636682,10.486469 17.836821,10.126931 16.943655,9.947165 15.95716,9.947165 c -0.799862,0 -1.546388,0.139818 -2.239602,0.419459 -0.693213,0.27964 -1.299766,0.685779 -1.819676,1.218428 -0.51991,0.532648 -0.9265,1.178475 -1.219783,1.9375 -0.293282,0.759024 -0.439921,1.604591 -0.439921,2.536726 0,0.932136 0.153304,1.764387 0.459918,2.496779 0.306613,0.732392 0.719869,1.364902 1.239779,1.897551 0.51991,0.532649 1.126463,0.938787 1.819676,1.218428 0.693213,0.279641 1.426409,0.419459 2.199609,0.419459 1.093144,0 2.032967,-0.226373 2.819498,-0.679124 0.78653,-0.452751 1.406414,-0.985392 1.859669,-1.597938 l 5.83896,6.990979 c -1.279778,1.278357 -2.852816,2.297033 -4.71916,3.056057 C 19.889783,30.620493 17.770182,31 15.397259,31 13.264295,31 11.258005,30.640467 9.3783306,29.921392 7.4986558,29.202316 5.8656295,28.183641 4.4792027,26.865335 3.0927759,25.547029 1.999648,23.975739 1.1997864,22.151417 0.39992481,20.327096 0,18.296403 0,16.059278 Z M 42.287857,8.628866 c 1.466413,0 2.686184,0.2663203 3.659349,0.7989691 0.973165,0.5326487 1.746353,1.2184239 2.319587,2.0573449 0.573234,0.838922 0.973159,1.777701 1.199786,2.816366 0.226628,1.038665 0.33994,2.077315 0.33994,3.11598 l 0,12.783505 -9.278349,0 0,-11.185567 c 0,-1.065297 -0.166635,-1.810995 -0.499911,-2.237114 -0.333275,-0.426119 -0.833181,-0.639175 -1.499733,-0.639175 -0.533241,0 -1.013151,0.233031 -1.439743,0.699098 -0.426593,0.466068 -0.639887,1.205107 -0.639887,2.217139 l 0,11.145619 -9.238355,0 0,-30.201031 9.238355,0 0,11.505155 0.07999,0 c 0.533241,-0.772341 1.293099,-1.4448 2.279594,-2.0173973 0.986496,-0.5725973 2.146278,-0.8588917 3.479381,-0.8588917 z m 24.171082,8.26933 c 0,-0.745708 -0.273282,-1.358245 -0.819854,-1.837629 -0.546572,-0.479384 -1.286433,-0.719072 -2.219605,-0.719072 -1.013158,0 -1.799676,0.279636 -2.35958,0.838917 -0.559903,0.559282 -0.879843,1.13187 -0.959829,1.717784 z m 6.958584,2.996134 c 0,0.346222 -0.0067,0.699096 -0.02,1.058634 -0.01333,0.359538 -0.03333,0.659148 -0.05999,0.89884 l -14.15748,0 c 0.02666,0.372854 0.153305,0.705755 0.379932,0.998711 0.226628,0.292957 0.506575,0.545962 0.839851,0.759021 0.333275,0.21306 0.706539,0.372852 1.119801,0.479381 0.413261,0.10653 0.833182,0.159794 1.259775,0.159794 0.853186,0 1.566385,-0.153134 2.139619,-0.459407 0.573235,-0.306273 1.006486,-0.645831 1.299769,-1.018685 l 6.558832,3.315721 c -0.933171,1.518049 -2.28625,2.716491 -4.059277,3.595361 C 66.945333,30.560571 64.88572,31 62.539459,31 61.019722,31 59.54,30.760312 58.100249,30.280928 c -1.439751,-0.479384 -2.712845,-1.191791 -3.81932,-2.137242 -1.106475,-0.945452 -1.992975,-2.12392 -2.659526,-3.535439 -0.666552,-1.411519 -0.999823,-3.049389 -0.999823,-4.913659 0,-1.731109 0.30661,-3.295741 0.919837,-4.693944 0.613227,-1.398203 1.446404,-2.583328 2.499555,-3.555412 1.053151,-0.972084 2.292918,-1.724439 3.719338,-2.2570877 1.42642,-0.5326487 2.952799,-0.798969 4.579184,-0.798969 1.653048,0 3.159431,0.2862944 4.519196,0.8588917 1.359765,0.5725974 2.526212,1.371559 3.499377,2.396907 0.973165,1.025349 1.726357,2.243765 2.259598,3.655284 0.533241,1.411519 0.799858,2.942861 0.799858,4.594072 z M 86.710541,31 c -1.786358,0 -3.426049,-0.26632 -4.919124,-0.798969 -1.493075,-0.532649 -2.786166,-1.291662 -3.87931,-2.277062 -1.093144,-0.9854 -1.946317,-2.170526 -2.559544,-3.555412 -0.613227,-1.384887 -0.919836,-2.942861 -0.919836,-4.673969 0,-1.704476 0.313274,-3.255792 0.939832,-4.653995 0.626559,-1.398203 1.499728,-2.589987 2.619534,-3.575387 1.119806,-0.9854 2.432893,-1.744413 3.939299,-2.2770617 1.506406,-0.5326487 3.139432,-0.798969 4.899128,-0.798969 0.719875,0 1.446405,0.059922 2.179612,0.179768 0.733206,0.119846 1.43974,0.2862962 2.119622,0.4993557 0.679883,0.2130595 1.306432,0.4527478 1.879666,0.7190721 0.573234,0.2663249 1.059809,0.5592769 1.45974,0.8788659 l -4.599181,6.631443 c -0.319945,-0.372854 -0.739866,-0.659148 -1.259776,-0.858891 -0.51991,-0.199744 -1.019816,-0.299614 -1.499733,-0.299614 -0.453255,0 -0.893172,0.07324 -1.319765,0.219717 -0.426593,0.146478 -0.806522,0.37285 -1.139797,0.679123 -0.333276,0.306273 -0.606558,0.679122 -0.819854,1.118557 -0.213297,0.439435 -0.319943,0.952102 -0.319943,1.538016 0,0.585913 0.106646,1.09858 0.319943,1.538015 0.213296,0.439435 0.486578,0.798968 0.819854,1.078608 0.333275,0.279641 0.713204,0.492697 1.139797,0.639176 0.426593,0.146478 0.86651,0.219716 1.319765,0.219716 0.533241,0 1.053143,-0.09987 1.559722,-0.299613 0.506579,-0.199744 0.919835,-0.472722 1.239779,-0.818944 l 4.639175,6.47165 c -0.879848,0.692443 -2.019634,1.278348 -3.419392,1.757732 C 89.729997,30.760312 88.25694,31 86.710541,31 Z m 17.452279,-9.947165 0,9.148196 -9.238356,0 0,-30.201031 9.238356,0 0,17.217783 0.11998,0 4.99911,-8.0296387 10.71809,0 -6.79879,9.4677837 6.7588,11.545103 -10.75809,0 -4.91912,-9.148196 z"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <flowRoot
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none"
+       id="flowRoot5181-3"
+       xml:space="preserve"
+       transform="translate(11.899532,132.73434)"><flowRegion
+         style="fill:#2e3436"
+         id="flowRegion5177-5"><rect
+           style="fill:#2e3436"
+           y="0.8577987"
+           x="-30.2672"
+           height="37.377552"
+           width="44.785717"
+           id="rect5175-6" /></flowRegion><flowPara
+         id="flowPara5179-2"
+         style="font-weight:bold;font-size:6.3499999px;line-height:1.25;fill:#2e3436">Newspeek</flowPara></flowRoot>    <flowRoot
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       id="flowRoot5189-9"
+       xml:space="preserve"
+       transform="translate(11.899532,132.73434)"><flowRegion
+         style="font-size:4.23333359px"
+         id="flowRegion5185-1"><rect
+           style="font-size:4.23333359px"
+           y="19.912258"
+           x="-35.683151"
+           height="27.275509"
+           width="45.459187"
+           id="rect5183-2" /></flowRegion><flowPara
+         style="font-size:4.23333359px;line-height:1.25;text-align:center;text-anchor:middle"
+         id="flowPara5187-7">ClaimReview aggregation</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3391-2)"
+       d="m 89.527981,165.09226 c -0.936253,13.79732 -61.335491,20.12658 -70.18495,-2.78734"
+       id="path2931-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
   </g>
   <style
      id="style1034">.st0{fill:#e9478b}.st1{fill:#3ebeb0}.st2{fill:#37a595}.st3{fill:#353535}.st4{fill:none}</style>
