@@ -192,29 +192,29 @@ services:
       SERVER_PORT: 8687
     networks:
       - dev
-  newspeek:
+  fetch:
     volumes:
-      - "./newspeek:/app"
+      - "./fetch:/app"
     depends_on:
-      - newspeek-background
-    build: newspeek
+      - fetch-background
+    build: fetch
     ports:
       - "9292:9292"
     env_file:
-      - newspeek/.env_file
+      - fetch/.env_file
     command: start_server
     networks:
       - dev
-  newspeek-background:
+  fetch-background:
     volumes:
-      - "./newspeek:/app"
+      - "./fetch:/app"
     depends_on:
       - elasticsearch
       - kibana
       - redis
-    build: newspeek
+    build: fetch
     env_file:
-      - newspeek/.env_file
+      - fetch/.env_file
     command: run_worker
     networks:
       - dev
