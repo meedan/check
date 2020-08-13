@@ -1,0 +1,10 @@
+npm-debug.log
+config-*.tar.gz
+postgres/data
+elasticsearch/data
+elasticsearch/snapshots
+/.project
+chromedriver/auth.txt
+configurator
+*.swp
+*.swo

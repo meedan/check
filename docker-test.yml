@@ -1,0 +1,51 @@
+version: "2.1"
+networks:
+  default:
+    name: dev
+services:
+  chromedriver:
+    build: chromedriver
+    ports:
+      - 5900:5900
+      - 4444:4444
+    environment:
+      no_proxy: localhost
+      HUB_ENV_no_proxy: localhost
+    volumes:
+      - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+    networks:
+      - dev
+  api:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3000
+  api-background:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3000
+  pender:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3200
+  pender-background:
+    environment:
+      RAILS_ENV: test
+      SERVER_PORT: 3200
+  web:
+    depends_on:
+      - api
+      - chromedriver
+    environment:
+      PLATFORM: web
+      NODE_ENV: development
+      SERVER_PORT: 3333
+      MODE: test
+  alegre:
+    environment:
+      BOILERPLATE_ENV: test
+      ALEGRE_PORT: 3100
+      REDIS_DATABASE: 3
+  narcissus:
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8687
