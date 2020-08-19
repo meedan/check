@@ -1,22 +1,10 @@
 #!/bin/bash
 
-source /opt/bin/functions.sh
-
 export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
-
-function shutdown {
-  kill -s SIGTERM $NODE_PID
-  wait $NODE_PID
-}
 
 rm -f /tmp/.X*lock
 
-SERVERNUM=$(get_server_num)
-
-DISPLAY=$DISPLAY xvfb-run -n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" geckodriver --host '0.0.0.0' &
-NODE_PID=$!
-
-trap shutdown SIGTERM SIGINT
+DISPLAY=$DISPLAY xvfb-run --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" geckodriver --host '0.0.0.0' &
 
 for i in $(seq 1 10)
   do
@@ -24,12 +12,14 @@ for i in $(seq 1 10)
   if [ $? -eq 0 ]; then
     break
   fi
-  echo Waiting xvfb...
-  sleep 0.5
+  echo 'Waiting xvfb...'
+  sleep 1
 done
+
+echo 'xvfb is running!'
 
 fluxbox -display $DISPLAY &
 
 x11vnc -forever -usepw -shared -rfbport 5900 -display $DISPLAY &
 
-wait $NODE_PID
+tail -f /dev/null
