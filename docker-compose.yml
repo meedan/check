@@ -218,3 +218,11 @@ services:
     command: run_worker
     networks:
       - dev
+  mark:
+    build: check-mark
+    volumes:
+      - "./check-mark:/app"
+      - "./check-api:/api"
+      - "/app/node_modules"
+    networks:
+      - dev
