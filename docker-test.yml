@@ -13,6 +13,16 @@ services:
       HUB_ENV_no_proxy: localhost
     volumes:
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+      - "./check-mark:/check-mark"
+    networks:
+      - dev
+  geckodriver:
+    build: geckodriver
+    ports:
+      - 4445:4444
+      - 5901:5900
+    volumes:
+      - "./check-mark:/check-mark"
     networks:
       - dev
   api:
