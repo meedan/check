@@ -1,0 +1,1 @@
+The Meedan Check team welcomes and encourages participation by everyone. Our community is based on mutual respect, tolerance, and encouragement, and we are working to help each other live up to these principles. Please refer to our [Code of Conduct](https://meedan.com/code-of-conduct/) if you need more information.
