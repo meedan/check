@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest an idea for Check
 title: ''
 labels: community_new
 assignees: ''
