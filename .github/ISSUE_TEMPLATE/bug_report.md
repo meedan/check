@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-**Which service(s) is this report for?**
-Let us know which services(s) you want this for:
+**Which service(s) is this report about?**
+Let us know which services(s) this report is about:
 - Check API
 - Check Web
 - Check Mark
