@@ -14,6 +14,10 @@ To see what has already been proposed by the community you can look [here](https
 
 "Watch out for duplicates!" If you are creating a new issue, please check [existing open](https://github.com/meedan/check/issues), or [recently closed](https://github.com/meedan/check/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20) . Having a single issue with multiple votes is far easier for us to prioritize.
 
+## Coding guidelines
+
+Please check out our [Coding Guidelines](https://github.com/meedan/check/wiki/Coding-Guidelines) on the Check Wiki.
+
 ## Security issues
 
 Please do **not** create a public GitHub issue. If you discover a potential security issue in this project we ask that you notify Meedan Security by sending your report privately to security@meedan.com. Again, please do **not** create a public GitHub issue.
