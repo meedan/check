@@ -4,7 +4,7 @@
 filename=config-`date +%Y%m%d%H%M`.tar.gz
 
 # find all config files, which should have .example variants.
-configs=`find -name '*.example'`
+configs=`find . -name '*.example'`
 configs=${configs//.example/}
 
 # attempt to tar each file, but don't fail on missing ones.

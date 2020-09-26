@@ -1,0 +1,12 @@
+version: "2.1"
+volumes:
+    postgres:
+    postgres11:
+networks:
+    migrate:
+services:
+    migration:
+        image: tianon/postgres-upgrade:9.5-to-11
+        volumes:
+            - postgres:/var/lib/postgresql/9.5/data
+            - postgres11:/var/lib/postgresql/11/data

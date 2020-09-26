@@ -1,14 +1,30 @@
 version: "2.1"
+networks:
+  default:
+    name: dev
 services:
   chromedriver:
     build: chromedriver
     ports:
       - 5900:5900
+      - 4444:4444
     environment:
       no_proxy: localhost
       HUB_ENV_no_proxy: localhost
     volumes:
       - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+      - "./check-mark:/check-mark"
+    networks:
+      - dev
+  geckodriver:
+    build: geckodriver
+    ports:
+      - 4445:4444
+      - 5901:5900
+    volumes:
+      - "./check-mark:/check-mark"
+    networks:
+      - dev
   api:
     environment:
       RAILS_ENV: test
@@ -39,7 +55,7 @@ services:
       BOILERPLATE_ENV: test
       ALEGRE_PORT: 3100
       REDIS_DATABASE: 3
-  vframe:
+  narcissus:
     environment:
-      DB_NAME: vframe_test
-      FLASK_ENV: test
+      NODE_ENV: development
+      SERVER_PORT: 8687

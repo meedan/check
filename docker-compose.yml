@@ -1,22 +1,23 @@
 version: "2.1"
 volumes:
   elasticsearch:
-  postgres:
+  postgres11:
   redis:
   minio:
   web-node_modules:
   bots-node_modules:
+  narcissus-node_modules:
+networks:
+  dev:
 services:
   elasticsearch:
     build: alegre/elasticsearch
     environment:
-      - "discovery.type=single-node"
-      - "transport.host=127.0.0.1"
-      - "xpack.security.enabled=false"
-      - "ALEGRE_URL=http://alegre:5000"
-      - "cluster.name=docker-cluster"
-      - "bootstrap.memory_lock=true"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
+      discovery.type: single-node
+      transport.host: 127.0.0.1
+      xpack.security.enabled: "false"
+      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
     ulimits:
       memlock:
         soft: -1
@@ -26,22 +27,29 @@ services:
     volumes:
       - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "elasticsearch:/usr/share/elasticsearch/data"
+    networks:
+      - dev
   postgres:
-    image: postgres:9.5
+    image: postgres:11
     command: postgres -c config_file=/etc/postgresql.conf
     ports:
       - "5432:5432"
     volumes:
       - "./postgresql.conf:/etc/postgresql.conf"
-      - "postgres:/var/lib/postgresql/data"
+      - "postgres11:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    networks:
+      - dev
   redis:
     image: redis:5
     ports:
       - "6379:6379"
     volumes:
       - "redis:/data"
+    networks:
+      - dev
   minio:
     image: minio/minio
     command: server /data
@@ -52,8 +60,11 @@ services:
     environment:
       MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    networks:
+      - dev
   api:
     build: check-api
+    mem_limit: 4g
     ports:
       - "3000:3000"
       - "3300:3300"
@@ -63,12 +74,14 @@ services:
       - redis
       - pender
       - alegre
-      - vframe
+      - narcissus
     volumes:
       - "./check-api:/app"
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
+    networks:
+      - dev
   api-background:
     build: check-api
     command: /app/docker-background.sh
@@ -79,6 +92,8 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3000
+    networks:
+      - dev
   pender:
     build: pender
     shm_size: 1G
@@ -93,6 +108,8 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200
+    networks:
+      - dev
   pender-background:
     build: pender
     command: /app/docker-background.sh
@@ -104,6 +121,8 @@ services:
     environment:
       RAILS_ENV: development
       SERVER_PORT: 3200
+    networks:
+      - dev
   web:
     build: check-web
     ports:
@@ -119,37 +138,32 @@ services:
       NODE_ENV: development
       SERVER_PORT: 3333
       MODE: development
+    networks:
+      - dev
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.3.0
+    image: docker.elastic.co/kibana/kibana:6.8.9
     ports:
       - "5601:5601"
     depends_on:
       - elasticsearch
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - dev
   alegre:
     build: alegre
     ports:
-      - "3100:3100"
+      - "3100:5000"
     volumes:
       - "./alegre:/app"
     depends_on:
       - kibana
       - redis
-    environment:
-      BOILERPLATE_ENV: dev
-      ALEGRE_PORT: 3100
-      REDIS_DATABASE: 2
-  vframe:
-    build: vframe
-    volumes:
-      - "./vframe:/root/vframe"
+      - elasticsearch
     env_file:
-      - vframe/.env_file
-    depends_on:
-      - postgres
-    ports:
-      - "5000:5000"
+      - alegre/.env_file
+    networks:
+      - dev
   bots:
     build: check-bots
     volumes:
@@ -162,3 +176,54 @@ services:
     environment:
       NODE_ENV: development
       SERVER_PORT: 8586
+    networks:
+      - dev
+  narcissus:
+    build: narcissus
+    shm_size: 1G
+    volumes:
+      - "./narcissus:/app"
+      - "narcissus-node_modules:/app/node_modules"
+    ports:
+      - "8687:8687"
+    depends_on:
+      - minio
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8687
+    networks:
+      - dev
+  fetch:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - fetch-background
+    build: fetch
+    ports:
+      - "9292:9292"
+    env_file:
+      - fetch/.env_file
+    command: start_server
+    networks:
+      - dev
+  fetch-background:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - elasticsearch
+      - kibana
+      - redis
+    build: fetch
+    env_file:
+      - fetch/.env_file
+    command: run_worker
+    networks:
+      - dev
+  mark:
+    build: check-mark
+    volumes:
+      - "./check-mark:/app"
+      - "./check-api:/api"
+      - "/app/node_modules"
+    networks:
+      - dev
