@@ -8,6 +8,16 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
 
+## Documentation
+
+* [Quick Start](#quick-start)
+* [Available service and container names](#available-services-and-container-names)
+* [Testing](#testing)
+* [Helpful one-liners and scripts](#helpful-one-liners-and-scripts)
+* [More documentation](#more-documentation)
+* [Upgrading databases in development environment](#upgrading-databases-in-development-environment)
+* [Troubleshooting](#troubleshooting)
+
 ## Quick start
 
 - Install `docker-compose`
