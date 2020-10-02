@@ -99,3 +99,6 @@ ERROR: for chromedriver  Cannot start service chromedriver: network 16d99f6d3d81
 ERROR: Encountered errors while bringing up the project.
 ```
 try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
+
+## License
+This project is currently licensed under the [MIT License](https://github.com/meedan/check/blob/develop/LICENSE.txt)
