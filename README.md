@@ -1,12 +1,25 @@
-# Check
+# [Check](https://meedan.com/check)
 
 A collaborative media annotation platform.
 
-This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
+This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).   
 
 ![Diagram](diagram.png?raw=true "Diagram")
 
-## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
+> ### :warning:  DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.  
+
+Table of Contents
+=================
+
+   * [Quick start](#quick-start)
+   * [Available services and container names](#available-services-and-container-names)
+   * [Testing](#testing)
+   * [Helpful one-liners and scripts](#helpful-one-liners-and-scripts)
+   * [More documentation](#more-documentation)
+   * [Upgrading databases in development environment](#upgrading-databases-in-development-environment)
+   * [Troubleshooting](#troubleshooting)
+   * [Licensing](#licensing)
+  
 
 ## Quick start
 
@@ -75,7 +88,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Upgrading databases in development environment
 
-We have recently upgraded to Postgres version 11 from 9.5. This necessitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databases. To migrate run these commands:
+We have recently upgraded to [Postgres](https://www.postgresql.org/) version 11 from 9.5. This necessitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databases. To migrate run these commands:
 
 ```
 docker-compose down
@@ -99,3 +112,7 @@ ERROR: for chromedriver  Cannot start service chromedriver: network 16d99f6d3d81
 ERROR: Encountered errors while bringing up the project.
 ```
 try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
+
+## Licensing
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   
+Check is under the [MIT License](/LICENSE.txt).
