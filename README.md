@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://meedan.com/check">
-    <img src="https://meedan.com/images/check_b.svg" alt="Check Logo" height="130"><h1>Check</h1>
+    <img src="https://meedan.com/images/check_b.svg" alt="Check Logo" height="130">
   </a>
 <p>
 <p align="center">
