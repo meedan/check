@@ -29,9 +29,12 @@ RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geck
   && chmod 755 /opt/geckodriver-$GECKODRIVER_VERSION \
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/geckodriver
 
+#======
+# Nginx
+#======
+RUN apt-get update -qq && apt-get install nginx --no-install-recommends -y
+COPY ./nginx.conf /etc/nginx/nginx.conf
+RUN rm /etc/nginx/sites-enabled/default
+
 COPY entry_point.sh /opt/bin/entry_point.sh
 RUN chmod +x /opt/bin/entry_point.sh
-
-USER seluser
-
-EXPOSE 4444
