@@ -1,4 +1,18 @@
-# Check
+<p align="center">
+  <a href="https://meedan.com/check">
+    <img src="https://meedan.com/images/check_b.svg" alt="Check Logo" height="130"><h1>Check</h1>
+  </a>
+<p>
+<p align="center">
+    <b>Scale up your fact-checking</b>
+<p>
+<p align="center">
+  <img src="https://img.shields.io/static/v1?label=&message=Elastisearch&style=for-the-badge&logo=elasticsearch" />
+  <img src="https://img.shields.io/static/v1?label=&message=Redis&style=for-the-badge&logo=redis" />
+    <img src="https://img.shields.io/static/v1?label=&message=PostgreSQL&style=for-the-badge&logo=postgresql" />
+    <img src="https://img.shields.io/static/v1?label=&message=Docker&style=for-the-badge&logo=docker" />
+</p>
+
 
 A collaborative media annotation platform.
 
@@ -99,3 +113,7 @@ ERROR: for chromedriver  Cannot start service chromedriver: network 16d99f6d3d81
 ERROR: Encountered errors while bringing up the project.
 ```
 try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
+
+## License
+
+This repository is available under the [MIT License](./LICENSE).
