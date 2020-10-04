@@ -99,3 +99,15 @@ ERROR: for chromedriver  Cannot start service chromedriver: network 16d99f6d3d81
 ERROR: Encountered errors while bringing up the project.
 ```
 try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
+
+## How to stop all containers & images to make it clean
+
+- For stopping all containers & removing the containers
+```
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+```
+- For removing all images
+```
+docker rmi $(docker images -a -q)
+```
