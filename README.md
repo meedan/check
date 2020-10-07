@@ -1,4 +1,4 @@
-# Check
+# Check :pushpin:
 
 A collaborative media annotation platform.
 
@@ -6,9 +6,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ![Diagram](diagram.png?raw=true "Diagram")
 
-## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
+## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.  :envelope:
 
-## Quick start
+## Quick start :page_with_curl:
 
 - Install `docker-compose`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
@@ -23,7 +23,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Click "I already have an account" and login using your credentials
 - Enjoy Check! :tada:
 
-## Available services and container names
+## Available services and container names :page_facing_up:
 
 - Check web client (container `web`) at [http://localhost:3333](http://localhost:3333)
 - Check service API (container `api`) at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
@@ -41,7 +41,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Narcissus screenshot service (container `narcissus`) at [http://localhost:8687](http://localhost:8687)
 - Fetch fact-checking service (container `fetch`) at [http://localhost:8687/about](http://localhost:8687/about)
 
-## Testing
+## Testing :bookmark:
 
 - Start the app in test mode: `docker-compose -f docker-compose.yml -f docker-test.yml up`
 - Check web client: `docker-compose exec web npm run test`
@@ -54,15 +54,15 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Running a specific Check web client test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
 - Running a specific Check API or Pender test (from within the container): `bundle exec ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
-## Helpful one-liners and scripts
+## Helpful one-liners and scripts :hearts:
 
 - Update submodules to their latest commit: `./bin/git-update.sh`
 - Pack your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Update the Relay schema file on Check API: `docker-compose run api bundle exec rake lapis:graphql:schema`
-
-## More documentation
+ 
+## More documentation :memo:
 
 - [Check API service](https://github.com/meedan/check-api)
 - [Check Web application](https://github.com/meedan/check-web)
@@ -73,7 +73,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
 
-## Upgrading databases in development environment
+## Upgrading databases in development environment :notebook_with_decorative_cover:
 
 We have recently upgraded to Postgres version 11 from 9.5. This necessitates a migration of existing databases to the new version. The migration will create a new data volume, so make sure you have enough storage space for a second copy of your databases. To migrate run these commands:
 
@@ -86,7 +86,7 @@ docker-compose up --remove-orphans --abort-on-container-exit
 
 This will leave behind your original data volume and which you can clean up by running `docker volume rm check_postgres`.
 
-## Troubleshooting
+## Troubleshooting :memo:
 
 - If you're having trouble starting Elasticsearch on macOS, with the error `container_name exited with code 137`, you will need to adjust your Docker settings, as per https://www.petefreitag.com/item/848.cfm
 - If you're getting an error starting `chromedriver` in test mode, like the following:
