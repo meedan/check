@@ -20,7 +20,7 @@ release() {
 
   git submodule foreach -q "
     echo Checking version $version for submodule \$name.;
-    if git rev-parse "$version" >/dev/null 2>&1; then
+    if git rev-parse $version >/dev/null 2>&1; then
       echo \$name will be updated.
       git checkout -q $version
     else
@@ -31,7 +31,7 @@ release() {
 
   git add -u
   git commit -m "Updated submodules to $version"
-  git tag $version
+  git tag "$version"
   git show
 
   echo -e "\n***** Release $version is ready *****\n"
