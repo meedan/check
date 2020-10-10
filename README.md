@@ -14,18 +14,18 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `git clone --recursive git@github.com:meedan/check.git && cd check`
 - `bin/first-build.sh` and wait (for about one hour this first time!!) for a string in the log that looks like `web_1_88cd0bd245b7   | [21:07:07] [webpack:build:web:dev] Time: 83439ms`
-- Open [http://localhost:3333](http://localhost:3333)
+- Open [http://localhost:8000](http://localhost:8000)
 - Click "Create a new account with email" and enter your desired credentials
 - `docker-compose exec api bash`
 - `bundle exec rails c`
 - `me = User.last; me.confirm; me.is_admin = true; me.save`
-- Go back to [http://localhost:3333](http://localhost:3333)
+- Go back to [http://localhost:8000](http://localhost:8000)
 - Click "I already have an account" and login using your credentials
 - Enjoy Check! :tada:
 
 ## Available services and container names
 
-- Check web client (container `web`) at [http://localhost:3333](http://localhost:3333)
+- Check web client (container `web`) at [http://localhost:8000](http://localhost:8000)
 - Check service API (container `api`) at [http://localhost:3000/api](http://localhost:3000/api) - use `dev` as API key
 - Check service Admin UI (container `api`) at [http://localhost:3000/admin](http://localhost:3000/admin)
 - Check service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
