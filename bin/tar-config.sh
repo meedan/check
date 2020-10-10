@@ -9,9 +9,6 @@ configs=${configs//.example/}
 
 # attempt to tar each file, but don't fail on missing ones.
 # http://unix.stackexchange.com/questions/167717/tar-a-list-of-files-which-dont-all-exist
-tar zcf "$filename" "$(ls "$configs" 2>/dev/null)"
-
-# fail on non-zero exit code.
 if tar zcf "$filename" "$(ls "$configs" 2>/dev/null)"
 then
   echo Created file "$filename"
