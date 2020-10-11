@@ -22,6 +22,12 @@ Please check out our [Coding Guidelines](https://github.com/meedan/check/wiki/Co
 
 Please do **not** create a public GitHub issue. If you discover a potential security issue in this project we ask that you notify Meedan Security by sending your report privately to security@meedan.com. Again, please do **not** create a public GitHub issue.
 
+
+## Get Help
+
+Head on to [our Discourse Group](https://meedan.discourse.group)
+
+
 ## Licensing
 
 See the [LICENSE](https://github.com/meedan/check/blob/master/LICENSE) file for our licensing. We will ask you to confirm the licensing of your contribution.
