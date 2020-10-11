@@ -6,9 +6,9 @@ We do ask that you read this document and send us any issues or raise pull reque
 
 ## Feature requests and bug reports
 
-You are very welcome to create new issues on this project to request new features and report bugs on any of the Check services.
+You are very welcome to [create new issues](https://github.com/meedan/check/issues/new/choose) on this project to request new features and report bugs on any of the Check services.
 
-If you would like to suggest a new feature, we ask that you please use our issue template. This contains a few essential questions that help us understand the problem you are looking to solve and how you think your recommendation will address it. We also tag incoming issues from this template with "community_new". This lets our team quickly see what has been raised and better address the community recommendations.
+If you would like to suggest a new feature, we ask that you please use our [issue template](.github/ISSUE_TEMPLATE). This contains a few essential questions that help us understand the problem you are looking to solve and how you think your recommendation will address it. We also tag incoming issues from this template with "community_new". This lets our team quickly see what has been raised and better address the community recommendations.
 
 To see what has already been proposed by the community you can look [here](https://github.com/meedan/check/labels/community_new).
 
@@ -24,6 +24,6 @@ Please do **not** create a public GitHub issue. If you discover a potential secu
 
 ## Licensing
 
-See the [LICENSE](https://github.com/meedan/check/blob/master/LICENSE) file for our licensing. We will ask you to confirm the licensing of your contribution.
+See the [LICENSE](https://github.com/meedan/check/blob/develop/LICENSE.txt) file for our licensing. We will ask you to confirm the licensing of your contribution.
 
 We may ask you to sign a [Contributor License Agreement (CLA)](http://en.wikipedia.org/wiki/Contributor_License_Agreement) for larger changes.
