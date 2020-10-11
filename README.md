@@ -103,6 +103,6 @@ try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
 
 ## Contributing
 
-We welcome all types of contributions. Please refer to [code of conduct](CODE_OF_CONDUCT.md) and our [contributing guidelines](CONTRIBUTING.md)
+We welcome all types of contributions. Please refer to our [code of conduct](CODE_OF_CONDUCT.md) and [contributing guidelines](CONTRIBUTING.md)
 
 
