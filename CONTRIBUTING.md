@@ -10,7 +10,8 @@ You are very welcome to create new issues on this project to request new feature
 
 If you would like to suggest a new feature, we ask that you please use our issue template. This contains a few essential questions that help us understand the problem you are looking to solve and how you think your recommendation will address it. We also tag incoming issues from this template with "community_new". This lets our team quickly see what has been raised and better address the community recommendations.
 
-To see what has already been proposed by the community you can look [here](https://github.com/meedan/check/labels/community_new).
+To see what has already been proposed by the community you can look [here]
+(https://github.com/meedan/check/labels/community_new).
 
 "Watch out for duplicates!" If you are creating a new issue, please check [existing open](https://github.com/meedan/check/issues), or [recently closed](https://github.com/meedan/check/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20) . Having a single issue with multiple votes is far easier for us to prioritize.
 
