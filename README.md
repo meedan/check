@@ -2,6 +2,8 @@
 
 A collaborative media annotation platform.
 
+A technology non-profit that builds software and initiatives to strengthen global journalism, digital literacy and accessibility of information for the world.
+
 This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
 
 ![Diagram](diagram.png?raw=true "Diagram")
