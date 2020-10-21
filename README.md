@@ -1,6 +1,6 @@
 # Check
 
-A collaborative media annotation platform.
+A collaborative media annotation platform for all.
 
 This is a [Docker Compose](https://docs.docker.com/compose/) configuration that spins up the whole Check app locally. Tested on Linux and Mac OS X. The repo contains two Docker Compose files, one for development (`docker-compose.yml`) and the other for testing (`docker-test.yml`).
 
@@ -32,7 +32,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check Slack Bot (container `bot`) at `check-bot/dist`, a ZIP file that should be deployed to AWS Lambda
 - Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100)
-- MinIO storage service UI (container `minio`) at [http://localhost:9000](http://localhost:9000) - use `AKIAIOSFODNN7EXAMPLE` / `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` to login
+- MinIO storage service UI (container `minio`) at [http://localhost:9000](http://localhost:9000) - use `AKIAIOSFODNN7EXAMPLE` / `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` to  login
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
 - Kibana Elasticsearch UI (container `kibana`) at [http://localhost:5601](http://localhost:5601)
 - PostgreSQL (container `postgres`) at `localhost:5432` (use a standard Pg admin tool to connect)
