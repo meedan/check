@@ -99,3 +99,8 @@ ERROR: for chromedriver  Cannot start service chromedriver: network 16d99f6d3d81
 ERROR: Encountered errors while bringing up the project.
 ```
 try this: `docker-compose -f docker-compose.yml -f docker-test.yml down`
+
+## Contribution & Licensing
+Contibutions to this project are always welcome. Please read [Contributing.md](CONTRIBUTING.md)
+See the [LICENSE](LICENSE.txt) file for our licensing. We will ask you to confirm the licensing of your contribution.
+We may ask you to sign a [Contributor License Agreement (CLA)](http://en.wikipedia.org/wiki/Contributor_License_Agreement) for larger changes.
