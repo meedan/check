@@ -15,12 +15,12 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - `git clone --recursive git@github.com:meedan/check.git && cd check`
 - `bin/first-build.sh` and wait (for about one hour this first time!!) for a string in the log that looks like `web_1_88cd0bd245b7   | [21:07:07] [webpack:build:web:dev] Time: 83439ms`
 - Open [http://localhost:3333](http://localhost:3333)
-- Click "Create a new account with email" and enter your desired credentials
+- Click "Create a new account with email" and enter your desired credentials.
 - `docker-compose exec api bash`
 - `bundle exec rails c`
 - `me = User.last; me.confirm; me.is_admin = true; me.save`
 - Go back to [http://localhost:3333](http://localhost:3333)
-- Click "I already have an account" and login using your credentials
+- Click "I already have an account" and login using your credentials.
 - Enjoy Check! :tada:
 
 ## Available services and container names
@@ -91,7 +91,7 @@ This will leave behind your original data volume and which you can clean up by r
 - If you're having trouble starting Elasticsearch on macOS, with the error `container_name exited with code 137`, you will need to adjust your Docker settings, as per https://www.petefreitag.com/item/848.cfm
 - If you're getting an error starting `chromedriver` in test mode, like the following:
 ```
-docker-compose -f docker-compose.yml -f docker-test.yml up --abort-on-container-exit
+docker - compose -f docker-compose.yml -f docker-test.yml up --abort-on-container-exit
 Starting check_elasticsearch_1_2e69e84ccb56 ...
 Starting check_chromedriver_1_6a1e9d8f5fd4  ... error
 [..]
