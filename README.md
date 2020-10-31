@@ -6,9 +6,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ![Diagram](diagram.png?raw=true "Diagram")
 
-## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENT ENVIRONMENT.
+## DO NOT USE IN PRODUCTION! THIS IS ONLY MEANT AS A DEVELOPMENTAL ENVIRONMENT.
 
-## Quick start
+## Quick Start
 
 - Install `docker-compose`
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
