@@ -30,7 +30,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check service Admin UI (container `api`) at [http://localhost:3000/admin](http://localhost:3000/admin)
 - Check service GraphQL at [http://localhost:3000/graphiql](http://localhost:3000/graphiql)
 - Check Slack Bot (container `bot`) at `check-bot/dist`, a ZIP file that should be deployed to AWS Lambda
-- Pender service API (container `pender`) at [http://localhost:3200/api](http://localhost:3200/api) - use `dev` as API key
+- Pender service API (container `pender`) at [http://localhost:3200/api-docs](http://localhost:3200/api-docs) - use `dev` as API key
 - Alegre service API (container `alegre`) at [http://localhost:3100](http://localhost:3100)
 - MinIO storage service UI (container `minio`) at [http://localhost:9000](http://localhost:9000) - use `AKIAIOSFODNN7EXAMPLE` / `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` to login
 - Elasticsearch API (container `elasticsearch`) at [http://localhost:9200](http://localhost:9200)
