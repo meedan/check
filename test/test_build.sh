@@ -9,8 +9,8 @@ then
   while read line; do  
   if [ $line != ${images[i]} ]
   then
-      echo "$line is not equal to ${images[i]}"
-      exit 1
+    echo "$line is not equal to ${images[i]}"
+    exit 1
   fi
   i=$((i+1))  
   done < $file  
