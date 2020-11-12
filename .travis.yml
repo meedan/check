@@ -1,0 +1,10 @@
+dist: bionic
+language: bash
+services:
+  - docker
+script:
+  - bin/git-update.sh
+  - sleep 180
+  - docker ps --format '{{.Image}}' | grep check_ | sort >> docker_up_output.txt
+  - cd test && chmod +x test_build.sh
+  - ./test_build.sh || travis_terminate 1;
