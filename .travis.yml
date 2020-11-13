@@ -4,9 +4,9 @@ language: bash
 services:
   - docker
 before_install:
-# - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
-- git clone https://github.com/meedan/check.git && cd check
 - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+- git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+- git clone https://github.com/meedan/check.git && cd check
 # before_script:
 # script:
 #   - git submodule update --init --recursive
