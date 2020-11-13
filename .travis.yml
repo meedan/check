@@ -5,7 +5,7 @@ services:
   - docker
 before_script:
 - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
-- git clone https://github.com/meedan/check.git && cd check
+# - git clone https://github.com/meedan/check.git && cd check
 # script:
 #   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 #   - git submodule update --init --recursive
