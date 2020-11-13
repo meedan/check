@@ -4,7 +4,8 @@ services:
   - docker
 before_script:
 - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
-- git clone --recursive git@github.com:meedan/check.git
+- d=configurator/check/travis/alegre/; for f in $(find $d -type f); do cp "$f" "pender/${f/$d/}"; done
+- d=configurator/check/travis/check-api/; for f in $(find $d -type f); do cp "$f" "pender/${f/$d/}"; done
 script:
   - bin/git-update.sh
   - docker-compose up -d
