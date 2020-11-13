@@ -5,7 +5,6 @@ services:
   - docker
 before_script:
 - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
-- git clone --recursive git@github.com:meedan/check.git && cd check
 script:
   - bin/git-update.sh
   - docker-compose up -d
