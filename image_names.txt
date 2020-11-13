@@ -1,0 +1,16 @@
+check_alegre
+check_api
+check_api-background
+check_bots
+check_elasticsearch
+check_fetch
+check_fetch-background
+check_mark
+check_narcissus
+check_pender
+check_pender-background
+check_web
+docker.elastic.co/kibana/kibana:7.9.2
+minio/minio
+postgres:11
+redis:5
