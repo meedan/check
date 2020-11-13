@@ -6,14 +6,14 @@ services:
 before_script:
 - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 - git clone https://github.com/meedan/check.git && cd check
-script:
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodule update --init --recursive
-  - bin/git-update.sh
-  - docker-compose up -d
-  - sleep 180
-  - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  - DIFF=$(diff docker_up_output.txt image_names.txt) 
-  - if [ "$DIFF" != "" ] ;  then
-       exit 1
-    fi
+# script:
+#   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+#   - git submodule update --init --recursive
+#   - bin/git-update.sh
+#   - docker-compose up -d
+#   - sleep 180
+#   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+#   - DIFF=$(diff docker_up_output.txt image_names.txt) 
+#   - if [ "$DIFF" != "" ] ;  then
+#        exit 1
+#     fi
