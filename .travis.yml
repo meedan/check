@@ -4,6 +4,7 @@ services:
   - docker
 before_script:
 - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+- git submodule update --init --recursive
 script:
   - bin/git-update.sh
   - sleep 180
