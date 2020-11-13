@@ -4,9 +4,10 @@ services:
   - docker
 before_script:
 - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
-- git submodule update --init --recursive
+- git clone --recursive git@github.com:meedan/check.git
 script:
   - bin/git-update.sh
+  - docker-compose up -d
   - sleep 180
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
