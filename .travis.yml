@@ -8,6 +8,7 @@ before_script:
 - git clone https://github.com/meedan/check.git && cd check
 script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
   - bin/git-update.sh
   - docker-compose up -d
   - sleep 180
