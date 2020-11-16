@@ -4,12 +4,13 @@ services:
 git:
   submodules: false
 before_install:
-  # - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+  - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 script:
-  - cat .gitmodules
-  - bin/git-update.sh
+  # - cat .gitmodules
+  - bin/first-build.sh
+  - sleep 30
   - docker-compose up -d
   - sleep 60
   - docker ps --format '{{.Image}}' | sort
