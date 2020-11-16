@@ -12,8 +12,8 @@ before_script:
 script:
   - echo "pw3"
   - pwd
-  - bin/git-update.sh
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - bin/git-update.sh
   - docker-compose up -d
   - sleep 180
   - docker ps --format '{{.Image}}' | sort
