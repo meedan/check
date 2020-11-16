@@ -5,15 +5,13 @@ before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
   - echo "pw1"
   - pwd
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 before_script:
   - echo "pw2"
   - pwd
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 script:
-  - echo "pw2"
+  - echo "pw3"
   - pwd
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - bin/git-update.sh
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - docker-compose up -d
