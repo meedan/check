@@ -2,7 +2,7 @@ dist: bionic
 services:
   - docker
 before_install:
-  # - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+  - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
   - echo "pw1"
   - pwd
 before_script:
