@@ -3,10 +3,13 @@ services:
   - docker
 before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+  - pwd
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 before_script:
+  - pwd
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 script:
+  - pwd
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - bin/git-update.sh
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
