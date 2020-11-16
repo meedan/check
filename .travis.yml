@@ -9,7 +9,7 @@ before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
 script:
   - git submodule update --init --recursive
-  - bin/git-update.sh
+  - ./bin/first-build.sh
   - sleep 30
   - docker-compose up -d
   - sleep 60
