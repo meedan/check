@@ -1,6 +1,8 @@
 dist: bionic
 services:
   - docker
+git:
+  submodules: false
 before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
   - echo "pw1"
