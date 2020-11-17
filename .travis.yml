@@ -1,6 +1,32 @@
 dist: bionic
 git:
   submodules: false
+services:
+  elasticsearch:
+    fetch:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - fetch-background
+    build: fetch
+    ports:
+      - "9292:9292"
+    env_file:
+      - fetch/.env_file
+    command: start_server
+    networks:
+      - dev
+  fetch-background:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - elasticsearch
+      - kibana
+      - redis
+    build: fetch
+    env_file:
+      - fetch/.env_file
+    command: run_worker
 before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
@@ -8,7 +34,7 @@ before_script:
   - git submodule update --init --recursive
 script:
   - ./bin/first-build.sh
-  - docker-compose up -d
+  - docker-compose up -d 
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   - cat docker_up_output.txt
   - cat image_names.txt
