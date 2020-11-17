@@ -12,7 +12,7 @@ script:
   - ./bin/first-build.sh
   - docker-compose up -d
   - docker ps --format '{{.Image}}' | sort
-- docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
   - if [ "$DIFF" != "" ] ;  then
        exit 1
