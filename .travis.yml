@@ -13,7 +13,7 @@ script:
   - docker-compose up -d
   - docker ps --format '{{.Image}}' | sort
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  - cat docker_up_output
+  - cat docker_up_output.txt
   - cat image_names.txt
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
   - if [ "${DIFF}" != "" ];  then
