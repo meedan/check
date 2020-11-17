@@ -1,8 +1,6 @@
 dist: bionic
 git:
   submodules: false
-addons:
-  postgresql: '11'
 before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
