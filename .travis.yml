@@ -17,5 +17,5 @@ script:
   - cat image_names.txt
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
   - if [ "${DIFF}" != "" ];  then
-      exit 1
+      exit 1;
     fi;
