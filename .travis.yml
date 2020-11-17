@@ -1,11 +1,6 @@
 dist: bionic
 services:
-  - docker
-  - elasticsearch:
-      image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
-      ports:
-        - 9200:9200
-        - 9300:9300
+- postgresql
 git:
   submodules: false
 before_install:
@@ -13,6 +8,7 @@ before_install:
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+  - sleep 10
 script:
   - ./bin/first-build.sh
   - docker-compose up -d
