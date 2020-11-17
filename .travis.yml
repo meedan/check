@@ -10,12 +10,10 @@ before_script:
 script:
   - git submodule update --init --recursive
   - ./bin/first-build.sh
-  - sleep 30
   - docker-compose up -d
-  - sleep 60
   - docker ps --format '{{.Image}}' | sort
-# - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-#   - DIFF=$(diff docker_up_output.txt image_names.txt) 
-#   - if [ "$DIFF" != "" ] ;  then
-#        exit 1
-#     fi
+- docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - DIFF=$(diff docker_up_output.txt image_names.txt) 
+  - if [ "$DIFF" != "" ] ;  then
+       exit 1
+    fi
