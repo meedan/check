@@ -1,18 +1,25 @@
 dist: bionic
 services:
-- postgresql
+  - postgresql
 git:
   submodules: false
+addons:
+  postgresql: '11'
 before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+  - docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+  - docker exec elasticsearch elasticsearch-plugin install analysis-icu
+  - docker restart elasticsearch
+  - sleep 10
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - sleep 10
 script:
   - ./bin/first-build.sh
   - docker-compose up -d
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - cat docker_up_output.txt
+  - cat image_names.txt
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
   - if [ "${DIFF}" != "" ];  then
       exit 1;
