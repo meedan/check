@@ -7,8 +7,8 @@ before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-script:
   - git submodule update --init --recursive
+script:
   - ./bin/first-build.sh
   - docker-compose up -d
   - docker ps --format '{{.Image}}' | sort
@@ -18,4 +18,4 @@ script:
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
   - if [ "${DIFF}" != "" ];  then
       exit 1
-    fi
+    fi;
