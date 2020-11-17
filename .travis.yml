@@ -1,13 +1,10 @@
 dist: bionic
-services:
-  - postgresql
 git:
   submodules: false
 addons:
   postgresql: '11'
 before_install:
   - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
-  - docker restart elasticsearch
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
