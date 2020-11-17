@@ -1,6 +1,11 @@
 dist: bionic
 services:
   - docker
+  - elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+      ports:
+        - 9200:9200
+        - 9300:9300
 git:
   submodules: false
 before_install:
@@ -11,11 +16,7 @@ before_script:
 script:
   - ./bin/first-build.sh
   - docker-compose up -d
-  - docker ps --format '{{.Image}}' | sort
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  - cat docker_up_output.txt
-  - cat image_names.txt
-  - diff docker_up_output.txt image_names.txt
   - DIFF=$(diff docker_up_output.txt image_names.txt) 
   - if [ "${DIFF}" != "" ];  then
       exit 1;
