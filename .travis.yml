@@ -29,10 +29,11 @@ before_install:
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+script:
+  - git submodule foreach bash -c 'git checkout develop' - find . -name '*.example' -not -path '*apollo*' | while read f; do cp "$f" "${f%%.example}"; done
   - cd fetch 
   - git checkout test/8830-automated-test
   - cd - 
-script:
   - docker-compose build
   - docker-compose up --abort-on-container-exit
   # - ./bin/first-build.sh
