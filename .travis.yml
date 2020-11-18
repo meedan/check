@@ -30,12 +30,12 @@ before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 script:
+  - ./bin/first-build.sh
   - cd fetch 
   - git checkout test/8830-automated-test
   - cd - 
   - docker-compose build
   - docker-compose up --abort-on-container-exit
-  # - ./bin/first-build.sh
   # - docker-compose up -d 
   - docker ps --format '{{.Image}}' | sort
   # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
