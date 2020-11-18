@@ -33,8 +33,9 @@ before_script:
   - git checkout test/8830-automated-test
   - cd - 
 script:
-  - ./bin/first-build.sh
-  # - docker-compose up -d 
+  - docker-compose build
+  - docker-compose up --abort-on-container-exit
+  # - ./bin/first-build.sh
   - docker ps --format '{{.Image}}' | sort
   # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   # - cat docker_up_output.txt
