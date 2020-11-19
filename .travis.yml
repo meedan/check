@@ -9,7 +9,7 @@ before_script:
   - cd fetch 
   - git checkout develop
   - TAB=$'\t'
-  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
+  - sed -i '/-o 0.0.0.0/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
   - cd - 
 script:
   - ./bin/first-build.sh
