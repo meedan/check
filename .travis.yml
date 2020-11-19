@@ -2,22 +2,22 @@ dist: bionic
 git:
   submodules: false
 before_install:
-  - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+  # - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodule update --init --recursive
-  - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
-  - cd fetch
-  - git checkout develop
-  - TAB=$'\t'
-  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
-  - cd -
+  # - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  # - git submodule update --init --recursive
+  # - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
+  # - cd fetch
+  # - git checkout develop
+  # - TAB=$'\t'
+  # - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200;
+  #   do printf \'.'\; sleep 1; done' Makefile
+  # - cd -
 script:
-  - ./bin/first-build.sh
+  # - "./bin/first-build.sh"
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  - DIFF=$(diff docker_up_output.txt test/image_names.txt)
-  - if [ "${DIFF}" != "" ];  then exit 1; fi;
-# notifications:
-#   slack:
-#     secure: IzJHJYILxdPGU/MUu5le1O0BAoIyBkcOjdBh8geDYQEcVoRgPjHPsE41PBKGbMGblWE7CBIZ3duzCntmCrsBDv/lck6R0uoz9RNAYkTcAvqKerrOc69QJI1hppCLJoIU3hZqpXLwWW8GaaeCfHtpq+eMLJZX8AqomFauHdElwyRsUczGXOK1QFY21UuVAQBb97nKc2YvrVuR50Arms591QLTpvxLte+Ma+7/Na7wyR2AGk1P1pIZLzKPNCEq/XL/JwjdCOVApDQDia6t1VH8BQU59a0PwEZzAZ+BmBy5w0QMh9bs/4FbtoLRbZHeMo5u/OU3aN2FJerLv84oVP5Jbdtu6DG0lYx/JcZDRo/sX0+2UQfOOLcJTiJuOYeL73RniAoHgH8aWyeuR2UJ6cKylo4xXK0Z8XCz50AkVbhHLZrx7/MYtQFalvjjaer3b4r7M9qRL5qkP9h9hKGzs9s98U3oaek8YcTn6gpAonKJETdtRS7Y2upUQ4Mzp8cHQ8Tp/XEwmC3DbLI7TPy8B/LTS2IUl5iDZq6hC2kKb1yPCbKCKullyAnd6ivQdVb5YVViF3fGlQbc6bJ7hXm6kM6ohYkT623/OjgK8Vv1fDK71LHc1FjUxlpwtfHX749W3HG2I0RBd3PA66vAvimhV40Gr73hxzjFQbGZJC0YBL+bGCQ=
-
+  # - DIFF=$(diff docker_up_output.txt test/image_names.txt)
+  # - if [ "${DIFF}" != "" ];  then exit 1; fi;
+notifications:
+  slack:
+    secure: liY9HT9EJU3jlqt4mHnMgAkIxv38WtpJgGukZ+ZZ7tiVHR9NIK+Ca0zRBcFD0iFDR8XXXQi2D69zjhUFDpmilTm5IcO6gv74Tha3kVEPAZEOCoOqTHFaqKqdYs+i+ewfy1x3Wg8ZEeDBYoVY8THPoLzufix281L3dhg+gu4YTNGq7lOfYs7BkulxJQHiAjrjjI9f2kTSqMUPldlQJK9EKMqc6QUiEEiX+lj7hJSY2fCw5GM0rrf5OQ+98ihZfn+kng2glBelyfuPQMl91cWC1BakhbinujfxcTLuq+DpQD2n1NE/omoTKCMMp4BX3iEZjUlolg/pgUuVTt7LaSVHtLmLJlsuzMNutbIxDA2Y4iv822l2ag+PWDuVD2Peh0imeid+hwpAOkaHWLLT5Uw2vhYUWcEY1FoSbWLax/6cMRAxzD15gU4I3qD9q11ZFtN/KoGirV6H4ZNHVdXSiirZCBi0yY2rSd7pvEgPws6ptOMn3q24vHOr2qfpbgMJ2MW1FSU1xgRVTlf9W/Khx+YvNZlPWFe9dre5ft/9v5DlcyBUSZiWh3ZlSsUDu+Ju0ji9jsd/RwPOTZK4pWZHH+LJ5uIuYdSHQGiAvoaQFf80tA+upJdVi0M2+g8Mw7NiKzgfNrlyWr9O7eYp+AeYuziXVV/h2nZardOFacwd0bNNdLI=
