@@ -2,22 +2,22 @@ dist: bionic
 git:
   submodules: false
 before_install:
-- git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
+  - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
-- sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-- git submodule update --init --recursive
-- sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
-- cd fetch
-- git checkout develop
-- TAB=$'\t'
-- sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200;
-  do printf \'.'\; sleep 1; done' Makefile
-- cd -
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+  - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
+  - cd fetch
+  - git checkout develop
+  - TAB=$'\t'
+  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200;
+    do printf \'.'\; sleep 1; done' Makefile
+  - cd -
 script:
-- "./bin/first-build.sh"
-- docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-- DIFF=$(diff docker_up_output.txt test/image_names.txt)
-- if [ "${DIFF}" != "" ];  then exit 1; fi;
+  - "./bin/first-build.sh"
+  - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - DIFF=$(diff docker_up_output.txt test/image_names.txt)
+  - if [ "${DIFF}" != "" ];  then exit 1; fi;
 notifications:
   slack:
     secure: b7UHnOoyY/3Vkmn+6zF0PGxnUxKiA9Roi2Ts2fru0sYXh4mQ8syEuHmgSy5Qlqor7YBnn+9fOwvIwrhnzVNJiYA3SUSaOW7eOALC1wVRUFmYfDpmxJC1/U5R35N500gbzLrspVQrOPjivZ3uOnJD3maMNeS6rRdjSTRmtGdqB9mcB3aqvZsLb10nTnldw289USDeOnY7pyAd6at1C4ynIgRK1GiZUp4UMwzDzcnpPuXGvDHOZ41PnRCbTS8i8h71lwSQLcozMcG3BDkojxRkCthttz1rxcmHoAkv454sSbueArxC7a2MxhbXpwxNLBVZUGQOEIHVdKy1O4xb+nK9QaGhdSk+9eA3ulLTI+HueqFOsxZJUfO3PCjN5O1rFVlf+HIjnlJPzeswJssD18HXPD5Ngr+WrQOpZ+gLAm1kMtsqyjHSSD21e5oxpNROmjqO0+FY1/pOd/YlRDKgG0LBgn5I5ygKonl+O0I7NxxIEFBM/yoGCdjzcP3yyRLM0fdkbIjrNb7XIH2v76UGH7gvsb60vzz7DDtqmuXonVakYipPhdi2tThje8AG+E+8ZLLxIaMqYTKDPLm+0k6Nvz8ot94fyR7zzwvDcBxDBoDdotV2g0FagCyU36tdpgUKUD/U5nFYVZtqpLflEeHNYbDhMxNs9+V9Kg4cF0b36tiYjBc=
