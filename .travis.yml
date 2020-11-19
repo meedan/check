@@ -6,14 +6,14 @@ before_install:
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+  - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - cd fetch 
   - git checkout develop
   - TAB=$'\t'
-  - sed -i '/-o 0.0.0.0/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
+  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
   - cd - 
 script:
   - ./bin/first-build.sh
-  # - docker-compose up -d 
   - docker ps --format '{{.Image}}' | sort
   # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   # - cat docker_up_output.txt
