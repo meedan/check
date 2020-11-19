@@ -10,8 +10,7 @@ before_script:
   - cd fetch
   - git checkout develop
   - TAB=$'\t'
-  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200;
-    do printf \'.'\; sleep 1; done' Makefile
+  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
   - cd -
 script:
   - ./bin/first-build.sh
@@ -20,4 +19,5 @@ script:
   - if [ "${DIFF}" != "" ];  then exit 1; fi;
 notifications:
   slack:
-    secure: IeD2IoJzU5dcOnyD7ptRQsTQ4IYMd/RGjLjXD0MXzIUn7Jcj3uAIz3ykRl69Y9GcTsmJrc0mKHKuBoqVm1pttxsJCtXlxP+x1PJ3gf7vVsQqdj9giqjOTVkV3BB6ue9+zp0XgwFC+6JKyw3+nKsmRT9xYbNYE3fs6Ktv/kqfohWRYI8+5BAsC+jN5QAGpLo9884tl0VvR/ruNCt6NUZaI7lszv3RcrTN48piRGARmIRLIg4GQsbDZeC6L0iPqEn5QYh99h/XV9NtWvwAdPGDveBJSMmyAtOH1CeSmBVbey+yVieX6TBULgAZplidzgu3ax0vYnLk40fAkspyGL/oyhpBJczh+VzRIe+WVH5HxJ1vtLnAz/sbNyZPq/6ZGS4IAjUTHH9uoRVQww9IfLnY+TfEmKSNSC/rlKXzqjl+RToQFVc190ZomBtxXvqjtIzsz7GeW5IdwFbF76TNWjjgtWfjuZ6F2W0uCUKakCvpjNDHk/TrT3stu12X83GCXlX/WnKqLlDGjIPhOvJ9/8op+KbUEX0kK9efPjjZMtUGl+rsPuicJGWYHsPN8t4LFdzbKRUp6nMb/aECTf8NZmVKtI4nV1/BcoPNjlD/LVdsncOgwrwzgaK5I2W5Bh8Y4e/Pb3e47y8QMkSqD0EaCQVSXE48vC+nxtyNjkWqK4UbsmQ=
+    rooms:
+      secure: cS3/zfGIQ4pXEx5NqA8hSt6PGwA079YLZfLpqDOvFHJhtfa/hPeczRua1M3ytIZ1b0Mjqrm9sUA8funfKldznvkBHMirGnp+Dg/t8TlZZEaoK1OHzzR44FMG61BSccc00E4LAR1IleKBimCFbw+EnFFCCBh2v1JK63v1bftuHJKNZiNz5h3mJbzBKXMswCAdiciCvVMBPweAeDz6vHkCZ5YJiU2c0/5mRjIBZcPtBWxVkV/ChWEF+pTMUEgr4uwBSyYV1aujSAHe0KRLZcpiJtzislJ/w2osKhk5CmCCRvqZjPy5+UEtwInmM+63/nVVXVHXPTw87UExWZVC3/K0OvqO2peGr6zZC9ld+MfKfc06R8rh5hf3X7q3pdL87G+arfIkvkC9A6Iq2AjwcjlfZ3K6DZUDjUOuJw0eGptEMvcdnIuQGCVfSFTIj4stMLGPQ/bQKxhlnzHzAX6a5Mx0SvHVEg2N+is56SiiimfKeDFJ3uEXfKXG7DZXNTB3/eJfJEmQwq0SZzsIxOOhreEVOtYXqIZJYz2A5ar1mF5A53/DQOEAYFpc7ZQU20FZ1qQQoGnEWQv+YEB07D7i/W2LNwg9t1verfQEIduUaYwHyYX3uB2VNsJ3KeHvi96Bnm2uOW23TCfLAQV3WCp9CN6kWEuDbSLOQ8VPXAlSs2TtSQ0=
