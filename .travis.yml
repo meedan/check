@@ -14,7 +14,7 @@ before_script:
     do printf \'.'\; sleep 1; done' Makefile
   - cd -
 script:
-  - "./bin/first-build.sh"
+  - ./bin/first-build.sh
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   - DIFF=$(diff docker_up_output.txt test/image_names.txt)
   - if [ "${DIFF}" != "" ];  then exit 1; fi;
