@@ -29,13 +29,12 @@ before_install:
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+  - cd fetch 
+  - git checkout develop 
+  - sed -i '/-c 5/ a \ \ until curl --silent -XGET --fail http://elasticsearch:9200; do printf '.'; sleep 1; done' Makefile
+  - cd - 
 script:
   - ./bin/first-build.sh
-  - cd fetch 
-  - git checkout test/8830-automated-test
-  - cd - 
-  - docker-compose build
-  - docker-compose up --abort-on-container-exit
   # - docker-compose up -d 
   - docker ps --format '{{.Image}}' | sort
   # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
