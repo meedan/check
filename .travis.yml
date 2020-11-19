@@ -8,7 +8,7 @@ before_script:
   - git submodule update --init --recursive
   - cd fetch 
   - git checkout develop 
-  - sed -i '/-o 0.0.0.0/ a \ \ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
+  - sed -i '/-c 5/ a \ \ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
   - cd - 
 script:
   - ./bin/first-build.sh
