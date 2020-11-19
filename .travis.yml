@@ -1,27 +1,4 @@
 dist: bionic
-services:
-  fetch:
-    volumes:
-      - "./fetch:/app"
-    depends_on:
-      - fetch-background
-    build: fetch
-    ports:
-      - "9292:9292"
-    env_file:
-      - fetch/.env_file
-    command: start_server
-  fetch-background:
-    volumes:
-      - "./fetch:/app"
-    depends_on:
-      - elasticsearch
-      - kibana
-      - redis
-    build: fetch
-    env_file:
-      - fetch/.env_file
-    command: wait_for_es_and_start_server 
 git:
   submodules: false
 before_install:
