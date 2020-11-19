@@ -14,11 +14,10 @@ before_script:
   - cd - 
 script:
   - ./bin/first-build.sh
-  - docker ps --format '{{.Image}}' | sort
-  # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  # - cat docker_up_output.txt
-  # - cat image_names.txt
-  # - DIFF=$(diff docker_up_output.txt image_names.txt) 
-  # - if [ "${DIFF}" != "" ];  then
-  #     exit 1;
-  #   fi;
+  - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - cat docker_up_output.txt
+  - cat test/image_names.txt
+  - DIFF=$(diff docker_up_output.txt test/image_names.txt) 
+  - if [ "${DIFF}" != "" ];  then
+      exit 1;
+    fi;
