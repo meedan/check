@@ -6,14 +6,19 @@ before_install:
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+  - sed -i '/git submodule/d' bin/first-build.sh
   - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - cd fetch
-  - git checkout develop
   - TAB=$'\t'
   - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
   - cd -
 script:
   - ./bin/first-build.sh
+  - until curl --silent -I -f --fail http://localhost:3000 ; do printf \'.'\; sleep 1; done
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi;
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   - DIFF=$(diff docker_up_output.txt test/image_names.txt)
   - if [ "${DIFF}" != "" ];  then exit 1; fi;
