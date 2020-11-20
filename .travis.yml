@@ -18,15 +18,15 @@ script:
   - cat fetch/Makefile
   - ./bin/first-build.sh
   # - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi;
+  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
+  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi;
+  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
+  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi;
   - cat fetch/Makefile
-  - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  - diff docker_up_output.txt test/image_names.txt
-  - cat docker_up_output.txt
-  - cat test/image_names.txt
+  # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  # - diff docker_up_output.txt test/image_names.txt
+  # - cat docker_up_output.txt
+  # - cat test/image_names.txt
   # - if [ "${DIFF}" != "" ];  then exit 1; fi;
 notifications:
   slack:
