@@ -6,7 +6,7 @@ before_install:
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  # - sed -i '/git submodule/d' bin/first-build.sh
+  - sed -i '/git submodule/d' bin/first-build.sh
   # - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - cd fetch
   - git branch
