@@ -7,9 +7,9 @@ before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
   - sed -i '/git submodule/d' bin/first-build.sh
-  - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
+  # - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - cd fetch
-  - git checkout develop
+  - git branch
   - TAB=$'\t'
   - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
   - cd -
