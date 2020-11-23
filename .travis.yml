@@ -9,7 +9,7 @@ before_script:
   - sed -i '/git submodule/d' bin/first-build.sh
   - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - TAB=$'\t'
-  - sed -i '/-c 5/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
+  - sed -i '/0.0.0/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
 script:
   - ./bin/first-build.sh
   - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
