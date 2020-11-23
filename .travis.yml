@@ -8,26 +8,20 @@ before_script:
   - git submodule update --init --recursive
   - sed -i '/git submodule/d' bin/first-build.sh
   # - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
-  - cd fetch
-  - git branch
   - TAB=$'\t'
-  - sed -i '/-c 5/ a \'"${TAB}"'\ until curl --silent -XGET --fail http://elasticsearch:9200; do printf \'.'\; sleep 1; done' Makefile
-  - cat Makefile
-  - cd -
+  - sed -i '/-c 5/ a \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
 script:
   - cat fetch/Makefile
   - ./bin/first-build.sh
-  # - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
-  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
-  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi;
-  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
-  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi;
-  - cat fetch/Makefile
-  # - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-  # - diff docker_up_output.txt test/image_names.txt
-  # - cat docker_up_output.txt
-  # - cat test/image_names.txt
-  # - if [ "${DIFF}" != "" ];  then exit 1; fi;
+  - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi;
+  - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - diff docker_up_output.txt test/image_names.txt
+  - cat docker_up_output.txt
+  - cat test/image_names.txt
 notifications:
   slack:
     secure: liY9HT9EJU3jlqt4mHnMgAkIxv38WtpJgGukZ+ZZ7tiVHR9NIK+Ca0zRBcFD0iFDR8XXXQi2D69zjhUFDpmilTm5IcO6gv74Tha3kVEPAZEOCoOqTHFaqKqdYs+i+ewfy1x3Wg8ZEeDBYoVY8THPoLzufix281L3dhg+gu4YTNGq7lOfYs7BkulxJQHiAjrjjI9f2kTSqMUPldlQJK9EKMqc6QUiEEiX+lj7hJSY2fCw5GM0rrf5OQ+98ihZfn+kng2glBelyfuPQMl91cWC1BakhbinujfxcTLuq+DpQD2n1NE/omoTKCMMp4BX3iEZjUlolg/pgUuVTt7LaSVHtLmLJlsuzMNutbIxDA2Y4iv822l2ag+PWDuVD2Peh0imeid+hwpAOkaHWLLT5Uw2vhYUWcEY1FoSbWLax/6cMRAxzD15gU4I3qD9q11ZFtN/KoGirV6H4ZNHVdXSiirZCBi0yY2rSd7pvEgPws6ptOMn3q24vHOr2qfpbgMJ2MW1FSU1xgRVTlf9W/Khx+YvNZlPWFe9dre5ft/9v5DlcyBUSZiWh3ZlSsUDu+Ju0ji9jsd/RwPOTZK4pWZHH+LJ5uIuYdSHQGiAvoaQFf80tA+upJdVi0M2+g8Mw7NiKzgfNrlyWr9O7eYp+AeYuziXVV/h2nZardOFacwd0bNNdLI=
