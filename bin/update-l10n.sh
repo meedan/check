@@ -17,6 +17,6 @@ echo 'Check Web:' && cd check-web && git status && cd - && \
 echo 'Check Mark:' && cd check-mark && git status && cd - && \
 # It's safer to run the ones below manually:
 echo 'Should be all updated - if it looks good to you, please push to `develop`:' && \
-echo "cd check-api && git commit config/locales -m 'Ticket #109: Updating l10n' && git push && cd -" && \
-echo "cd check-web && git commit localization -m 'Ticket #109: Updating l10n' && git push && cd -" && \
-echo "cd check-mark && git commit src/localization -m 'Ticket #109: Updating l10n' && git push && cd -"
+echo "cd check-api && git commit config/locales -m 'CHECK-109: Updating l10n' && git push && cd -" && \
+echo "cd check-web && git commit localization -m 'CHECK-109: Updating l10n' && git push && cd -" && \
+echo "cd check-mark && git commit src/localization -m 'CHECK-109: Updating l10n' && git push && cd -"
