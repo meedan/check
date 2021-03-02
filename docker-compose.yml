@@ -68,14 +68,14 @@ services:
     mem_limit: 4g
     ports:
       - "3000:3000"
-      - "3301:3301"
+      - "3300:3300"
     depends_on:
       - elasticsearch
       - postgres
       - redis
-      # - pender
+      - pender
       - alegre
-      # - narcissus
+      - narcissus
     volumes:
       - "./check-api:/app"
     environment:
