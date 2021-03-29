@@ -61,6 +61,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Update the Relay schema file on Check API: `docker-compose run api bundle exec rake lapis:graphql:schema`
+- Update the JSON API schema file on Check API: `docker-compose run api bundle exec rake jsonapi:resources:update_schema`
 
 ## More documentation
 
