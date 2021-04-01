@@ -259,3 +259,15 @@ services:
       - "/app/node_modules"
     networks:
       - dev
+  search:
+    build: check-search
+    volumes:
+      - "./check-search:/app"
+      - "/app/node_modules"
+    ports:
+      - "8001:8001"
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8001
+    networks:
+      - dev
