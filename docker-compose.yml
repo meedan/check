@@ -31,6 +31,7 @@ services:
       - dev
   postgres:
     image: postgres:11
+    mem_limit: 4g
     command: postgres -c config_file=/etc/postgresql.conf
     ports:
       - "5432:5432"
@@ -164,6 +165,37 @@ services:
       - alegre/.env_file
     networks:
       - dev
+  # Uncomment these two containers to use multi-lingual vector models on Alegre
+  # alegre_indian_sbert:
+  #   build: alegre
+  #   command: ["make", "run_model"]
+  #   depends_on:
+  #     - redis
+  #   environment:
+  #     MODEL_CLASS: indiansbert
+  #   volumes:
+  #     - "./alegre:/app"
+  #   depends_on:
+  #     - redis
+  #   env_file:
+  #     - alegre/.env_file
+  #   networks:
+  #     - dev
+  # xlm_r_bert_base_nli_stsb_mean_tokens:
+  #   build: alegre
+  #   command: ["make", "run_model"]
+  #   depends_on:
+  #     - redis
+  #   environment:
+  #     MODEL_NAME: meantokens
+  #   volumes:
+  #     - "./alegre:/app"
+  #   depends_on:
+  #     - redis
+  #   env_file:
+  #     - alegre/.env_file
+  #   networks:
+  #     - dev
   bots:
     build: check-bots
     volumes:
