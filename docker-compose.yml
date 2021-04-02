@@ -223,6 +223,7 @@ services:
     environment:
       NODE_ENV: development
       SERVER_PORT: 8687
+      DEPLOY_ENV: local
     networks:
       - dev
   fetch:

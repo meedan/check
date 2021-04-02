@@ -9,6 +9,11 @@ before_script:
   - sed -i '/git submodule/d' bin/first-build.sh
   - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - TAB=$'\t'
+  # For each submodule, go to a branch with the same name as this branch
+  - export FALLBACK_BRANCH=$([ "$TRAVIS_BRANCH" == "master" ] && echo "main" || echo "develop")
+  - git submodule foreach 'bash -c "git checkout develop ; git checkout $FALLBACK_BRANCH ; git checkout $TRAVIS_BRANCH ; exit 0"'
+  - git submodule foreach git rev-parse --abbrev-ref HEAD
+  # A couple fixes for Fetch
   - sed -i '/0.0.0/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
   - sed -i '/-c 5/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
 script:

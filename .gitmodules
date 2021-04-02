@@ -1,44 +1,55 @@
 [submodule "check-api"]
-	path = check-api
-	url = git@github.com:meedan/check-api.git
-	branch = develop
+  path = check-api
+  url = git@github.com:meedan/check-api.git
+  branch = develop
+  ignore = all
 [submodule "pender"]
-	path = pender
-	url = git@github.com:meedan/pender.git
-	branch = develop
+  path = pender
+  url = git@github.com:meedan/pender.git
+  branch = develop
+  ignore = all
 [submodule "check-web"]
-	path = check-web
-	url = git@github.com:meedan/check-web.git
-	branch = develop
+  path = check-web
+  url = git@github.com:meedan/check-web.git
+  branch = develop
+  ignore = all
 [submodule "check-mark"]
-	path = check-mark
-	url = git@github.com:meedan/check-mark.git
-	branch = develop
+  path = check-mark
+  url = git@github.com:meedan/check-mark.git
+  branch = develop
+  ignore = all
 [submodule "check-slack-bot"]
-	path = check-slack-bot
-	url = git@github.com:meedan/check-slack-bot.git
-	branch = develop
+  path = check-slack-bot
+  url = git@github.com:meedan/check-slack-bot.git
+  branch = develop
+  ignore = all
 [submodule "alegre"]
-	path = alegre
-	url = git@github.com:meedan/alegre.git
-	branch = develop
+  path = alegre
+  url = git@github.com:meedan/alegre.git
+  branch = develop
+  ignore = all
 [submodule "check-bots"]
-	path = check-bots
-	url = git@github.com:meedan/check-bots.git
+  path = check-bots
+  url = git@github.com:meedan/check-bots.git
   branch = develop
+  ignore = all
 [submodule "narcissus"]
-	path = narcissus
-	url = git@github.com:meedan/narcissus.git
+  path = narcissus
+  url = git@github.com:meedan/narcissus.git
   branch = develop
+  ignore = all
 [submodule "check-ui"]
-	path = check-ui
-	url = git@github.com:meedan/check-ui.git
-	branch = develop
+  path = check-ui
+  url = git@github.com:meedan/check-ui.git
+  branch = develop
+  ignore = all
 [submodule "fetch"]
-	path = fetch
-	url = git@github.com:meedan/fetch.git
-	branch = develop
+  path = fetch
+  url = git@github.com:meedan/fetch.git
+  branch = develop
+  ignore = all
 [submodule "check-search"]
-	path = check-search
-	url = git@github.com:meedan/check-search.git
-	branch = develop
+  path = check-search
+  url = git@github.com:meedan/check-search.git
+  branch = develop
+  ignore = all
