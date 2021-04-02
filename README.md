@@ -40,6 +40,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Chromedriver VNC at `localhost:5900` (use a standard VNC client to connect with password `secret`)
 - Narcissus screenshot service (container `narcissus`) at [http://localhost:8687](http://localhost:8687)
 - Fetch fact-checking service (container `fetch`) at [http://localhost:8687/about](http://localhost:8687/about)
+- Search v2 prototype application (container `search`) at [http://localhost:8001](http://localhost:8001)
 
 ## Testing
 
@@ -73,6 +74,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - [Fetch service](https://github.com/meedan/fetch)
 - [Check Slack bot](https://github.com/meedan/check-slack-bot)
 - [Check API bots](https://github.com/meedan/check-bots)
+- [Check Search v2 application](https://github.com/meedan/check-search)
 
 ## Upgrading databases in development environment
 

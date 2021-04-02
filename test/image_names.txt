@@ -9,6 +9,7 @@ check_mark
 check_narcissus
 check_pender
 check_pender-background
+check_search
 check_web
 docker.elastic.co/kibana/kibana:7.9.2
 minio/minio
