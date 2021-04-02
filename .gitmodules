@@ -38,3 +38,7 @@
 	path = fetch
 	url = git@github.com:meedan/fetch.git
 	branch = develop
+[submodule "check-search"]
+	path = check-search
+	url = git@github.com:meedan/check-search.git
+	branch = develop
