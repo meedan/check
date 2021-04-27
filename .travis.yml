@@ -1,8 +1,6 @@
 dist: bionic
 git:
   submodules: false
-before_install:
-  - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
