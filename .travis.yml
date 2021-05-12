@@ -14,6 +14,7 @@ before_script:
   # A couple fixes for Fetch
   - sed -i '/0.0.0/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
   - sed -i '/-c 5/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
   - ./bin/first-build.sh
   - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
@@ -27,3 +28,7 @@ script:
 notifications:
   slack:
     secure: liY9HT9EJU3jlqt4mHnMgAkIxv38WtpJgGukZ+ZZ7tiVHR9NIK+Ca0zRBcFD0iFDR8XXXQi2D69zjhUFDpmilTm5IcO6gv74Tha3kVEPAZEOCoOqTHFaqKqdYs+i+ewfy1x3Wg8ZEeDBYoVY8THPoLzufix281L3dhg+gu4YTNGq7lOfYs7BkulxJQHiAjrjjI9f2kTSqMUPldlQJK9EKMqc6QUiEEiX+lj7hJSY2fCw5GM0rrf5OQ+98ihZfn+kng2glBelyfuPQMl91cWC1BakhbinujfxcTLuq+DpQD2n1NE/omoTKCMMp4BX3iEZjUlolg/pgUuVTt7LaSVHtLmLJlsuzMNutbIxDA2Y4iv822l2ag+PWDuVD2Peh0imeid+hwpAOkaHWLLT5Uw2vhYUWcEY1FoSbWLax/6cMRAxzD15gU4I3qD9q11ZFtN/KoGirV6H4ZNHVdXSiirZCBi0yY2rSd7pvEgPws6ptOMn3q24vHOr2qfpbgMJ2MW1FSU1xgRVTlf9W/Khx+YvNZlPWFe9dre5ft/9v5DlcyBUSZiWh3ZlSsUDu+Ju0ji9jsd/RwPOTZK4pWZHH+LJ5uIuYdSHQGiAvoaQFf80tA+upJdVi0M2+g8Mw7NiKzgfNrlyWr9O7eYp+AeYuziXVV/h2nZardOFacwd0bNNdLI=
+env:
+  global:
+  - secure: cfcEZ8xHVNOfFoVNbM58g3/+pTJ8Q1wDSqLloggIltoRt8oiHYIZhj389aUZbwH2RLZy2tEvTc/07mJ2a6ic/OCUEkySR2CJOrs4lN4cg4ToTG1joYfgxZt/ubo3OCuYSixd+DoItCWQOro6R4IvpHBkC+hVL02G/rB2twk4eQbGfn9kDX0QM/EFkPoxmZMvuMuKg/j02AYzvp+sn8AUO5yTmtTsM/pwd2LmQ5S+lYuRrGzGZEqgY+DpDMq3xNGp3SDuxzt38sxvyySG55YgZKXUrGBn8aAhvG8t0iOmJbYCLr8+soTG6gkahKWwTIPF7K60IDTwr5vRFRBo0SKkb7qyvua7zEZmWpOuRYWvcRcq3G9WurQ2NunXRfwiDHljbqcr3wK1wNq9r288S6YtuwGIK0UL6i6yqBdd8YT0/CwbndwZbD6KhUuF2/zLXLmwZdnA+u/THLzDi46xkq9IM+ZZukg+WtLigRt8je283Hpg17AP1vk+z/9mZYm/QUHcpN/BLLG8uUHqTTJPL4uajl+/phB/97PTcobpNGvnL0+todoGuq2l6An+1YG8YEdV7pLUXHS/d1gZFO75bVHMpALZusHxNNb6r3YqK/M6t+rfElhBFxWH/Zux+sy22igB8OQuIz9kXFBQPra1e3sJfq+knlmKU3G+Gn4yC8MKZ1Y=
+  - secure: KEpF+CWjyn8IuI/LZ/+berggQon+SpO47tp2j2DZjSwyZKw3GK3xjvRqqNf3vyOCsXZIiLnI+CljVrCp2nLyCzKgY7XpZBJJTcF37Wg8THBaGY0TwnAe/D8dwK7E+8Yuy7OZtOYRpn+zwKzEfMoZGDpL7anfttU3U/WXbN0IMv4/ZPeQXjO4/Th0OnPzO0YESC+ZzGLHIP++7reEKNiXsDOAppPmRDfhFUx0sszlR19g8oXBXD8grUnj5aN9CNuwHYpPsEQ/VBo5Tm3SBTRpS46LFSfgkDFAyLatj7jcK4jZxBgBYvjApcuce/8o/reVqLH6LS/AYS3377ham2Nfv7vSB43U0481prbYoCl2OdyiHQX59I2v9DH2lj9lLzzryZirJNjdgequ/yUeA4FmHnxz/gvZ8BnZrhmP7u3kRqutpmxcNFQLowV+CMb0NcDGsyhRuH8eJov6TApZbAwtC4rfsMJuFOEWLbTGpV7bfc0iHFCKMQ3NkoQaIlY/arf67LGsd3skLdqEDly51694jUqcfGSt9SGbivz6RBOb07QnTChqEmNbJhC3lOGg0u6t6P9M1gj1E+OZSpkE7tx4kbKG0BRk5ZUhBgaNUA/ypCuH7trbtveUwdYgbvQMriclSoQflqUucFOgOzW2UjOVEXkNjOoQQOJjLZUe27vUjNo=
