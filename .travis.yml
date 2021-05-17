@@ -1,8 +1,6 @@
 dist: bionic
 git:
   submodules: false
-before_install:
-  - git clone https://${TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
 before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
@@ -16,6 +14,7 @@ before_script:
   # A couple fixes for Fetch
   - sed -i '/0.0.0/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
   - sed -i '/-c 5/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
   - ./bin/first-build.sh
   - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
@@ -29,3 +28,7 @@ script:
 notifications:
   slack:
     secure: liY9HT9EJU3jlqt4mHnMgAkIxv38WtpJgGukZ+ZZ7tiVHR9NIK+Ca0zRBcFD0iFDR8XXXQi2D69zjhUFDpmilTm5IcO6gv74Tha3kVEPAZEOCoOqTHFaqKqdYs+i+ewfy1x3Wg8ZEeDBYoVY8THPoLzufix281L3dhg+gu4YTNGq7lOfYs7BkulxJQHiAjrjjI9f2kTSqMUPldlQJK9EKMqc6QUiEEiX+lj7hJSY2fCw5GM0rrf5OQ+98ihZfn+kng2glBelyfuPQMl91cWC1BakhbinujfxcTLuq+DpQD2n1NE/omoTKCMMp4BX3iEZjUlolg/pgUuVTt7LaSVHtLmLJlsuzMNutbIxDA2Y4iv822l2ag+PWDuVD2Peh0imeid+hwpAOkaHWLLT5Uw2vhYUWcEY1FoSbWLax/6cMRAxzD15gU4I3qD9q11ZFtN/KoGirV6H4ZNHVdXSiirZCBi0yY2rSd7pvEgPws6ptOMn3q24vHOr2qfpbgMJ2MW1FSU1xgRVTlf9W/Khx+YvNZlPWFe9dre5ft/9v5DlcyBUSZiWh3ZlSsUDu+Ju0ji9jsd/RwPOTZK4pWZHH+LJ5uIuYdSHQGiAvoaQFf80tA+upJdVi0M2+g8Mw7NiKzgfNrlyWr9O7eYp+AeYuziXVV/h2nZardOFacwd0bNNdLI=
+env:
+  global:
+  - secure: Xr/jfoqd4M8AxGAWMKH3OWPMTLm77ZaclKSFSz3n6tR57ZwN+WyxF+gh49eLYk96BREnBx5OMqI8jm4f3xXJ2ROUKi16LyxPu0ZZE0X4RbwDBos3DRLErdAolL793qkgvobtUA53R/u6LkQOuGL7156TV3PwVBqfQuVSlP22nhvMrGRVqXWIcw60PrxmCok05tWJVV7ktSWt2dwhMgRPLqhEleWMOld/k0QACq/w9EipDrDAYMFuprvsgjfnp5aljLjxxIt3a0Bk7lGIwReUmxVNdO5SgHrK0nglZlHSF0CVPSpN4307tCA+eLmsN6JLXCnIICAnVU2qTZwmI9jylx2m6QFr30AASUvLmB54OHh4gndkOursaBrmSgTXthZju3oastPo2inxUhM9Sds3MoJdFQ1rquFUYKxL1S9nAiZ4X+z9nA6cQ/zXKg3z0ppFeKTjjpqgm02uWy4nc9eXzaFpYqFZxncyGYPtjeahwk9hQjs1bQmztaPNSoKEdXD5XWRvLP/fw1MSi3dcL6n4Z5YEU1dNN3+5WhjcVNqDX6is1A6KRe2Zy+8hnE76nn4oZcdhXV9UUSoGTPQKg0tepF3gtcZeEL0rIo3Q/M8uFzwXEoxwtW8LiSwfpzgKW8vWIl0tiKwm1CjJzGw+YP6rm2pgEmiqUgQr3tW1A+y7gVo=
+  - secure: EoC96X4J/gP4JSArPTdchgx4seU0CU27K2Wn720XWl/3OITPWmZVMyX4IaXqzTVSAaDBZoYC9CwAIliZ2SDQZsnqAl+Z1wecuReQKOR6+OYfItVt1sqoVS9DMQg54y/R1k6DEFd4cSLvd5ueIzx3JdFjvnS1izHqeuAFM/9sCCg5LcN3omF8S2PmZaZ3dJPbUnq9mgZZdBp+zuTLMKP0pW+9JGnXcTqzZmcZKRjktdGnt4aeDM91nqOHroisjV+ri6SwWjCMDiXKTs/YFIZoennw8oZXgtJMAclrHNnry2aiD1/P6BvSLLhAhPwwFnfZGlEJ9O3k5zVgHfLl8GIbYV2zJcfnoA3g2H8RZnD5SaEdhElgGf6y7jAc/KDhSbWzaSTtK1QE5X5tfiOYfnmflyO166skC6mzR2mfvziX7stxbShmzKyHAbKPavpMs94ySDJTQuuP+xEKmJ16r+B1hZevdhTEJV6JgvtmeSob4l8lYOgRf3ChjmTE/3cy/8VAjqAQ7ClUvVkEgmHfnoVR1xYZV9kCilVnofjWS+4LteuomXpi+Mf1q6ZkL92XiTvniMjnzIqhh/ARMZ0+yqunVil1p+BWzyu0KQdda22nI3wFFqChAop4xoRNkIudxOZiZbdfWUNDAi6o6d1N1AVURi/8ehe9o7KFeAEK/Zs41lE=
