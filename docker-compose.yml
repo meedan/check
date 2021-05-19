@@ -130,6 +130,7 @@ services:
       - "3333:3333"
     depends_on:
       - api
+      - api-background
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
