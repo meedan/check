@@ -134,6 +134,7 @@ services:
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
       - "web-node_modules:/app/node_modules"
     environment:
       PLATFORM: web
@@ -258,6 +259,7 @@ services:
     volumes:
       - "./check-mark:/app"
       - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
       - "/app/node_modules"
     networks:
       - dev
