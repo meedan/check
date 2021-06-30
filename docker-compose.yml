@@ -238,32 +238,32 @@ services:
       DEPLOY_ENV: local
     networks:
       - dev
-#  fetch:
-#    volumes:
-#      - "./fetch:/app"
-#    depends_on:
-#      - fetch-background
-#    build: fetch
-#    ports:
-#      - "9292:9292"
-#    env_file:
-#      - fetch/.env_file
-#    command: start_server
-#    networks:
-#      - dev
-#  fetch-background:
-#    volumes:
-#      - "./fetch:/app"
-#    depends_on:
-#      - elasticsearch
-#      - kibana
-#      - redis
-#    build: fetch
-#    env_file:
-#      - fetch/.env_file
-#    command: run_worker
-#    networks:
-#      - dev
+  fetch:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - fetch-background
+    build: fetch
+    ports:
+      - "9292:9292"
+    env_file:
+      - fetch/.env_file
+    command: start_server
+    networks:
+      - dev
+  fetch-background:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - elasticsearch
+      - kibana
+      - redis
+    build: fetch
+    env_file:
+      - fetch/.env_file
+    command: run_worker
+    networks:
+      - dev
   mark:
     build: check-mark
     volumes:
