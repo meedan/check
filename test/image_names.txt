@@ -2,6 +2,7 @@ check_alegre
 check_api
 check_api-background
 check_bots
+check_check-slack-bot
 check_elasticsearch
 check_fetch
 check_fetch-background

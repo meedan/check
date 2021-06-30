@@ -49,7 +49,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check browser extension: `docker-compose exec mark npm run test`
 - Check service API: `docker-compose exec api bundle exec rake test`
 - Pender service API: `docker-compose exec pender bundle exec rake test`
-- Check Slack Bot: `docker-compose exec bot npm run test`
+- Check Slack Bot: `docker-compose exec check-slack-bot npm run test`
 - Narcissus: `docker-compose exec narcissus npm run test`
 - Fetch: `docker-compose exec fetch bundle exec rake test`
 - Running a specific Check web client test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
