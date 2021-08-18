@@ -52,7 +52,7 @@ services:
     networks:
       - dev
   minio:
-    image: minio/minio
+    image: minio/minio@sha256:fafd3af791a0c564b73d995ef3f8d7bde4d0caf25b32bec3a11dc71a9096479a
     command: server /data
     ports:
       - "9000:9000"
