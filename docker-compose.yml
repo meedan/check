@@ -134,6 +134,7 @@ services:
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
       - "web-node_modules:/app/node_modules"
     environment:
       PLATFORM: web
@@ -211,6 +212,16 @@ services:
       SERVER_PORT: 8586
     networks:
       - dev
+  check-slack-bot:
+    build: check-slack-bot
+    volumes:
+      - "./check-slack-bot:/app"
+      - "/app/node_modules"
+    depends_on:
+      - api
+      - redis
+    networks:
+      - dev
   narcissus:
     build: narcissus
     shm_size: 1G
@@ -258,6 +269,7 @@ services:
     volumes:
       - "./check-mark:/app"
       - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
       - "/app/node_modules"
     networks:
       - dev
