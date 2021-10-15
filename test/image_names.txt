@@ -14,5 +14,5 @@ check_search
 check_web
 docker.elastic.co/kibana/kibana:7.9.2
 minio/minio
-postgres:11
+check_postgres
 redis:5
