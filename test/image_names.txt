@@ -3,11 +3,9 @@ check_api
 check_api-background
 check_bots
 check_check-slack-bot
-check_chromedriver
 check_elasticsearch
 check_fetch
 check_fetch-background
-check_geckodriver
 check_mark
 check_narcissus
 check_pender
