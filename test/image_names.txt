@@ -10,9 +10,9 @@ check_mark
 check_narcissus
 check_pender
 check_pender-background
+check_postgres
 check_search
 check_web
 docker.elastic.co/kibana/kibana:7.9.2
 minio/minio
-postgres:11
 redis:5
