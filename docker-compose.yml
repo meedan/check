@@ -1,7 +1,7 @@
 version: "2.1"
 volumes:
   elasticsearch:
-  postgres:
+  postgres11:
   redis:
   minio:
   web-node_modules:
@@ -30,27 +30,17 @@ services:
     networks:
       - dev
   postgres:
-    build: ./alegre/postgres
+    image: postgres:11
     mem_limit: 4g
+    command: postgres -c config_file=/etc/postgresql.conf
     ports:
       - "5432:5432"
     volumes:
-      - "postgres:/var/lib/postgresql/data"
+      - "./postgresql.conf:/etc/postgresql.conf"
+      - "postgres11:/var/lib/postgresql/data"
     environment:
-      POSTGRESQL_POSTGRES_PASSWORD: postgres
-      POSTGRESQL_USERNAME: postgres
-      POSTGRESQL_PASSWORD: postgres
-      POSTGRESQL_DATABASE: alegre
-      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: alegre
-      REPMGR_PASSWORD: repmgrpassword
-      REPMGR_PRIMARY_HOST: pg-0
-      REPMGR_PRIMARY_PORT: 5432
-      REPMGR_PARTNER_NODES: pg-0,pg-1:5432
-      REPMGR_NODE_NAME: pg-0
-      REPMGR_NODE_NETWORK_NAME: pg-0
-      REPMGR_PORT_NUMBER: 5432
+      POSTGRES_USER: postgres
     networks:
       - dev
   redis:
