@@ -4,7 +4,7 @@ networks:
     name: dev
 services:
   chromedriver:
-    build: chromedriver
+    build: check-web/chromedriver
     ports:
       - 5900:5900
       - 4444:4444
@@ -14,7 +14,7 @@ services:
     networks:
       - dev
   geckodriver:
-    build: geckodriver
+    build: check-mark/geckodriver
     ports:
       - 4445:4444
       - 5901:5900
@@ -50,7 +50,7 @@ services:
   alegre:
     environment:
       BOILERPLATE_ENV: test
-      ALEGRE_PORT: 3100
+      ALEGRE_PORT: 5000
       REDIS_DATABASE: 3
   narcissus:
     environment:
