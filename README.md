@@ -52,7 +52,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Check Slack Bot: `docker-compose exec check-slack-bot npm run test`
 - Narcissus: `docker-compose exec narcissus npm run test`
 - Fetch: `docker-compose exec fetch bundle exec rake test`
-- Running a specific Check web client test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
+- Running a specific Check Web test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
+- Running a specific Check Mark test: `docker-compose exec mark bash -c "cd test && rspec --example KEYWORD spec/app_spec.rb"`
 - Running a specific Check API or Pender test (from within the container): `bundle exec ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
 
 ## Helpful one-liners and scripts
