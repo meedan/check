@@ -50,6 +50,8 @@ services:
       REPMGR_NODE_NAME: pg-0
       REPMGR_NODE_NETWORK_NAME: pg-0
       REPMGR_PORT_NUMBER: 5432
+    networks:
+      - dev
   redis:
     image: redis:5
     ports:
