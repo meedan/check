@@ -46,7 +46,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 - Start the app in test mode: `docker-compose -f docker-compose.yml -f docker-test.yml up`
 - Check web client: `docker-compose exec web npm run test`
-- Check browser extension: `docker-compose exec mark npm run test`
+- Check browser extension: `docker-compose -f docker-compose.yml -f docker-test.yml exec geckodriver bash -c "cd /home && chown -R  root seluser" && docker-compose exec mark npm run test`
 - Check service API: `docker-compose exec api bundle exec rake test`
 - Pender service API: `docker-compose exec pender bundle exec rake test`
 - Check Slack Bot: `docker-compose exec check-slack-bot npm run test`
