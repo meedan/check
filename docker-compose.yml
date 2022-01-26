@@ -1,7 +1,7 @@
 version: "2.1"
 volumes:
   elasticsearch:
-  postgres11:
+  postgres:
   redis:
   minio:
   web-node_modules:
@@ -30,17 +30,26 @@ services:
     networks:
       - dev
   postgres:
-    image: postgres:11
-    mem_limit: 4g
-    command: postgres -c config_file=/etc/postgresql.conf
+    build: ./alegre/postgres
     ports:
       - "5432:5432"
     volumes:
-      - "./postgresql.conf:/etc/postgresql.conf"
-      - "postgres11:/var/lib/postgresql/data"
+      - "postgres:/var/lib/postgresql/data"
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRESQL_POSTGRES_PASSWORD: postgres
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: postgres
+      POSTGRESQL_DATABASE: alegre
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: alegre
+      REPMGR_PASSWORD: repmgrpassword
+      REPMGR_PRIMARY_HOST: pg-0
+      REPMGR_PRIMARY_PORT: 5432
+      REPMGR_PARTNER_NODES: pg-0,pg-1:5432
+      REPMGR_NODE_NAME: pg-0
+      REPMGR_NODE_NETWORK_NAME: pg-0
+      REPMGR_PORT_NUMBER: 5432
     networks:
       - dev
   redis:
@@ -52,7 +61,7 @@ services:
     networks:
       - dev
   minio:
-    image: minio/minio
+    image: minio/minio@sha256:fafd3af791a0c564b73d995ef3f8d7bde4d0caf25b32bec3a11dc71a9096479a
     command: server /data
     ports:
       - "9000:9000"
@@ -134,6 +143,7 @@ services:
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
       - "web-node_modules:/app/node_modules"
     environment:
       PLATFORM: web
@@ -155,13 +165,23 @@ services:
   alegre:
     build: alegre
     ports:
-      - "3100:5000"
+      - "5000:5000"
     volumes:
       - "./alegre:/app"
     depends_on:
-      - kibana
       - redis
       - elasticsearch
+    env_file:
+      - alegre/.env_file
+    networks:
+      - dev
+  queue_worker:
+    build: alegre
+    command: ["make", "run_rq_worker"]
+    volumes:
+      - "./alegre:/app"
+    depends_on:
+      - redis
     env_file:
       - alegre/.env_file
     networks:
@@ -211,6 +231,16 @@ services:
       SERVER_PORT: 8586
     networks:
       - dev
+  check-slack-bot:
+    build: check-slack-bot
+    volumes:
+      - "./check-slack-bot:/app"
+      - "/app/node_modules"
+    depends_on:
+      - api
+      - redis
+    networks:
+      - dev
   narcissus:
     build: narcissus
     shm_size: 1G
@@ -230,9 +260,10 @@ services:
   fetch:
     volumes:
       - "./fetch:/app"
-    depends_on:
-      - fetch-background
     build: fetch
+    depends_on:
+      - elasticsearch
+      - redis
     ports:
       - "9292:9292"
     env_file:
@@ -258,6 +289,7 @@ services:
     volumes:
       - "./check-mark:/app"
       - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
       - "/app/node_modules"
     networks:
       - dev
