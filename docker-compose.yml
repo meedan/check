@@ -152,16 +152,16 @@ services:
       MODE: development
     networks:
       - dev
-#  kibana:
-#    image: docker.elastic.co/kibana/kibana:7.9.2
-#    ports:
-#      - "5601:5601"
-#    depends_on:
-#      - elasticsearch
-#    environment:
-#      ELASTICSEARCH_URL: http://elasticsearch:9200
-#    networks:
-#      - dev
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - dev
   alegre:
     build: alegre
     ports:
@@ -217,30 +217,30 @@ services:
   #     - alegre/.env_file
   #   networks:
   #     - dev
-  #  bots:
-  #    build: check-bots
-  #    volumes:
-  #      - "./check-bots:/app"
-  #      - "bots-node_modules:/app/node_modules"
-  #    ports:
-  #      - "8586:8586"
-  #    depends_on:
-  #      - api
-  #    environment:
-  #      NODE_ENV: development
-  #      SERVER_PORT: 8586
-  #    networks:
-  #      - dev
-  #  check-slack-bot:
-  #    build: check-slack-bot
-  #    volumes:
-  #      - "./check-slack-bot:/app"
-  #      - "/app/node_modules"
-  #    depends_on:
-  #      - api
-  #      - redis
-  #    networks:
-  #      - dev
+  bots:
+    build: check-bots
+    volumes:
+      - "./check-bots:/app"
+      - "bots-node_modules:/app/node_modules"
+    ports:
+      - "8586:8586"
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8586
+    networks:
+      - dev
+  check-slack-bot:
+    build: check-slack-bot
+    volumes:
+      - "./check-slack-bot:/app"
+      - "/app/node_modules"
+    depends_on:
+      - api
+      - redis
+    networks:
+      - dev
   narcissus:
     build: narcissus
     shm_size: 1G
@@ -257,54 +257,54 @@ services:
       DEPLOY_ENV: local
     networks:
       - dev
-  #  fetch:
-  #    volumes:
-  #      - "./fetch:/app"
-  #    build: fetch
-  #    depends_on:
-  #      - elasticsearch
-  #      - redis
-  #    ports:
-  #      - "9292:9292"
-  #    env_file:
-  #      - fetch/.env_file
-  #    command: start_server
-  #    networks:
-  #      - dev
-  #  fetch-background:
-  #    volumes:
-  #      - "./fetch:/app"
-  #    depends_on:
-  #      - elasticsearch
-  #      - kibana
-  #      - redis
-  #    build: fetch
-  #    env_file:
-  #      - fetch/.env_file
-  #    command: run_worker
-  #    networks:
-  #      - dev
-  #  mark:
-  #    build: check-mark
-  #    volumes:
-  #      - "./check-mark:/app"
-  #      - "./check-api:/api"
-  #      - "./check-ui/.yalc:/root/.yalc"
-  #      - "/app/node_modules"
-  #    networks:
-  #      - dev
-  #  search:
-  #    build: check-search
-  #    volumes:
-  #      - "./check-search:/app"
-  #      - "/app/node_modules"
-  #    ports:
-  #      - "8001:8001"
-  #    depends_on:
-  #      - api
-  #    environment:
-  #      NODE_ENV: development
-  #      SERVER_PORT: 8001
-  #      DEPLOY_ENV: development
-  #    networks:
-  #      - dev
+  fetch:
+    volumes:
+      - "./fetch:/app"
+    build: fetch
+    depends_on:
+      - elasticsearch
+      - redis
+    ports:
+      - "9292:9292"
+    env_file:
+      - fetch/.env_file
+    command: start_server
+    networks:
+      - dev
+  fetch-background:
+    volumes:
+      - "./fetch:/app"
+    depends_on:
+      - elasticsearch
+      - kibana
+      - redis
+    build: fetch
+    env_file:
+      - fetch/.env_file
+    command: run_worker
+    networks:
+      - dev
+  mark:
+    build: check-mark
+    volumes:
+      - "./check-mark:/app"
+      - "./check-api:/api"
+      - "./check-ui/.yalc:/root/.yalc"
+      - "/app/node_modules"
+    networks:
+      - dev
+  search:
+    build: check-search
+    volumes:
+      - "./check-search:/app"
+      - "/app/node_modules"
+    ports:
+      - "8001:8001"
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8001
+      DEPLOY_ENV: development
+    networks:
+      - dev
