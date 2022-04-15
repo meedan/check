@@ -18,6 +18,8 @@ before_script:
 script:
   - ./bin/first-build.sh
   - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
+  - until curl --silent -I -f --fail http://localhost:3333 ; do printf .; sleep 1; done
+  - sleep 120
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:5000)!= "200" ));  then exit 1; fi;
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
