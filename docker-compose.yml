@@ -186,37 +186,71 @@ services:
       - alegre/.env_file
     networks:
       - dev
-  # Uncomment these two containers to use multi-lingual vector models on Alegre
-  # alegre_indian_sbert:
-  #   build: alegre
-  #   command: ["make", "run_model"]
-  #   depends_on:
-  #     - redis
-  #   environment:
-  #     MODEL_CLASS: indiansbert
-  #   volumes:
-  #     - "./alegre:/app"
-  #   depends_on:
-  #     - redis
-  #   env_file:
-  #     - alegre/.env_file
-  #   networks:
-  #     - dev
-  # xlm_r_bert_base_nli_stsb_mean_tokens:
-  #   build: alegre
-  #   command: ["make", "run_model"]
-  #   depends_on:
-  #     - redis
-  #   environment:
-  #     MODEL_NAME: meantokens
-  #   volumes:
-  #     - "./alegre:/app"
-  #   depends_on:
-  #     - redis
-  #   env_file:
-  #     - alegre/.env_file
-  #   networks:
-  #     - dev
+#  xlm_r_bert_base_nli_stsb_mean_tokens:
+#    build: alegre
+#    command: ["make", "run_model"]
+#    volumes:
+#      - "./alegre:/app"
+#    depends_on:
+#      - redis
+#    env_file:
+#      - alegre/.env_file
+#    environment:
+#      MODEL_NAME: meantokens
+#    networks:
+#      - dev
+#  indian_sbert:
+#    build: alegre
+#    command: ["make", "run_model"]
+#    volumes:
+#      - "./alegre:/app"
+#    depends_on:
+#      - redis
+#    env_file:
+#      - alegre/.env_file
+#    environment:
+#      MODEL_NAME: indiansbert
+#    networks:
+#      - dev
+#  mdeberta_v3_filipino:
+#    build: alegre
+#    command: ["make", "run_model"]
+#    volumes:
+#      - "./alegre:/app"
+#    depends_on:
+#      - redis
+#    env_file:
+#      - alegre/.env_file
+#    environment:
+#      MODEL_NAME: mdebertav3filipino
+#    networks:
+#      - dev
+#  video:
+#    build: alegre
+#    command: ["make", "run_model"]
+#    volumes:
+#      - "./alegre:/app"
+#    depends_on:
+#      - redis
+#    env_file:
+#      - alegre/.env_file
+#    environment:
+#      MODEL_NAME: video
+#    networks:
+#      - dev
+#  audio:
+#    build: alegre
+#    command: ["make", "run_model"]
+#    volumes:
+#      - "./alegre:/app"
+#    depends_on:
+#      - redis
+#    env_file:
+#      - alegre/.env_file
+#    environment:
+#      MODEL_NAME: audio
+#    networks:
+#      - dev
   bots:
     build: check-bots
     volumes:
