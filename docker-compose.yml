@@ -12,6 +12,7 @@ networks:
 services:
   elasticsearch:
     build: alegre/elasticsearch
+    platform: linux/x86_64
     environment:
       discovery.type: single-node
       transport.host: 127.0.0.1
@@ -31,6 +32,7 @@ services:
       - dev
   postgres:
     build: ./alegre/postgres
+    platform: linux/x86_64
     ports:
       - "5432:5432"
     volumes:
@@ -106,6 +108,7 @@ services:
       - dev
   pender:
     build: pender
+    platform: linux/x86_64
     shm_size: 1G
     ports:
       - "3200:3200"
@@ -122,6 +125,7 @@ services:
       - dev
   pender-background:
     build: pender
+    platform: linux/x86_64
     command: /app/docker-background.sh
     shm_size: 1G
     volumes:
@@ -135,6 +139,7 @@ services:
       - dev
   web:
     build: check-web
+    platform: linux/x86_64
     ports:
       - "3333:3333"
     depends_on:
@@ -164,6 +169,7 @@ services:
       - dev
   alegre:
     build: alegre
+    platform: linux/x86_64
     ports:
       - "5000:5000"
     volumes:
@@ -177,6 +183,7 @@ services:
       - dev
   queue_worker:
     build: alegre
+    platform: linux/x86_64
     command: ["make", "run_rq_worker"]
     volumes:
       - "./alegre:/app"
@@ -253,6 +260,7 @@ services:
 #      - dev
   bots:
     build: check-bots
+    platform: linux/x86_64
     volumes:
       - "./check-bots:/app"
       - "bots-node_modules:/app/node_modules"
@@ -267,6 +275,7 @@ services:
       - dev
   check-slack-bot:
     build: check-slack-bot
+    platform: linux/x86_64
     volumes:
       - "./check-slack-bot:/app"
       - "/app/node_modules"
@@ -277,6 +286,7 @@ services:
       - dev
   narcissus:
     build: narcissus
+    platform: linux/x86_64
     shm_size: 1G
     volumes:
       - "./narcissus:/app"
@@ -295,6 +305,7 @@ services:
     volumes:
       - "./fetch:/app"
     build: fetch
+    platform: linux/x86_64
     depends_on:
       - elasticsearch
       - redis
@@ -308,6 +319,7 @@ services:
   fetch-background:
     volumes:
       - "./fetch:/app"
+    platform: linux/x86_64
     depends_on:
       - elasticsearch
       - kibana
@@ -320,6 +332,7 @@ services:
       - dev
   mark:
     build: check-mark
+    platform: linux/x86_64
     volumes:
       - "./check-mark:/app"
       - "./check-api:/api"
@@ -329,6 +342,7 @@ services:
       - dev
   search:
     build: check-search
+    platform: linux/x86_64
     volumes:
       - "./check-search:/app"
       - "/app/node_modules"
