@@ -171,7 +171,7 @@ services:
     build: alegre
     platform: linux/x86_64
     ports:
-      - "5000:5000"
+      - "3100:3100"
     volumes:
       - "./alegre:/app"
     depends_on:
