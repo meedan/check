@@ -23,6 +23,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Click "I already have an account" and login using your credentials
 - Enjoy Check! :tada:
 
+**Note:** As you run the applications you may need credentials and configuration that are not provided by copying `.example` files during the initial build. To provide these you can run [`configurator`](https://github.com/meedan/configurator) according to its README for the environment you want to run (`local` for development or `travis` for tests).
+
 ## Available services and container names
 
 - Check web client (container `web`) at [http://localhost:3333](http://localhost:3333)
