@@ -6,6 +6,7 @@ cd check-search && git checkout develop && git pull && cd - && \
 echo 'Updating Check API translations...' && \
 (docker-compose exec api bundle exec rake transifex:upload) && \
 (docker-compose exec api bundle exec rake transifex:download) && \
+(docker-compose exec api bundle exec rake transifex:download_tipline) && \
 echo 'Updating Check Web translations...' && \
 (docker-compose exec web npm run transifex:upload) && \
 (docker-compose exec web npm run transifex:download) && \
