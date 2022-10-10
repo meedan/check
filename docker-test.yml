@@ -9,7 +9,7 @@ services:
       - 5900:5900
       - 4444:4444
     volumes:
-      - "./check-web/test/spec/test.png:/app/test/spec/test.png"
+      - "./check-web/test/spec/files:/app/test/spec/files"
       - "./check-mark:/check-mark"
     networks:
       - dev
