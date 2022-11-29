@@ -309,6 +309,8 @@ services:
     depends_on:
       - elasticsearch
       - redis
+      - alegre
+      - pender
     ports:
       - "9292:9292"
     env_file:
@@ -322,8 +324,9 @@ services:
     platform: linux/x86_64
     depends_on:
       - elasticsearch
-      - kibana
       - redis
+      - alegre
+      - pender
     build: fetch
     env_file:
       - fetch/.env_file
