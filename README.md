@@ -23,7 +23,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Click "I already have an account" and login using your credentials
 - Enjoy Check! :tada:
 
-**Note:** As you run the applications you may need credentials and configuration that are not provided by copying `.example` files during the initial build. To provide these you can run [`configurator`](https://github.com/meedan/configurator) according to its README for the environment you want to run (`local` for development or `travis` for tests).
+**Note:** As you run the applications you may need credentials and configuration that are not provided by copying `.example` files during the initial build. You have to add the necessary credentials in the config files to use some features correctly:
+e.g: the [FACEBOOK APP ID](https://github.com/meedan/pender/blob/develop/config/config.yml.example#L64) to get Facebook social metrics and to run the Facebook related tests
+
 
 ## Available services and container names
 
