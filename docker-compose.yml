@@ -302,38 +302,38 @@ services:
       DEPLOY_ENV: local
     networks:
       - dev
-#  fetch:
-#    volumes:
-#      - "./fetch:/app"
-#    build: fetch
-#    platform: linux/x86_64
-#    depends_on:
-#      - elasticsearch
-#      - redis
-#      - alegre
-#      - pender
-#    ports:
-#      - "9292:9292"
-#    env_file:
-#      - fetch/.env_file
-#    command: start_server
-#    networks:
-#      - dev
-#  fetch-background:
-#    volumes:
-#      - "./fetch:/app"
-#    platform: linux/x86_64
-#    depends_on:
-#      - elasticsearch
-#      - redis
-#      - alegre
-#      - pender
-#    build: fetch
-#    env_file:
-#      - fetch/.env_file
-#    command: run_worker
-#    networks:
-#      - dev
+  fetch:
+   volumes:
+     - "./fetch:/app"
+   build: fetch
+   platform: linux/x86_64
+   depends_on:
+     - elasticsearch
+     - redis
+     - alegre
+     - pender
+   ports:
+     - "9292:9292"
+   env_file:
+     - fetch/.env_file
+   command: start_server
+   networks:
+     - dev
+  fetch-background:
+   volumes:
+     - "./fetch:/app"
+   platform: linux/x86_64
+   depends_on:
+     - elasticsearch
+     - redis
+     - alegre
+     - pender
+   build: fetch
+   env_file:
+     - fetch/.env_file
+   command: run_worker
+   networks:
+     - dev
   mark:
     build: check-mark
     platform: linux/x86_64
