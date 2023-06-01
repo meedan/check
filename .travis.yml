@@ -11,19 +11,15 @@ before_script:
   - export FALLBACK_BRANCH=$([ "$TRAVIS_BRANCH" == "master" ] && echo "main" || echo "develop")
   - git submodule foreach 'bash -c "git checkout develop ; git checkout $FALLBACK_BRANCH ; git checkout $TRAVIS_BRANCH ; exit 0"'
   - git submodule foreach git rev-parse --abbrev-ref HEAD
-  # A couple fixes for Fetch
-  - sed -i '/0.0.0/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
-  - sed -i '/-c 5/ i \'"${TAB}"'\until curl --silent -XGET --fail http://elasticsearch:9200; do printf \.\; sleep 1; done' fetch/Makefile
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
   - ./bin/first-build.sh
   - until curl --silent -I -f --fail http://localhost:3000 ; do printf .; sleep 1; done
   - sleep 120
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi;
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8001)!= "200" ));  then exit 1; fi;
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" ));  then exit 1; fi; # Pender
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" ));  then exit 1; fi; # Alegre
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" ));  then exit 1; fi; # Check Web
+  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" ));  then exit 1; fi; # Check API
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
   - diff docker_up_output.txt test/image_names.txt
 notifications:

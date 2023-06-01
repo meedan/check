@@ -4,15 +4,12 @@ check_api-background
 check_bots
 check_check-slack-bot
 check_elasticsearch
-check_fetch
-check_fetch-background
 check_mark
 check_narcissus
 check_pender
 check_pender-background
 check_postgres
 check_queue_worker
-check_search
 check_web
 docker.elastic.co/kibana/kibana:7.9.2
 minio/minio

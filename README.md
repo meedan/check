@@ -23,7 +23,9 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Click "I already have an account" and login using your credentials
 - Enjoy Check! :tada:
 
-**Note:** As you run the applications you may need credentials and configuration that are not provided by copying `.example` files during the initial build. To provide these you can run [`configurator`](https://github.com/meedan/configurator) according to its README for the environment you want to run (`local` for development or `travis` for tests).
+**Note 1:** For security reasons, not all credentials and configuration values are provided by copying `.example` files during the initial build. For Meedan members, you need to set your `AWS_PROFILE` environment variable, login to AWS (`aws sso login`) and then the script `bin/first-build.sh` will retrieve and set the required values for you. If you're not a Meedan member, you need to set at least the `google_client_id` and `google_client_secret` values in `check-api/config/config.yml`, [here is how you can get those](https://developers.google.com/identity/protocols/oauth2). Other optional features can be enabled by setting the required credentials, for example, the [FACEBOOK APP ID](https://github.com/meedan/pender/blob/develop/config/config.yml.example#L64) is needed to get Facebook social metrics and to run the Facebook related tests.
+
+**Note 2:** For performance reasons, some services (that are not needed to run the application with its basic functionality) are disabled by default (e.g., commented in the Docker Compose file). If you need those services, please uncomment them in `docker-compose.yml`. If you may need to increase the amount of memory allocated for Docker in order for it to work.
 
 ## Available services and container names
 
