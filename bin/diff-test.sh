@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git submodule foreach -q '
-  configs=`find . -name 'config.*.example'`
+  configs=(`find . -name 'config.*.example'`)
   changes=`git diff-index origin/develop -- $configs`
 
   RED="\033[0;31m"
@@ -10,13 +10,18 @@ git submodule foreach -q '
   echo —
   echo submodule: $name 
   if [[ $configs ]]; then
-    echo config files: $configs 
+    for config in "${configs[@]}"; do  
+      echo config file: $config
+    done 
   else
-    echo config files: none 
+    echo config file: none 
   fi
 
   if [[ $changes ]]; then
     echo ${RED}">>>>" $name has a changed config${NC}
-    git diff origin/develop -- $configs
+
+    for config in "${configs[@]}"; do  
+      git diff origin/develop -- $config
+    done     
   fi
 '

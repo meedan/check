@@ -18,9 +18,31 @@ git submodule foreach -q --recursive '
     find $toplevel/$name/.githooks -type f -exec ln -sf \{\} $hooks \;
   fi
 '
-if [ -d configurator ]; then
-  echo Updating configuration
-  (cd configurator && git pull --no-squash)
-  configurator/do.sh deploy local
-fi
-docker-compose -f docker-compose.yml -f docker-test.yml build
+# if [ -d configurator ]; then
+#   echo Updating configuration
+#   (cd configurator && git pull --no-squash)
+#   configurator/do.sh deploy local
+# fi
+# docker-compose -f docker-compose.yml -f docker-test.yml build
+
+echo —
+echo Checking for updated config files
+echo Will show diff if there are any
+git submodule foreach -q '
+  configs=(`find . -name 'config.*.example'`)
+  changes=`git diff-index origin/develop -- $configs`
+
+  RED="\033[0;31m"
+  NC="\033[0m"
+
+  if [[ $changes ]]; then
+    echo ${RED}—
+    echo $name has a changed config${NC}
+    echo submodule: $name 
+
+    for config in "${configs[@]}"; do  
+      git diff origin/develop -- $config
+      echo config file: $config
+    done     
+  fi
+'
