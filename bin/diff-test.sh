@@ -2,23 +2,21 @@
 
 git submodule foreach -q '
   configs=`find . -name 'config.*.example'`
+  changes=`git diff-index origin/develop -- $configs`
 
-  local=$(git rev-parse --abbrev-ref HEAD)
+  RED="\033[0;31m"
+  NC="\033[0m"
 
   echo —
-  echo submodule: $name
-  echo config files: $configs
-  echo current branch: $local
-
+  echo submodule: $name 
   if [[ $configs ]]; then
+    echo config files: $configs 
+  else
+    echo config files: none 
+  fi
+
+  if [[ $changes ]]; then
+    echo ${RED}">>>>" $name has a changed config${NC}
     git diff origin/develop -- $configs
   fi
 '
-
-# branch=$(git config -f $toplevel/.gitmodules submodule.$name.branch || echo develop)
-# current=$(git rev-parse --abbrev-ref HEAD)
-
-# configs foreach git diff origin/$local -- $configs
-# git diff origin/$branch -- $configs
-
-# git diff origin/develop -- $configs
