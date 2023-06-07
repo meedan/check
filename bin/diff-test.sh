@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# rm -r ./temp
+# rm -r ./temp_config_files
 
 # git submodule foreach -q --recursive '
 #   configs=(`find . -name 'config.*.example'`)
 
 #   if [[ $configs ]]; then
 #     for config in "${configs[@]}"; do 
-#       mkdir -p ../temp/$name/${config%/*}
-#       cp -r ${config} ../temp/$name/${config%/*}
+#       mkdir -p ../temp_config_files/$name/${config%/*}
+#       cp -r ${config} ../temp_config_files/$name/${config%/*}
 #     done 
 #   fi
 
@@ -29,30 +29,28 @@
 # '
 
 git submodule foreach -q --recursive '
-  configs=(`find . -name 'config.*.example'`)
+  configs=($(find . -name 'config.*.example'))
 
   RED="\033[0;31m"
   NC="\033[0m"
 
-  for config in "${configs[@]}"; do 
-    changes=`diff -u ../temp/$name/${config%/*}/${config##*/} ./${config#*/}`
+  for config in "${configs[@]}"; do
+    changes=$(diff -u ../temp_config_files/$name/${config%/*}/${config##*/} ./${config#*/})
 
     printf '—%.0s' {1..50} 
     printf "\n"
-
-    if [[ $changes ]]; then
-      echo ${RED}$name: has changes, consider updating your config file${NC}
-
-      echo ../temp/$name/${config%/*}/${config##*/} 
-      echo ./${config#*/}
-
-      diff -u ../temp/$name/${config%/*}/${config##*/} ./${config#*/}
+    
+    if [[ "$changes" ]]; then
+      echo ${RED}"$name": has changes, consider updating your config file 
+      echo "${config}"${NC}
+      echo "${changes}"
     else
-      echo $name: no changes
+      echo "$name": no changes
     fi
+
   done
 '
 
-# diff /Users/manu/work/check/temp/pender/config/config.yml.example /Users/manu/work/check/pender/config/config.yml.example
-# diff ./temp/check-bots/./published-reports/config.js.example ./check-bots/published-reports/config.js.example
-# rm -r ./temp
+# diff /Users/manu/work/check/temp_config_files/pender/config/config.yml.example /Users/manu/work/check/pender/config/config.yml.example
+# diff ./temp_config_files/check-bots/./published-reports/config.js.example ./check-bots/published-reports/config.js.example
+# rm -r ./temp_config_files
