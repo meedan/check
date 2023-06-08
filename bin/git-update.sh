@@ -12,6 +12,7 @@ git submodule foreach -q --recursive '
   else
     git fetch origin $branch:$branch
   fi
+
   if [ -e $toplevel/$name/.githooks ]; then
     hooks=$(git rev-parse --git-dir)/hooks
     find $hooks -type l -exec rm \{\} \;
@@ -27,22 +28,4 @@ git submodule foreach -q --recursive '
 
 echo —
 echo Checking for updated config files
-echo Will show diff if there are any
-git submodule foreach -q '
-  configs=(`find . -name 'config.*.example'`)
-  changes=`git diff-index origin/develop -- $configs`
-
-  RED="\033[0;31m"
-  NC="\033[0m"
-
-  if [[ $changes ]]; then
-    echo ${RED}—
-    echo $name has a changed config${NC}
-    echo submodule: $name 
-
-    for config in "${configs[@]}"; do  
-      git diff origin/develop -- $config
-      echo config file: $config
-    done     
-  fi
-'
+/bin/bash ./bin/diff-test-2.sh 
