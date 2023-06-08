@@ -2,34 +2,34 @@
 
 # rm -r ./temp_config_files
 
-# git submodule foreach -q --recursive '
-#   configs=(`find . -name 'config.*.example'`)
+git submodule foreach -q --recursive '
+  configs=($(find . -name '*.example'))
 
-#   if [[ $configs ]]; then
-#     for config in "${configs[@]}"; do 
-#       mkdir -p ../temp_config_files/$name/${config%/*}
-#       cp -r ${config} ../temp_config_files/$name/${config%/*}
-#     done 
-#   fi
+  if [[ "$configs" ]]; then
+    for config in "${configs[@]}"; do 
+      mkdir -p ../temp_config_files/"$name"/"${config%/*}"
+      cp -r "${config}" ../temp_config_files/"$name"/"${config%/*}"
+    done 
+  fi
 
-#   echo Updating $name
-#   git remote prune origin
-#   branch=$(git config -f $toplevel/.gitmodules submodule.$name.branch || echo develop)
-#   current=$(git rev-parse --abbrev-ref HEAD)
-#   if [ "$current" = "$branch" ]; then
-#     git pull --no-squash
-#   else
-#     git fetch origin $branch:$branch
-#   fi
-#   if [ -e $toplevel/$name/.githooks ]; then
-#     hooks=$(git rev-parse --git-dir)/hooks
-#     find $hooks -type l -exec rm \{\} \;
-#     find $toplevel/$name/.githooks -type f -exec ln -sf \{\} $hooks \;
-#   fi
-# '
+  # echo Updating $name
+  # git remote prune origin
+  # branch=$(git config -f $toplevel/.gitmodules submodule.$name.branch || echo develop)
+  # current=$(git rev-parse --abbrev-ref HEAD)
+  # if [ "$current" = "$branch" ]; then
+  #   git pull --no-squash
+  # else
+  #   git fetch origin $branch:$branch
+  # fi
+  # if [ -e $toplevel/$name/.githooks ]; then
+  #   hooks=$(git rev-parse --git-dir)/hooks
+  #   find $hooks -type l -exec rm \{\} \;
+  #   find $toplevel/$name/.githooks -type f -exec ln -sf \{\} $hooks \;
+  # fi
+'
 
 git submodule foreach -q --recursive '
-  configs=($(find . -name 'config.*.example'))
+  configs=($(find . -name '*.example'))
 
   RED="\033[0;31m"
   NC="\033[0m"
