@@ -9,7 +9,7 @@ dest () {
 
 for CONFIG in "${CONFIGS[@]}"; do
   mkdir -p "$(dest $CONFIG)"
-  cp -r "${CONFIG}" "$(dest  $CONFIG)"
+  cp -r "$CONFIG" "$(dest  $CONFIG)"
 done
 
 echo Updating check
@@ -33,24 +33,25 @@ git submodule foreach -q --recursive '
   fi
 '
 
-# if [ -d configurator ]; then
-#   echo Updating configuration
-#   (cd configurator && git pull --no-squash)
-#   configurator/do.sh deploy local
-# fi
-# docker-compose -f docker-compose.yml -f docker-test.yml build
+if [ -d configurator ]; then
+  echo Updating configuration
+  (cd configurator && git pull --no-squash)
+  configurator/do.sh deploy local
+fi
+docker-compose -f docker-compose.yml -f docker-test.yml build
 
 echo —
 echo Checking for updated config files
+set +e
 for CONFIG in "${CONFIGS[@]}"; do
-  changes=$(diff -u "$(dest $CONFIG)/${CONFIG##*/}" "${CONFIG}")
+  changes=$(diff -u "$(dest $CONFIG)/${CONFIG##*/}" "$CONFIG")
 
   if [[ "$changes" ]]; then
-    echo —
-    echo -e "$RED ${CONFIG} has changes."
-    echo -e "Consider updating your config file. $NC"
-    echo "${changes}"
     has_changes="true"
+    echo —
+    echo -e "$RED $CONFIG has changes."
+    echo -e "Consider updating your config file. $NC"
+    echo "$changes"
   fi  
 done
 
