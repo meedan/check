@@ -1,4 +1,17 @@
 #!/bin/bash -e
+CONFIGS=($(find . -name '*.example' -not -path '*/temp_config_files_2/*'))
+RED="\033[0;31m"
+NC="\033[0m"
+
+dest () {
+  echo "./temp_config_files_2/${1%/*}" 
+}
+
+for CONFIG in "${CONFIGS[@]}"; do
+  mkdir -p "$(dest $CONFIG)"
+  cp -r "${CONFIG}" "$(dest  $CONFIG)"
+done
+
 echo Updating check
 git remote prune origin
 git pull --no-squash
@@ -19,6 +32,7 @@ git submodule foreach -q --recursive '
     find $toplevel/$name/.githooks -type f -exec ln -sf \{\} $hooks \;
   fi
 '
+
 # if [ -d configurator ]; then
 #   echo Updating configuration
 #   (cd configurator && git pull --no-squash)
@@ -28,4 +42,20 @@ git submodule foreach -q --recursive '
 
 echo —
 echo Checking for updated config files
-/bin/bash ./bin/diff-test-2.sh 
+for CONFIG in "${CONFIGS[@]}"; do
+  changes=$(diff -u "$(dest $CONFIG)/${CONFIG##*/}" "${CONFIG}")
+
+  if [[ "$changes" ]]; then
+    echo —
+    echo -e "$RED ${CONFIG} has changes."
+    echo -e "Consider updating your config file. $NC"
+    echo "${changes}"
+    has_changes="true"
+  fi  
+done
+
+if [ "$has_changes" != "true" ]; then
+  echo Config files have no changes.
+fi
+
+rm -r ./temp_config_files_2

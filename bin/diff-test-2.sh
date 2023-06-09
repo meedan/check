@@ -10,19 +10,18 @@ dest () {
 
 for CONFIG in "${CONFIGS[@]}"; do
   mkdir -p "$(dest $CONFIG)"
-  echo "https://github.com/meedan/check/${CONFIG}"
-  # cp -r "${CONFIG}" "$(dest  $CONFIG)"
+  cp -r "${CONFIG}" "$(dest  $CONFIG)"
 
 
-  # changes=$(diff -u "$(dest $CONFIG)/${CONFIG##*/}" "${CONFIG}")
+  changes=$(diff -u "$(dest $CONFIG)/${CONFIG##*/}" "${CONFIG}")
 
-  # if [[ "$changes" ]]; then
-  #   has_changes="true"
-  #   echo —
-  #   echo -e "$RED ${CONFIG} has changes."
-  #   echo -e "Consider updating your config file. $NC"
-  #   echo "${changes}"
-  # fi  
+  if [[ "$changes" ]]; then
+    has_changes="true"
+    echo —
+    echo -e "$RED ${CONFIG} has changes."
+    echo -e "Consider updating your config file. $NC"
+    echo "${changes}"
+  fi  
 done
 
 if [ "$has_changes" != "true" ]; then
