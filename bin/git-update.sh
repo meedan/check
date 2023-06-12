@@ -1,13 +1,14 @@
 #!/bin/bash -e
-configs=($(find . -name '*.example' -not -path '*/temp/*'))
+IFS=$'\n'
+configs=$(find . -name '*.example' -not -path '*/temp/*')
+
 dest="./temp"
 
 red="\033[0;31m"
 nc="\033[0m"
 
-for config in "${configs[@]}"; do
-  mkdir -p "${dest}/${config}"
-  cp -r "$config"  "${dest}/${config}"
+for config in $configs; do
+  mkdir -p "${dest}/${config}" && cp -r "$config"  "${dest}/${config}"
 done
 
 echo Updating check
@@ -41,7 +42,7 @@ docker-compose -f docker-compose.yml -f docker-test.yml build
 echo —
 echo Checking for updated config files
 set +e
-for config in "${configs[@]}"; do
+for config in $configs; do
   changes=$(diff "${dest}/${config}" "$config")
 
   if [[ "$changes" ]]; then
