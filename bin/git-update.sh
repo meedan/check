@@ -31,18 +31,18 @@ git submodule foreach -q --recursive '
   fi
 '
 
-# if [ -d configurator ]; then
-#   echo Updating configuration
-#   (cd configurator && git pull --no-squash)
-#   configurator/do.sh deploy local
-# fi
-# docker-compose -f docker-compose.yml -f docker-test.yml build
+if [ -d configurator ]; then
+  echo Updating configuration
+  (cd configurator && git pull --no-squash)
+  configurator/do.sh deploy local
+fi
+docker-compose -f docker-compose.yml -f docker-test.yml build
 
 echo —
 echo Checking for updated config files
 set +e
 for config in "${configs[@]}"; do
-  changes=$(diff -u "${dest}/${config}" "$config")
+  changes=$(diff "${dest}/${config}" "$config")
 
   if [[ "$changes" ]]; then
     has_changes="true"
