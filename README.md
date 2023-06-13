@@ -62,7 +62,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Helpful one-liners and scripts
 
-- Update submodules to their latest commit: `./bin/git-update.sh`
+- Update submodules to their latest commit and check if any example configuration files have been updated: `./bin/git-update.sh`
 - Pack your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
