@@ -64,7 +64,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
   - First, connect to the dev container: from `check` directory, `docker-compose exec <service name (pender, api)> bash`
   - From within dev container:
     - Running all tests: `bin/rails test`
-    - Running a specific test: `bin/rails test <path/to/test/file/in/check-api>.rb:<test-line-number> (e.g. bin/rails test test/controllers/graphql_controller_test.rb:18)`)
+    - Running a specific test: `bin/rails test <path/to/test/file/in/check-api>.rb:<test-line-number>` (e.g. `bin/rails test test/controllers/graphql_controller_test.rb:18`)
       - Note: it may be helpful to comment out code coverage and retries from `test_helper.rb` when running individual tests frequently, as they will not be automatically disabled.
 
 
