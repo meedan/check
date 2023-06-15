@@ -27,6 +27,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 **Note 2:** For performance reasons, some services (that are not needed to run the application with its basic functionality) are disabled by default (e.g., commented in the Docker Compose file). If you need those services, please uncomment them in `docker-compose.yml`. If you may need to increase the amount of memory allocated for Docker in order for it to work.
 
+**Note 3:** There is a seed file you can run to create a new user and fake data, or to add fake data to an existing user. You can do that by running `docker compose run api bundle exec rake db:seed`. If you picked the option to create a new user it will print the user information when the script is done. If you picked the option to add data to a user, it will let you know it was successfully added when it's done.
+
 ## Available services and container names
 
 - Check web client (container `web`) at [http://localhost:3333](http://localhost:3333)
