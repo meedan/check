@@ -58,7 +58,15 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Fetch: `docker-compose exec fetch bundle exec rake test`
 - Running a specific Check Web test: `docker-compose exec web bash -c "cd test && rspec --example KEYWORD spec/integration_spec.rb"`
 - Running a specific Check Mark test: `docker-compose exec mark bash -c "cd test && rspec --example KEYWORD spec/app_spec.rb"`
-- Running a specific Check API or Pender test (from within the container): `bundle exec ruby -I"lib:test" test/path/to/specific_test.rb -n /.*KEYWORD.*/`
+
+- Running Check API or Pender tests:
+  - Pender or Check API tests can be run from development containers (e.g. from `check` directory run `docker-compose up api pender`). They do not need to be run in a "test mode" container, allowing us to run unit tests while having a browser connected to the development server. These tests run against a different database than development, so your development data will be preserved. More on testing Rails with Minitest, the testing framework we use for most of our application, can be found [here](https://guides.rubyonrails.org/testing.html), including [directions about managing the test database](https://guides.rubyonrails.org/testing.html#the-test-database).
+  - First, connect to the dev container: from `check` directory, `docker-compose exec <service name (pender, api)> bash`
+  - From within dev container:
+    - Running all tests: `bin/rails test`
+    - Running a specific test: `bin/rails test <path/to/test/file/in/check-api>.rb:<test-line-number> (e.g. bin/rails test test/controllers/graphql_controller_test.rb:18)`)
+      - Note: it may be helpful to comment out code coverage and retries from `test_helper.rb` when running individual tests frequently, as they will not be automatically disabled.
+
 
 ## Helpful one-liners and scripts
 
