@@ -34,10 +34,10 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 3200
-  pender-background:
-    environment:
-      RAILS_ENV: test
-      SERVER_PORT: 3200
+#  pender-background:
+#    environment:
+#      RAILS_ENV: test
+#      SERVER_PORT: 3200
   web:
     depends_on:
       - api
