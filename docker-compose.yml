@@ -85,6 +85,7 @@ services:
       - redis
       - pender
       - alegre
+      - presto
       - narcissus
     volumes:
       - "./check-api:/app"
@@ -165,6 +166,17 @@ services:
       - elasticsearch
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - dev
+  presto:
+    build: presto
+    platform: linux/amd64
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./presto:/app"
+    env_file:
+      - presto/.env_file
     networks:
       - dev
   alegre:
