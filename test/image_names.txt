@@ -1,4 +1,5 @@
 check_alegre
+check_presto
 check_api
 check_api-background
 check_bots
