@@ -73,6 +73,11 @@ services:
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     networks:
       - dev
+  elasticmq:
+    image: softwaremill/elasticmq
+    hostname: presto-elasticmq
+    ports:
+      - "9324:9324"
   api:
     build: check-api
     mem_limit: 4g
@@ -179,6 +184,8 @@ services:
       - presto/.env_file
     networks:
       - dev
+    depends_on:
+      - elasticmq
   alegre:
     build: alegre
     platform: linux/x86_64
