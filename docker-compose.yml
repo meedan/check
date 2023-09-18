@@ -78,6 +78,11 @@ services:
     hostname: presto-elasticmq
     ports:
       - "9324:9324"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9324"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - dev
   api:
@@ -186,7 +191,8 @@ services:
     networks:
       - dev
     depends_on:
-      - elasticmq
+      elasticmq:
+        condition: service_healthy
   alegre:
     build: alegre
     platform: linux/x86_64
