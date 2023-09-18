@@ -1,5 +1,4 @@
 check_alegre
-check_presto
 check_api
 check_api-background
 check_bots
@@ -9,8 +8,10 @@ check_narcissus
 check_pender
 check_pender-background
 check_postgres
+check_presto
 check_queue_worker
 check_web
 docker.elastic.co/kibana/kibana:7.9.2
 minio/minio
 redis:5
+softwaremill/elasticmq

@@ -78,6 +78,8 @@ services:
     hostname: presto-elasticmq
     ports:
       - "9324:9324"
+    networks:
+      - dev
   api:
     build: check-api
     mem_limit: 4g
@@ -90,7 +92,6 @@ services:
       - redis
       - pender
       - alegre
-      - presto
       - narcissus
     volumes:
       - "./check-api:/app"
@@ -197,6 +198,7 @@ services:
       - postgres
       - redis
       - elasticsearch
+      - presto
     env_file:
       - alegre/.env_file
     networks:
