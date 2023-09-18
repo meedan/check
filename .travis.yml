@@ -1,4 +1,4 @@
-dist: bionic
+dist: jammy
 git:
   submodules: false
 before_script:
