@@ -79,10 +79,10 @@ services:
     ports:
       - "9324:9324"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9324"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD", "wget", "-q", "-S", "-O", "-", "127.0.0.1:9324/?Action=ListQueues"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
     networks:
       - dev
   api:
