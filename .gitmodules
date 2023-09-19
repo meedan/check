@@ -30,7 +30,7 @@
   ignore = all
 [submodule "presto"]
   path = presto
-  url = git@github.com:meedan/presto
+  url = git@github.com:meedan/presto.git
   branch = master
   ignore = all
 [submodule "check-bots"]
