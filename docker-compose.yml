@@ -73,6 +73,18 @@ services:
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     networks:
       - dev
+  elasticmq:
+    image: softwaremill/elasticmq
+    hostname: presto-elasticmq
+    ports:
+      - "9324:9324"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-S", "-O", "-", "127.0.0.1:9324/?Action=ListQueues"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - dev
   api:
     build: check-api
     mem_limit: 4g
@@ -167,6 +179,20 @@ services:
       ELASTICSEARCH_URL: http://elasticsearch:9200
     networks:
       - dev
+  presto:
+    build: presto
+    platform: linux/amd64
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./presto:/app"
+    env_file:
+      - presto/.env_file
+    networks:
+      - dev
+    depends_on:
+      elasticmq:
+        condition: service_healthy
   alegre:
     build: alegre
     platform: linux/x86_64
@@ -178,6 +204,7 @@ services:
       - postgres
       - redis
       - elasticsearch
+      - presto
     env_file:
       - alegre/.env_file
     networks:
