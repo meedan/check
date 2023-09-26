@@ -17,7 +17,7 @@ git pull --no-squash
 git submodule foreach -q --recursive '
   echo Updating $name
   git remote prune origin
-  branch=$(git config -f $toplevel/.gitmodules submodule.$name.branch || echo develop)
+  branch=$(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master)
   current=$(git rev-parse --abbrev-ref HEAD)
   if [ "$current" = "$branch" ]; then
     git pull --no-squash
