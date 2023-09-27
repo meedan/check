@@ -223,6 +223,7 @@ services:
       - dev
 #  xlm_r_bert_base_nli_stsb_mean_tokens:
 #    build: alegre
+#    platform: linux/x86_64
 #    command: ["make", "run_model"]
 #    volumes:
 #      - "./alegre:/app"
@@ -236,6 +237,7 @@ services:
 #      - dev
 #  indian_sbert:
 #    build: alegre
+#    platform: linux/x86_64
 #    command: ["make", "run_model"]
 #    volumes:
 #      - "./alegre:/app"
@@ -249,6 +251,7 @@ services:
 #      - dev
 #  mdeberta_v3_filipino:
 #    build: alegre
+#    platform: linux/x86_64
 #    command: ["make", "run_model"]
 #    volumes:
 #      - "./alegre:/app"
@@ -262,6 +265,7 @@ services:
 #      - dev
 #  video:
 #    build: alegre
+#    platform: linux/x86_64
 #    command: ["make", "run_model"]
 #    volumes:
 #      - "./alegre:/app"
@@ -275,6 +279,7 @@ services:
 #      - dev
 #  audio:
 #    build: alegre
+#    platform: linux/x86_64
 #    command: ["make", "run_model"]
 #    volumes:
 #      - "./alegre:/app"
