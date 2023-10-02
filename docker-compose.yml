@@ -251,6 +251,7 @@ services:
 #      - dev
 #  paraphrase_multilingual_mpnet_base_v2:
 #    build: alegre
+#    platform: linux/x86_64
 #    command: ["make", "run_model"]
 #    volumes:
 #      - "./alegre:/app"
