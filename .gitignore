@@ -3,6 +3,8 @@ config-*.tar.gz
 postgres/data
 elasticsearch/data
 elasticsearch/snapshots
+opensearch/data
+opensearch/snapshots
 /.project
 chromedriver/auth.txt
 configurator
