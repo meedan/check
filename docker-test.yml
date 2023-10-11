@@ -34,10 +34,10 @@ services:
     environment:
       RAILS_ENV: test
       SERVER_PORT: 3200
-  pender-background:
-    environment:
-      RAILS_ENV: test
-      SERVER_PORT: 3200
+#  pender-background:
+#    environment:
+#      RAILS_ENV: test
+#      SERVER_PORT: 3200
   web:
     depends_on:
       - api
@@ -52,11 +52,11 @@ services:
       BOILERPLATE_ENV: test
       ALEGRE_PORT: 3100
       REDIS_DATABASE: 3
-  presto:
-    environment:
-      BOILERPLATE_ENV: test
-      PRESTO_PORT: 8000
-      REDIS_DATABASE: 3
+#  presto:
+#    environment:
+#      BOILERPLATE_ENV: test
+#      PRESTO_PORT: 8000
+#      REDIS_DATABASE: 3
   narcissus:
     environment:
       NODE_ENV: development

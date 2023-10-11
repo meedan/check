@@ -73,18 +73,18 @@ services:
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     networks:
       - dev
-  elasticmq:
-    image: softwaremill/elasticmq
-    hostname: presto-elasticmq
-    ports:
-      - "9324:9324"
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-S", "-O", "-", "127.0.0.1:9324/?Action=ListQueues"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-    networks:
-      - dev
+#  elasticmq:
+#    image: softwaremill/elasticmq
+#    hostname: presto-elasticmq
+#    ports:
+#      - "9324:9324"
+#    healthcheck:
+#      test: ["CMD", "wget", "-q", "-S", "-O", "-", "127.0.0.1:9324/?Action=ListQueues"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 10
+#    networks:
+#      - dev
   api:
     build: check-api
     mem_limit: 4g
@@ -135,20 +135,20 @@ services:
       SERVER_PORT: 3200
     networks:
       - dev
-  pender-background:
-    build: pender
-    platform: linux/x86_64
-    command: /app/docker-background.sh
-    shm_size: 1G
-    volumes:
-      - "./pender:/app"
-    depends_on:
-      - pender
-    environment:
-      RAILS_ENV: development
-      SERVER_PORT: 3200
-    networks:
-      - dev
+#  pender-background:
+#    build: pender
+#    platform: linux/x86_64
+#    command: /app/docker-background.sh
+#    shm_size: 1G
+#    volumes:
+#      - "./pender:/app"
+#    depends_on:
+#      - pender
+#    environment:
+#      RAILS_ENV: development
+#      SERVER_PORT: 3200
+#    networks:
+#      - dev
   web:
     build: check-web
     platform: linux/x86_64
@@ -169,30 +169,30 @@ services:
       MODE: development
     networks:
       - dev
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-    environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
-    networks:
-      - dev
-  presto:
-    build: presto
-    platform: linux/amd64
-    ports:
-      - "8000:8000"
-    volumes:
-      - "./presto:/app"
-    env_file:
-      - presto/.env_file
-    networks:
-      - dev
-    depends_on:
-      elasticmq:
-        condition: service_healthy
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana:7.9.2
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch
+#    environment:
+#      ELASTICSEARCH_URL: http://elasticsearch:9200
+#    networks:
+#      - dev
+#  presto:
+#    build: presto
+#    platform: linux/amd64
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#      - "./presto:/app"
+#    env_file:
+#      - presto/.env_file
+#    networks:
+#      - dev
+#    depends_on:
+#      elasticmq:
+#        condition: service_healthy
   alegre:
     build: alegre
     platform: linux/x86_64
@@ -204,23 +204,23 @@ services:
       - postgres
       - redis
       - elasticsearch
-      - presto
+      # - presto
     env_file:
       - alegre/.env_file
     networks:
       - dev
-  queue_worker:
-    build: alegre
-    platform: linux/x86_64
-    command: ["make", "run_rq_worker"]
-    volumes:
-      - "./alegre:/app"
-    depends_on:
-      - redis
-    env_file:
-      - alegre/.env_file
-    networks:
-      - dev
+#  queue_worker:
+#    build: alegre
+#    platform: linux/x86_64
+#    command: ["make", "run_rq_worker"]
+#    volumes:
+#      - "./alegre:/app"
+#    depends_on:
+#      - redis
+#    env_file:
+#      - alegre/.env_file
+#    networks:
+#      - dev
 #  xlm_r_bert_base_nli_stsb_mean_tokens:
 #    build: alegre
 #    platform: linux/x86_64
@@ -291,21 +291,21 @@ services:
 #      MODEL_NAME: audio
 #    networks:
 #      - dev
-  bots:
-    build: check-bots
-    platform: linux/x86_64
-    volumes:
-      - "./check-bots:/app"
-      - "bots-node_modules:/app/node_modules"
-    ports:
-      - "8586:8586"
-    depends_on:
-      - api
-    environment:
-      NODE_ENV: development
-      SERVER_PORT: 8586
-    networks:
-      - dev
+#  bots:
+#    build: check-bots
+#    platform: linux/x86_64
+#    volumes:
+#      - "./check-bots:/app"
+#      - "bots-node_modules:/app/node_modules"
+#    ports:
+#      - "8586:8586"
+#    depends_on:
+#      - api
+#    environment:
+#      NODE_ENV: development
+#      SERVER_PORT: 8586
+#    networks:
+#      - dev
 #  check-slack-bot:
 #    build: check-slack-bot
 #    platform: linux/x86_64
@@ -366,16 +366,16 @@ services:
 #    command: run_worker
 #    networks:
 #      - dev
-  mark:
-    build: check-mark
-    platform: linux/x86_64
-    volumes:
-      - "./check-mark:/app"
-      - "./check-api:/api"
-      - "./check-ui/.yalc:/root/.yalc"
-      - "/app/node_modules"
-    networks:
-      - dev
+#  mark:
+#    build: check-mark
+#    platform: linux/x86_64
+#    volumes:
+#      - "./check-mark:/app"
+#      - "./check-api:/api"
+#      - "./check-ui/.yalc:/root/.yalc"
+#      - "/app/node_modules"
+#    networks:
+#      - dev
 #  search:
 #    build: check-search
 #    platform: linux/x86_64
