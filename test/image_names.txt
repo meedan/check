@@ -13,5 +13,5 @@ check_queue_worker
 check_web
 docker.elastic.co/kibana/kibana:7.9.2
 minio/minio
-redis:5
+redis:6.2
 softwaremill/elasticmq
