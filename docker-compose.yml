@@ -11,13 +11,14 @@ networks:
   dev:
 services:
   elasticsearch:
-    build: alegre/elasticsearch
+    build: alegre/opensearch
     environment:
       discovery.type: single-node
       transport.host: 127.0.0.1
-      xpack.security.enabled: "false"
+      plugins.security.disabled: "true"
+      #xpack.security.enabled: "false"
       bootstrap.memory_lock: "true"
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m -Dlog4j2.disable.jmx=true"
     ulimits:
       memlock:
         soft: -1
@@ -25,8 +26,8 @@ services:
     ports:
       - "9200:9200"
     volumes:
-      - "./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "elasticsearch:/usr/share/elasticsearch/data"
+      - "./opensearch.yml:/usr/share/opensearch/config/opensearch.yml"
+      - "elasticsearch:/usr/share/opensearch/data"
     networks:
       - dev
   postgres:
@@ -169,16 +170,16 @@ services:
       MODE: development
     networks:
       - dev
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-    environment:
-      ELASTICSEARCH_URL: http://elasticsearch:9200
-    networks:
-      - dev
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana:7.9.2
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - elasticsearch
+#    environment:
+#      ELASTICSEARCH_URL: http://opensearch:9200
+#    networks:
+#      - dev
   presto:
     build: presto
     platform: linux/amd64
