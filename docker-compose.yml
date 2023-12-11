@@ -179,7 +179,7 @@ services:
       ELASTICSEARCH_URL: http://elasticsearch:9200
     networks:
       - dev
-  presto:
+  presto-server:
     build: presto
     platform: linux/amd64
     ports:
@@ -188,6 +188,38 @@ services:
       - "./presto:/app"
     env_file:
       - presto/.env_file
+    environment:
+      ROLE: server
+    networks:
+      - dev
+    depends_on:
+      elasticmq:
+        condition: service_healthy
+  presto-image:
+    build: presto
+    platform: linux/amd64
+    volumes:
+      - "./presto:/app"
+    env_file:
+      - presto/.env_file
+    environment:
+      ROLE: worker
+      MODEL_NAME: image.Model
+    networks:
+      - dev
+    depends_on:
+      elasticmq:
+        condition: service_healthy
+  presto-audio:
+    build: presto
+    platform: linux/amd64
+    volumes:
+      - "./presto:/app"
+    env_file:
+      - presto/.env_file
+    environment:
+      ROLE: worker
+      MODEL_NAME: audio.Model
     networks:
       - dev
     depends_on:
@@ -204,7 +236,9 @@ services:
       - postgres
       - redis
       - elasticsearch
-      - presto
+      - presto-server
+      - presto-image
+      - presto-audio
     env_file:
       - alegre/.env_file
     networks:

@@ -52,11 +52,17 @@ services:
       BOILERPLATE_ENV: test
       ALEGRE_PORT: 3100
       REDIS_DATABASE: 3
-  presto:
+  presto-server:
     environment:
       BOILERPLATE_ENV: test
       PRESTO_PORT: 8000
       REDIS_DATABASE: 3
+  presto-audio:
+    environment:
+      BOILERPLATE_ENV: test
+  presto-image:
+    environment:
+      BOILERPLATE_ENV: test
   narcissus:
     environment:
       NODE_ENV: development
