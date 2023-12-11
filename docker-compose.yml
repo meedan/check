@@ -97,9 +97,6 @@ services:
       - redis
       - pender
       - alegre
-      - presto-server
-      - presto-image
-      - presto-audio
       - narcissus
     volumes:
       - "./check-api:/app"
