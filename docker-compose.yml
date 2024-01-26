@@ -240,6 +240,8 @@ services:
     depends_on:
       elasticmq:
         condition: service_healthy
+      minio:
+        condition: service_healthy
   alegre:
     build: alegre
     platform: linux/x86_64
