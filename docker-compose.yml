@@ -73,7 +73,12 @@ services:
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     networks:
       - dev
-  elasticmq:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+elasticmq:
     image: softwaremill/elasticmq
     hostname: presto-elasticmq
     ports:
