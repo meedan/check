@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go to the develop branch of each repository
-# git submodule foreach bash -c 'git checkout develop || git checkout master'
+git submodule foreach bash -c 'git checkout develop || git checkout master'
 
 # Copy the example files
 find . -name '*.example' -not -path '*apollo*' | while read f; do cp "$f" "${f%%.example}"; done
