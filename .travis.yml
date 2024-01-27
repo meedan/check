@@ -5,7 +5,7 @@ before_script:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
   - sed -i '/git submodule/d' bin/first-build.sh
-  # - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
+  - sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
   - TAB=$'\t'
   # For each submodule, go to a branch with the same name as this branch
   - export FALLBACK_BRANCH=$([ "$TRAVIS_BRANCH" == "master" ] && echo "main" && echo "master" || echo "develop")
