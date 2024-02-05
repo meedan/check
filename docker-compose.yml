@@ -90,6 +90,7 @@ services:
     mem_limit: 4g
     ports:
       - "3000:3000"
+      - "3300:3300"
     depends_on:
       - elasticsearch
       - postgres
