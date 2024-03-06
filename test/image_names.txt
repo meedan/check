@@ -11,6 +11,7 @@ check_postgres
 check_presto-audio
 check_presto-image
 check_presto-server
+check_presto-video
 check_queue_worker
 check_web
 docker.elastic.co/kibana/kibana:7.9.2

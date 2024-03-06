@@ -63,6 +63,9 @@ services:
   presto-image:
     environment:
       BOILERPLATE_ENV: test
+  presto-video:
+    environment:
+      BOILERPLATE_ENV: test
   narcissus:
     environment:
       NODE_ENV: development
