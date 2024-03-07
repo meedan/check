@@ -73,6 +73,11 @@ services:
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     networks:
       - dev
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
   elasticmq:
     image: softwaremill/elasticmq
     hostname: presto-elasticmq
@@ -225,6 +230,23 @@ services:
     depends_on:
       elasticmq:
         condition: service_healthy
+  presto-video:
+    build: presto
+    platform: linux/amd64
+    volumes:
+      - "./presto:/app"
+    env_file:
+      - presto/.env_file
+    environment:
+      ROLE: worker
+      MODEL_NAME: video.Model
+    networks:
+      - dev
+    depends_on:
+      elasticmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
   alegre:
     build: alegre
     platform: linux/x86_64
@@ -239,6 +261,7 @@ services:
       - presto-server
       - presto-image
       - presto-audio
+      - presto-video
     env_file:
       - alegre/.env_file
     networks:
