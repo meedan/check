@@ -29,6 +29,8 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 **Note 3:** There is a seed file you can run to create a new user and fake data, or to add fake data to an existing user. You can do that by running `docker compose run api bundle exec rake db:seed`. If you picked the option to create a new user it will print the user information when the script is done. If you picked the option to add data to a user, it will let you know it was successfully added when it's done.
 
+**Note 4:** Some users on MacOS have reported memory issues when running Docker, so it's recommended to install OrbStack to manage those services. Installation of Check is the same, Orbstack will automatically pick up the docker containers and they can then be managed within the app. 
+
 ## Available services and container names
 
 - Check web client (container `web`) at [http://localhost:3333](http://localhost:3333)
