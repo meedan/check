@@ -58,3 +58,6 @@
   url = git@github.com:meedan/check-search.git
   branch = develop
   ignore = all
+[submodule "khousheh"]
+	path = khousheh
+	url = https://github.com/meedan/khousheh.git
