@@ -3,6 +3,7 @@ check_api
 check_api-background
 check_bots
 check_elasticsearch
+check_khousheh
 check_mark
 check_narcissus
 check_pender

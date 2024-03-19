@@ -71,6 +71,8 @@ services:
     environment:
       MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
       MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      MINIO_NOTIFY_WEBHOOK_ENABLE_khousheh: on
+      MINIO_NOTIFY_WEBHOOK_ENDPOINT_khousheh: "http://host.docker.internal:9001/2015-03-31/functions/function/invocations"
     networks:
       - dev
     healthcheck:
@@ -463,3 +465,23 @@ services:
 #      DEPLOY_ENV: development
 #    networks:
 #      - dev
+  khousheh_background:
+    build:
+      context: ./khousheh/minio
+      dockerfile: Dockerfile
+    depends_on:
+      minio:
+        condition: service_healthy
+    env_file:
+      - './khousheh/environment_variables.env'
+  khousheh:
+    build: khousheh
+    ports:
+      - "9001:8080"
+    depends_on:
+      - minio
+      - khousheh_background
+    volumes:
+      - "./khousheh:/src"
+    env_file:
+      - './khousheh/environment_variables.env'
