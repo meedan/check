@@ -10,7 +10,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 
 ## Quick start
 
-- Install `docker-compose`
+- Install `docker-compose` (Mac users may need to install Orbstack instead, see Troubleshooting below)
 - Update your [virtual memory settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html), e.g. by setting `vm.max_map_count=262144` in `/etc/sysctl.conf`
 - `git clone --recursive git@github.com:meedan/check.git && cd check`
 - `bin/first-build.sh` and wait (for about one hour this first time!!) for a string in the log that looks like `web_1_88cd0bd245b7   | [21:07:07] [webpack:build:web:dev] Time: 83439ms`
@@ -106,6 +106,19 @@ This will leave behind your original data volume and which you can clean up by r
 
 ## Troubleshooting
 
+- On Mac, if you are unable to start check-web and are getting a `fatal: not a git repository` error, switching from docker to orbstack may work.
+
+  Error example:
+  ```
+  ...
+  check-web-1  | [16:09:16] Starting 'webpack:build:web:dev'...
+  check-web-1  | fatal: not a git repository: /app/../.git/modules/check-web
+  ...
+  ```
+  * Install Orbstack https://orbstack.dev/download (or `brew install orbstack`) and follow install instructions https://docs.orbstack.dev/install
+  * From within the check directory, set it to use orbstack instead of docker `docker context use orbstack`
+  * use the regular docker-compose commands (i.e. `docker-compose build`) NOTE: this will rebuild containers from scratch so may take a while
+  
 - If you're having trouble starting Elasticsearch on macOS, with the error `container_name exited with code 137`, you will need to adjust your Docker settings, as per https://www.petefreitag.com/item/848.cfm
 - If you're getting an error starting `chromedriver` in test mode, like the following:
 ```
