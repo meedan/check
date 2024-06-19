@@ -154,6 +154,17 @@ services:
       SERVER_PORT: 3200
     networks:
       - dev
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./pender/config/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    depends_on:
+      - pender
+    environment:
+      RAILS_ENV: development
+      SERVER_PORT: 3200
+    networks:
+      - dev 
   web:
     build: check-web
     platform: linux/x86_64
