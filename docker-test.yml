@@ -5,6 +5,7 @@ networks:
 services:
   chromedriver:
     build: check-web/chromedriver
+    platform: "linux/amd64"
     ports:
       - 5900:5900
       - 4444:4444
