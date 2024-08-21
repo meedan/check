@@ -110,6 +110,8 @@ services:
       SERVER_PORT: 3000
     networks:
       - dev
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   api-background:
     build: check-api
     command: /app/docker-background.sh
@@ -122,6 +124,8 @@ services:
       SERVER_PORT: 3000
     networks:
       - dev
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   pender:
     build: pender
     platform: linux/x86_64
