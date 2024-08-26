@@ -134,12 +134,14 @@ services:
       - "3200:3200"
       - "9555:9555"
     volumes:
-      - "./pender:/app"
+      - "./pender:/app/pender"
     depends_on:
       - postgres
       - redis
       - minio
     environment:
+      APP: pender
+      DEPLOY_ENV: local
       RAILS_ENV: development
       SERVER_PORT: 3200
     networks:
@@ -147,13 +149,14 @@ services:
   pender-background:
     build: pender
     platform: linux/x86_64
-    command: /app/docker-background.sh
     shm_size: 1G
     volumes:
-      - "./pender:/app"
+      - "./pender:/app/pender"
     depends_on:
       - pender
     environment:
+      APP: pender-background
+      DEPLOY_ENV: local
       RAILS_ENV: development
       SERVER_PORT: 3200
     networks:
