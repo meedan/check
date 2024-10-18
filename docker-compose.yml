@@ -277,21 +277,21 @@ services:
     depends_on:
       elasticmq:
         condition: service_healthy
-  presto-paraphrase-multilingual:
-    build: presto
-    platform: linux/amd64
-    volumes:
-      - "./presto:/app"
-    env_file:
-      - presto/.env_file
-    environment:
-      ROLE: worker
-      MODEL_NAME: paraphrase_multilingual.Model
-    networks:
-      - dev
-    depends_on:
-      elasticmq:
-        condition: service_healthy
+  # presto-paraphrase-multilingual:
+  #   build: presto
+  #   platform: linux/amd64
+  #   volumes:
+  #     - "./presto:/app"
+  #   env_file:
+  #     - presto/.env_file
+  #   environment:
+  #     ROLE: worker
+  #     MODEL_NAME: paraphrase_multilingual.Model
+  #   networks:
+  #     - dev
+  #   depends_on:
+  #     elasticmq:
+  #       condition: service_healthy
   alegre:
     build: alegre
     platform: linux/x86_64
