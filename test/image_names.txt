@@ -11,6 +11,7 @@ check-postgres
 check-presto-audio
 check-presto-image
 check_presto-mean-tokens
+check_presto-paraphrase-multilingual
 check-presto-server
 check-presto-video
 check-queue_worker
