@@ -10,6 +10,7 @@ check-pender-background
 check-postgres
 check-presto-audio
 check-presto-image
+check_presto-mean-tokens
 check-presto-server
 check-presto-video
 check-queue_worker
