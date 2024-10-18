@@ -13,6 +13,7 @@ before_script:
   - git submodule foreach git rev-parse --abbrev-ref HEAD
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
+  - (while ((1)); do echo 'Ping'; sleep 300; done) & 
   - ./bin/first-build.sh
   - until curl --silent -I -f --fail http://localhost:3333 ; do printf .; sleep 1; done
   - sleep 240
