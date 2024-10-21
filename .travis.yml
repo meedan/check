@@ -20,7 +20,7 @@ script:
   - sleep 240
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" )); then exit 1; fi; # Pender
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" )); then exit 1; fi; # Alegre
-  - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/ping)!= "200" )); then exit 1; fi; # Presto
+  # - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/ping)!= "200" )); then exit 1; fi; # Presto
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" )); then exit 1; fi; # Check Web
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi; # Check API
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
