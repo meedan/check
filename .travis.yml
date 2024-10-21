@@ -24,7 +24,9 @@ script:
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/ping)!= "200" )); then exit 1; fi; # Presto
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" )); then exit 1; fi; # Check Web
   - if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi; # Check API
+  - docker ps
   - docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+  - cat docker_up_output.txt
   - diff docker_up_output.txt test/image_names.txt
 notifications:
   slack:
