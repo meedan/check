@@ -70,9 +70,9 @@ services:
   presto-mean-tokens:
     environment:
       BOILERPLATE_ENV: test
-  presto-paraphrase-multilingual:
-    environment:
-      BOILERPLATE_ENV: test
+  # presto-paraphrase-multilingual:
+  #   environment:
+  #     BOILERPLATE_ENV: test
   narcissus:
     environment:
       NODE_ENV: development
