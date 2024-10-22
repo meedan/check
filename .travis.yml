@@ -16,7 +16,7 @@ script:
   - (while ((1)); do echo 'Ping'; sleep 300; done) & 
   - ./bin/first-build.sh
   - docker ps
-  - sleep 240
+  - sleep 480
   - until curl --silent -I -f --fail http://localhost:3200; do printf .; sleep 1; done
   - until curl --silent -I -f --fail http://localhost:3000; do printf .; sleep 1; done
   - until curl --silent -I -f --fail http://localhost:3100; do printf .; sleep 1; done
