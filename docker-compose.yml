@@ -262,21 +262,21 @@ services:
         condition: service_healthy
       minio:
         condition: service_healthy
-  presto-mean-tokens:
-    build: presto
-    platform: linux/amd64
-    volumes:
-      - "./presto:/app"
-    env_file:
-      - presto/.env_file
-    environment:
-      ROLE: worker
-      MODEL_NAME: mean_tokens.Model
-    networks:
-      - dev
-    depends_on:
-      elasticmq:
-        condition: service_healthy
+  # presto-mean-tokens:
+  #   build: presto
+  #   platform: linux/amd64
+  #   volumes:
+  #     - "./presto:/app"
+  #   env_file:
+  #     - presto/.env_file
+  #   environment:
+  #     ROLE: worker
+  #     MODEL_NAME: mean_tokens.Model
+  #   networks:
+  #     - dev
+  #   depends_on:
+  #     elasticmq:
+  #       condition: service_healthy
   # Uncomment this to enable explainers feature, which requires this model to be running in order to work.
   # presto-paraphrase-multilingual:
   #   build: presto
