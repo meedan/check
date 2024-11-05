@@ -15,8 +15,8 @@ env:
   CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
 
 jobs:
-  unit-tests:
-    runs-on: ubuntu-hosted
+  check-script:
+    runs-on: ubuntu-latest
     steps:
     # - name: Set permissions for _work directory
     #   run: |
