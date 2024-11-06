@@ -9,11 +9,12 @@ on:
   pull_request:
     branches:
     - develop
-    
 
 env:
   CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
-
+permissions:
+  id-token: write   
+  contents: read
 jobs:
   check-script:
     runs-on: ubuntu-latest
