@@ -5,6 +5,7 @@ on:
     branches:
     - master
     - develop
+    - CV2-5632-migrate-check-ci
 
   pull_request:
     branches:
