@@ -5,37 +5,31 @@ on:
     branches:
     - master
     - develop
-    - CV2-5632-migrate-check-ci
+
   pull_request:
     branches:
     - develop
 
-env:
-  CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
 permissions:
   id-token: write   
   contents: read
+
 jobs:
   check-script:
-    runs-on: ubuntu-latest
+    runs-on: 
+        labels: check
     steps:
-    # - name: Set permissions for _work directory
-    #   run: |
-    #     sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-    #     sudo chmod 755 $GITHUB_WORKSPACE
     - uses: actions/checkout@v4
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         role-to-assume: ${{ secrets.AWS_OIDC_ROLE_TO_ASSUME }}
         aws-region: eu-west-1
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v2
+    # - name: Login to Amazon ECR
+    #   id: login-ecr
+    #   uses: aws-actions/amazon-ecr-login@v2
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
