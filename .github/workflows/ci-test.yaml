@@ -35,6 +35,9 @@ jobs:
       uses: docker/setup-buildx-action@v3
     
     - name: Before script
+      env:
+        GITHUB_BRANCH: ${{ github.head_ref || github.ref_name }}
+        GITHUB_JOB_NAME: ${{ github.job }}
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
         git submodule update --init --recursive
@@ -42,26 +45,30 @@ jobs:
         sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
         TAB=$'\t'
         export FALLBACK_BRANCH=$([ "$GITHUB_BRANCH" == "master" ] && echo "main" && echo "master" || echo "develop")
-        git submodule foreach 'bash -c "git checkout master ; git checkout develop ; git checkout $FALLBACK_BRANCH ; git checkout $TRAVIS_BRANCH ; exit 0"'
+        git submodule foreach 'bash -c "git checkout master ; git checkout develop ; git checkout $FALLBACK_BRANCH ; git checkout $GITHUB_BRANCH ; exit 0"'
         git submodule foreach git rev-parse --abbrev-ref HEAD 
        
     - name: Run Script
+      env:
+        GITHUB_BRANCH: ${{ github.head_ref || github.ref_name }}
+        GITHUB_JOB_NAME: ${{ github.job }}
       run: |
         ./bin/first-build.sh
         until curl --silent -I -f --fail http://localhost:3333 ; do printf .; sleep 1; done
         sleep 240
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" )); then exit 1; fi; # Pender
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" )); then exit 1; fi; # Alegre
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/ping)!= "200" )); then exit 1; fi; # Presto
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" )); then exit 1; fi; # Check Web
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi; # Check API
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" )); then exit 1; fi; 
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" )); then exit 1; fi; 
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/ping)!= "200" )); then exit 1; fi;
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" )); then exit 1; fi;
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi; 
         docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
         diff docker_up_output.txt test/image_names.txt
 
     - name: Cleanup Docker Resources
+      if: always()
       run: |
-        echo "Cleaning up Docker resources..."
-        docker stop $(docker ps -q) 
-        docker rm $(docker ps -aq) 
-        docker rmi $(docker images -q) 
-        docker volume rm $(docker volume ls -q) 
+        echo "Running post-job cleanup..."
+        docker stop $(docker ps -q) || true
+        docker rm $(docker ps -aq) || true
+        docker rmi $(docker images -q) || true
+        docker volume rm $(docker volume ls -q) || true
