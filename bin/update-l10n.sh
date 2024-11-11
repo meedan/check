@@ -5,16 +5,16 @@ cd check-web && git checkout develop && git pull && cd - && \
 # cd check-search && git checkout develop && git pull && cd - && \
 
 echo 'Updating Check API translations...' && \
-(docker-compose exec api /tx push) && \
-(docker-compose exec api /tx pull) && \
+(docker compose exec api /tx push) && \
+(docker compose exec api /tx pull) && \
 # FIXME: Configure check-tiplines resource pulling
 # (docker-compose exec api bundle exec rake transifex:download_tipline) && \
 
 echo 'Updating Check Web translations...' && \
-(docker-compose exec web npm run transifex:merge-source) && \
-(docker-compose exec web /tx push) && \
-(docker-compose exec web /tx pull) && \
-(docker-compose exec web npm run transifex:merge-translated) && \
+(docker compose exec web npm run transifex:merge-source) && \
+(docker compose exec web /tx push) && \
+(docker compose exec web /tx pull) && \
+(docker compose exec web npm run transifex:merge-translated) && \
 
 # echo 'Updating Check Mark translations...' && \
 # (docker-compose exec mark npm run transifex:upload) && \
