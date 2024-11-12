@@ -62,7 +62,7 @@ jobs:
         if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" )); then exit 1; fi;
         if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi; 
         docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
-        diff docker_up_output.txt test/image_names.txt
+        diff <(grep -v 'moby/buildkit:buildx-stable-1' docker_up_output.txt) test/image_names.txt
 
     - name: Cleanup Docker Resources
       if: always()
