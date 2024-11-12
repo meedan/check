@@ -1,11 +1,12 @@
 name: Build and Run Check Tests
 
 on:
+  schedule:
+    - cron: '0 4 * * *'  #Runs  daily at 4 AM UTC
   push:
     branches:
     - master
     - develop
-    - CV2-5632-migrate-check-ci
 
   pull_request:
     branches:
