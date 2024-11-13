@@ -111,20 +111,20 @@ services:
       - dev
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  api-background:
-    build: check-api
-    command: /app/docker-background.sh
-    depends_on:
-      - api
-    volumes:
-      - "./check-api:/app"
-    environment:
-      RAILS_ENV: development
-      SERVER_PORT: 3000
-    networks:
-      - dev
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # api-background:
+  #   build: check-api
+  #   command: /app/docker-background.sh
+  #   depends_on:
+  #     - api
+  #   volumes:
+  #     - "./check-api:/app"
+  #   environment:
+  #     RAILS_ENV: development
+  #     SERVER_PORT: 3000
+  #   networks:
+  #     - dev
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
   pender:
     build: pender
     platform: linux/x86_64
@@ -175,7 +175,7 @@ services:
       - "3333:3333"
     depends_on:
       - api
-      - api-background
+      # - api-background
     volumes:
       - "./check-web:/app"
       - "./check-api:/api"
