@@ -5,6 +5,7 @@ on:
     - cron: '0 4 * * *'  #Runs  daily at 4 AM UTC
   push:
     branches:
+    - test/CV2-5632-migrate-check-ci
     - master
     - develop
 
