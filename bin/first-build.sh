@@ -18,5 +18,5 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_id'
 replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 
 # Build & Run
-docker-compose build
-docker-compose up --abort-on-container-exit
+docker compose build
+docker compose up --abort-on-container-exit
