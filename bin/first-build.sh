@@ -17,7 +17,8 @@ replace_secret () {
 replace_secret 'check-api' 'config/config.yml' 'google_client_id'
 replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 
-cd check-mark && git status && cd ..
+echo "Check Mark Branch and Dockerfile:"
+cd check-mark && git status && git pull origin develop && cd ..
 cat check-mark/Dockerfile
 
 # Build & Run
