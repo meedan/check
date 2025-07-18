@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go to the develop branch of each repository
-git submodule foreach bash -c 'git checkout develop || git checkout master'
+git submodule foreach bash -c 'git checkout develop || git checkout master || git checkout main'
 
 # Copy the example files
 find . -name '*.example' -not -path '*apollo*' | while read f; do cp "$f" "${f%%.example}"; done
@@ -18,5 +18,5 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_id'
 replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 
 # Build & Run
-docker compose build
+docker compose build --pull --no-cache
 docker compose up --abort-on-container-exit
