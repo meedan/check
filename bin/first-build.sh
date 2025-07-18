@@ -17,6 +17,9 @@ replace_secret () {
 replace_secret 'check-api' 'config/config.yml' 'google_client_id'
 replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 
+cd check-mark && git status && cd ..
+cat check-mark/Dockerfile
+
 # Build & Run
 docker compose build --pull --no-cache
 docker compose up --abort-on-container-exit
