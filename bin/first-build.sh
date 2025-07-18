@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go to the develop branch of each repository
-git submodule foreach bash -c 'git checkout develop || git checkout master || git checkout main'
+git submodule foreach bash -c '(git checkout develop || git checkout master || git checkout main) && git pull'
 
 # Copy the example files
 find . -name '*.example' -not -path '*apollo*' | while read f; do cp "$f" "${f%%.example}"; done
@@ -17,11 +17,9 @@ replace_secret () {
 replace_secret 'check-api' 'config/config.yml' 'google_client_id'
 replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 
-echo "Check Mark Branch and Dockerfile:"
-cd check-mark && git status && git pull origin develop && cd ..
+# echo "Check Mark Branch and Dockerfile:"
+# cd check-mark && git status && git pull origin develop && cd ..
 cat check-mark/Dockerfile
-cd presto && git status && git pull origin develop && cd ..
-
 
 # Build & Run
 docker compose build --pull --no-cache
