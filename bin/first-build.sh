@@ -20,7 +20,7 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 # echo "Check Mark Branch and Dockerfile:"
 # cd check-mark && git status && git pull origin develop && cd ..
 cat check-mark/Dockerfile
-
+cat presto/requirements.txt
 # Build & Run
 docker compose build --pull --no-cache
 # docker compose up --abort-on-container-exit
