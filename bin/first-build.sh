@@ -23,4 +23,4 @@ cat check-mark/Dockerfile
 
 # Build & Run
 docker compose build --pull --no-cache
-docker compose up --abort-on-container-exit
+# docker compose up --abort-on-container-exit
