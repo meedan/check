@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go to the develop branch of each repository
-git submodule foreach bash -c ' git clean -fd (git checkout develop || git checkout master || git checkout main) && git pull'
+git submodule foreach bash -c 'git reset --hard && git clean -fdx && (git checkout develop || git checkout master || git checkout main) && git pull'
 
 # Copy the example files
 find . -name '*.example' -not -path '*apollo*' | while read f; do cp "$f" "${f%%.example}"; done
