@@ -42,7 +42,7 @@ jobs:
         sed -i '/git submodule/d' bin/first-build.sh
         sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
         TAB=$'\t'
-        git submodule foreach bash -c 'git reset --hard && git clean -fdx && (git checkout $GITHUB_BRANCH ||  git checkout develop || git checkout master || git checkout main || ) && git pull'
+        git submodule foreach bash -c 'git reset --hard && git clean -fdx && (git checkout $GITHUB_BRANCH ||  git checkout develop || git checkout master || git checkout main ) && git pull'
         git submodule foreach git rev-parse --abbrev-ref HEAD 
        
     - name: Run Script
