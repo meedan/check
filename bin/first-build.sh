@@ -30,7 +30,7 @@ echo "Building Alegre image..."
 docker-compose build alegre
 echo "Building Presto images..."
 docker-compose build presto-server presto-image presto-audio presto-video
-echo "Building Queue Worker image..."
-docker-compose build queue_worker
+# echo "Building Queue Worker image..."
+# docker-compose build queue_worker
 #docker compose build
 # docker compose up --abort-on-container-exit
