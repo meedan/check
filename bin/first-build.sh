@@ -23,6 +23,7 @@ cat check-mark/Dockerfile
 echo "Presto Requirements:"
 cat presto/requirements.txt
 # Build & Run
+docker-compose build alegre
 docker-compose build queue_worker
 docker compose build
 # docker compose up --abort-on-container-exit
