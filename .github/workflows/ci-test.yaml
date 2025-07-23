@@ -31,7 +31,12 @@ jobs:
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-    
+
+    - name: Fix file permissions
+      run: |
+        sudo chmod -R u+w .
+        sudo chown -R $USER:$USER .
+
     - name: Before script
       env:
         GITHUB_BRANCH: ${{ github.head_ref || github.ref_name }}
