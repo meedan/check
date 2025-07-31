@@ -23,11 +23,12 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 # echo "Presto Requirements:"
 # cat presto/requirements.txt
 echo "Alegre Requirements:"
+cat alegre/Dockerfile
 cat alegre/requirements.txt
 
 # Build & Run
-echo "Building Presto images..."
-docker compose build presto-server
+# echo "Building Presto images..."
+# docker compose build presto-server
 echo "Building Alegre image..."
 docker compose build alegre
 # echo "Building Queue Worker image..."
