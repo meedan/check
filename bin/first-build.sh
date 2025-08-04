@@ -30,7 +30,8 @@ cat alegre/requirements.txt
 # echo "Building Presto images..."
 # docker compose build presto-server
 echo "Building Alegre image..."
-docker compose build alegre
+cd alegre && git pull && git checkout -t origin/CV2-6381-check-ci-is-failing-2 && git pull && git status && cd -
+docker compose build alegre --pull --no-cache
 # echo "Building Queue Worker image..."
 # docker compose build queue_worker
 #docker compose build
