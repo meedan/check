@@ -42,6 +42,7 @@ jobs:
         GITHUB_BRANCH: ${{ github.head_ref || github.ref_name }}
         GITHUB_JOB_NAME: ${{ github.job }}
       run: |
+        mkdir -p ~/.docker/cli-plugins/ && curl -SL https://github.com/docker/compose/releases/download/v2.30.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose && chmod +x ~/.docker/cli-plugins/docker-compose && docker compose version
         sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
         git submodule update --init --recursive
         sed -i '/git submodule/d' bin/first-build.sh
