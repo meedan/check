@@ -28,5 +28,5 @@ cat alegre/requirements.txt
 cat check-web/Dockerfile
 
 # Build & Run
-docker compose build
-docker compose up --abort-on-container-exit
+docker compose build web
+# docker compose up --abort-on-container-exit
