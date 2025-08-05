@@ -66,9 +66,6 @@ jobs:
         sed -i '/git submodule/d' bin/first-build.sh
         # Replace abort-on-container-exit with detached mode AND no restart policy
         sed -i 's/--abort-on-container-exit/-d --restart=no/' bin/first-build.sh
-        # Also ensure any existing restart policies are disabled
-        sed -i 's/restart: always/restart: "no"/' docker-compose*.yml || true
-        sed -i 's/restart: unless-stopped/restart: "no"/' docker-compose*.yml || true
 
     # Monitor disk usage during build
     - name: Monitor disk space
