@@ -25,11 +25,11 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 # echo "Alegre Requirements:"
 # cat alegre/Dockerfile
 # cat alegre/requirements.txt
-cat check-web/Dockerfile
+# cat check-web/Dockerfile
 cd check-web && git status && git pull origin develop && cd ..
-cat check-web/Dockerfile
+# cat check-web/Dockerfile
 
 
 # Build & Run
-docker compose build web
-# docker compose up --abort-on-container-exit
+docker compose build
+docker compose up --abort-on-container-exit
