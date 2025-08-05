@@ -11,12 +11,12 @@ on:
     - develop
 
 permissions:
-  id-token: write   
+  id-token: write
   contents: read
 
 jobs:
   check-script:
-    runs-on: 
+    runs-on:
         labels: check
     steps:
     - uses: actions/checkout@v4
@@ -64,11 +64,152 @@ jobs:
         sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
         git submodule update --init --recursive
         sed -i '/git submodule/d' bin/first-build.sh
-        sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
-        TAB=$'\t'
+        # Replace abort-on-container-exit with detached mode AND no restart policy
+        sed -i 's/--abort-on-container-exit/-d --restart=no/' bin/first-build.sh
+        # Also ensure any existing restart policies are disabled
+        sed -i 's/restart: always/restart: "no"/' docker-compose*.yml || true
+        sed -i 's/restart: unless-stopped/restart: "no"/' docker-compose*.yml || true
+
+    # Monitor disk usage during build
+    - name: Monitor disk space
+      run: |
+        echo "Disk space before build:"
+        df -h
+        echo "Docker images before build:"
+        docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}"
+
+    - name: Run Script
+      env:
+        GITHUB_BRANCH: ${{ github.head_ref || github.ref_name }}
+        GITHUB_JOB_NAME: ${{ github.job }}
+      run: |
+        # Run the build script
+        ./bin/first-build.sh
+
+        # Wait for Docker Compose to settle
+        sleep 10
+
+        # Check for any containers in restart loop and kill them
+        echo "Checking for containers in restart loop..."
+        docker ps --format '{{.ID}} {{.Status}}' | grep "Restarting" | awk '{print $1}' | xargs -r docker kill || true
+
+        # Clean up intermediate images after build
+        echo "Cleaning up intermediate Docker artifacts..."
+        docker image prune -f
+
+        # Wait for services with timeout
+        echo "Waiting for services to be ready..."
+        timeout=300  # 5 minutes timeout
+        elapsed=0
+        until curl --silent -I -f --fail http://localhost:3333 || [ $elapsed -gt $timeout ]; do
+            printf "."
+            sleep 1
+            ((elapsed++))
+        done
+
+        if [ $elapsed -gt $timeout ]; then
+            echo "Timeout waiting for services to start"
+            docker ps -a
+            docker logs $(docker ps -q) || true
+            exit 1
+        fi
+
+        sleep 240
+
+        # Health checks with better error reporting
+        echo "Running health checks..."
+        services=("3200" "3100" "8000/ping" "3333" "3000")
+        for service in "${services[@]}"; do
+            if [[ "$service" == *"/ping" ]]; then
+                url="http://localhost:$service"
+            else
+                url="http://localhost:$service"
+            fi
+
+            if (( $(curl -s -o /dev/null -w "%{http_code}" "$url") != 200 )); then
+                echo "Health check failed for $url"
+                docker ps -a
+                exit 1
+            fi
+        done
+
+        # Generate output for comparison
+        docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
+        diff <(grep -v 'moby/buildkit:buildx-stable-1' docker_up_output.txt) test/image_names.txt
+
+    # Monitor final disk usage
+    - name: Final disk usage check
+      if: always()
+      run: |
+        echo "Final disk space usage:"
+        df -h
+        echo "Docker images after tests:"
+        docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}"
+
+    - name: Comprehensive Docker Cleanup
+      if: always()
+      run: |
+        echo "Running comprehensive cleanup..."
+
+        # First, try to kill containers that are restarting or stuck
+        echo "Killing any stuck or restarting containers..."
+        docker ps -a --format '{{.ID}} {{.Status}}' | grep -E "(Restarting|Up.*restart)" | awk '{print $1}' | xargs -r docker kill || true
+
+        # Wait a moment for containers to die
+        sleep 2
+
+        # Force stop all running containers with timeout
+        echo "Force stopping all containers..."
+        if [ "$(docker ps -q)" ]; then
+            timeout 30 docker stop $(docker ps -q) || docker kill $(docker ps -q) || true
+        fi
+
+        # Remove all containers (running and stopped)
+        echo "Removing all containers..."
+        if [ "$(docker ps -aq)" ]; then
+            docker rm -f $(docker ps -aq) || true
+        fi
+
+        # Remove all images (including intermediate layers)
+        echo "Removing all images..."
+        if [ "$(docker images -aq)" ]; then
+            docker rmi -f $(docker images -aq) || true
+        fi
+
+        # Remove all volumes
+        echo "Removing all volumes..."
+        if [ "$(docker volume ls -q)" ]; then
+            docker volume rm -f $(docker volume ls -q) || true
+        fi
+
+        # Remove all networks (except default ones)
+        echo "Removing custom networks..."
+        docker network ls --filter type=custom -q | xargs -r docker network rm || true
+
+        # Clean build cache and system
+        echo "Cleaning build cache and system..."
+        docker builder prune -af || true
+        docker system prune -af --volumes || true
+
+        # If Docker daemon is having issues, restart it (for self-hosted runners)
+        if command -v systemctl &> /dev/null; then
+            echo "Attempting to restart Docker daemon..."
+            sudo systemctl restart docker || true
+            sleep 5
+            docker system prune -af --volumes || true
+        fi
+
+        # Final disk space check
+        echo "Disk space after complete cleanup:"
+        df -h
+
+        echo "Remaining Docker resources:"
+        docker ps -a || true
+        docker images || true
+        docker volume ls || true\t'
         export FALLBACK_BRANCH=$([ "$GITHUB_BRANCH" == "master" ] && echo "main" && echo "master" || echo "develop")
         git submodule foreach 'bash -c "git checkout master ; git checkout develop ; git checkout $FALLBACK_BRANCH ; git checkout $GITHUB_BRANCH ; exit 0"'
-        git submodule foreach git rev-parse --abbrev-ref HEAD 
+        git submodule foreach git rev-parse --abbrev-ref HEAD
 
     # Monitor disk usage during build
     - name: Monitor disk space
@@ -95,11 +236,11 @@ jobs:
         sleep 240
 
         # Health checks
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" )); then exit 1; fi; 
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" )); then exit 1; fi; 
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3200)!= "200" )); then exit 1; fi;
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3100)!= "200" )); then exit 1; fi;
         if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/ping)!= "200" )); then exit 1; fi;
         if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3333)!= "200" )); then exit 1; fi;
-        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi; 
+        if (( $(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000)!= "200" )); then exit 1; fi;
 
         # Generate output for comparison
         docker ps --format '{{.Image}}' | sort >> docker_up_output.txt
@@ -119,25 +260,59 @@ jobs:
       run: |
         echo "Running comprehensive cleanup..."
 
-        # Stop all running containers
-        docker stop $(docker ps -q) || true
+        # First, try to kill containers that are restarting or stuck
+        echo "Killing any stuck or restarting containers..."
+        docker ps -a --format '{{.ID}} {{.Status}}' | grep -E "(Restarting|Up.*restart)" | awk '{print $1}' | xargs -r docker kill || true
+
+        # Wait a moment for containers to die
+        sleep 2
+
+        # Force stop all running containers with timeout
+        echo "Force stopping all containers..."
+        if [ "$(docker ps -q)" ]; then
+            timeout 30 docker stop $(docker ps -q) || docker kill $(docker ps -q) || true
+        fi
 
         # Remove all containers (running and stopped)
-        docker rm $(docker ps -aq) || true
+        echo "Removing all containers..."
+        if [ "$(docker ps -aq)" ]; then
+            docker rm -f $(docker ps -aq) || true
+        fi
 
         # Remove all images (including intermediate layers)
-        docker rmi $(docker images -aq) || true
+        echo "Removing all images..."
+        if [ "$(docker images -aq)" ]; then
+            docker rmi -f $(docker images -aq) || true
+        fi
 
         # Remove all volumes
-        docker volume rm $(docker volume ls -q) || true
+        echo "Removing all volumes..."
+        if [ "$(docker volume ls -q)" ]; then
+            docker volume rm -f $(docker volume ls -q) || true
+        fi
 
         # Remove all networks (except default ones)
-        docker network rm $(docker network ls --filter type=custom -q) || true
+        echo "Removing custom networks..."
+        docker network ls --filter type=custom -q | xargs -r docker network rm || true
 
         # Clean build cache and system
+        echo "Cleaning build cache and system..."
         docker builder prune -af || true
         docker system prune -af --volumes || true
+
+        # If Docker daemon is having issues, restart it (for self-hosted runners)
+        if command -v systemctl &> /dev/null; then
+            echo "Attempting to restart Docker daemon..."
+            sudo systemctl restart docker || true
+            sleep 5
+            docker system prune -af --volumes || true
+        fi
 
         # Final disk space check
         echo "Disk space after complete cleanup:"
         df -h
+
+        echo "Remaining Docker resources:"
+        docker ps -a || true
+        docker images || true
+        docker volume ls || true
