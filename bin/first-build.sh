@@ -25,13 +25,8 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 echo "Alegre Requirements:"
 cat alegre/Dockerfile
 cat alegre/requirements.txt
+cat check-web/Dockerfile
 
 # Build & Run
-# echo "Building Presto images..."
-# docker compose build presto-server
-# echo "Building Alegre image..."
-# docker compose build alegre
-# echo "Building Queue Worker image..."
-# docker compose build queue_worker
 docker compose build
 docker compose up --abort-on-container-exit
