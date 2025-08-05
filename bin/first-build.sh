@@ -22,10 +22,13 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 # cat check-mark/Dockerfile
 # echo "Presto Requirements:"
 # cat presto/requirements.txt
-echo "Alegre Requirements:"
-cat alegre/Dockerfile
-cat alegre/requirements.txt
+# echo "Alegre Requirements:"
+# cat alegre/Dockerfile
+# cat alegre/requirements.txt
 cat check-web/Dockerfile
+cd check-web && git status && git pull origin develop && cd ..
+cat check-web/Dockerfile
+
 
 # Build & Run
 docker compose build web
