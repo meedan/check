@@ -206,7 +206,7 @@ jobs:
         echo "Remaining Docker resources:"
         docker ps -a || true
         docker images || true
-        docker volume ls || true\t'
+        docker volume ls || true
         export FALLBACK_BRANCH=$([ "$GITHUB_BRANCH" == "master" ] && echo "main" && echo "master" || echo "develop")
         git submodule foreach 'bash -c "git checkout master ; git checkout develop ; git checkout $FALLBACK_BRANCH ; git checkout $GITHUB_BRANCH ; exit 0"'
         git submodule foreach git rev-parse --abbrev-ref HEAD
