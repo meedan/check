@@ -75,6 +75,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Update submodules to their latest commit and check if any example configuration files have been updated: `./bin/git-update.sh`
 - Pack your local config files: `./bin/tar-config.sh`
 - Restart a service, e.g. Check API: `docker-compose run api bash -c "touch tmp/restart.txt"`
+  - If you need to restart the background service as well, e.g. Check API background service, run: `docker compose restart api-background` (note that this will stop the containers if you used the flag `--abort-on-container-exit` to run the containers)
 - Invoke the Rails console on a service, e.g. Check API: `docker-compose run api bundle exec rails c d`
 - Update the Relay schema file on Check API: `docker-compose run api bundle exec rake lapis:graphql:schema`
 - Update the JSON API schema file on Check API: `docker-compose run api bundle exec rake jsonapi:resources:update_schema`
