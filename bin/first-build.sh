@@ -26,7 +26,7 @@ replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 # cat alegre/Dockerfile
 # cat alegre/requirements.txt
 # cat check-web/Dockerfile
-cd check-web && git status && git pull origin develop && cd ..
+# cd check-web && git status && git pull origin develop && cd ..
 # cat check-web/Dockerfile
 
 
