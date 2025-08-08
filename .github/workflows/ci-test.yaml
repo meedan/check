@@ -43,6 +43,7 @@ jobs:
         GITHUB_JOB_NAME: ${{ github.job }}
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+        sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
         git submodule foreach --recursive bash -c 'git checkout .'
         git submodule sync
         git submodule update --init --recursive
