@@ -17,19 +17,6 @@ replace_secret () {
 replace_secret 'check-api' 'config/config.yml' 'google_client_id'
 replace_secret 'check-api' 'config/config.yml' 'google_client_secret'
 
-# echo "Check Mark Branch and Dockerfile:"
-# cd check-mark && git status && git pull origin develop && cd ..
-# cat check-mark/Dockerfile
-# echo "Presto Requirements:"
-# cat presto/requirements.txt
-# echo "Alegre Requirements:"
-# cat alegre/Dockerfile
-# cat alegre/requirements.txt
-# cat check-web/Dockerfile
-# cd check-web && git status && git pull origin develop && cd ..
-# cat check-web/Dockerfile
-
-
 # Build & Run
 docker compose build
 docker compose up --abort-on-container-exit
