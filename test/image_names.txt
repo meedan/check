@@ -8,10 +8,7 @@ check-narcissus
 check-pender
 check-pender-background
 check-postgres
-check-presto-audio
-check-presto-image
 check-presto-server
-check-presto-video
 check-queue_worker
 check-web
 docker.elastic.co/kibana/kibana:7.9.2
