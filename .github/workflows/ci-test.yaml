@@ -43,6 +43,7 @@ jobs:
         GITHUB_JOB_NAME: ${{ github.job }}
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+        git submodule sync
         git submodule update --init --recursive
         sed -i '/git submodule/d' bin/first-build.sh
         sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
