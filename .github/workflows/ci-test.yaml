@@ -48,7 +48,7 @@ jobs:
         sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
         TAB=$'\t'
         export FALLBACK_BRANCH=$([ "$GITHUB_BRANCH" == "master" ] && echo "main" && echo "master" || echo "develop")
-        git submodule foreach bash -c 'git checkout . && git checkout "${GITHUB_BRANCH}" || git checkout develop || git checkout master || git checkout main || git checkout "${FALLBACK_BRANCH}"'
+        git submodule foreach bash -c 'git status && git checkout . && git checkout "${GITHUB_BRANCH}" || git checkout develop || git checkout master || git checkout main || git checkout "${FALLBACK_BRANCH}"'
         git submodule foreach git rev-parse --abbrev-ref HEAD 
        
     - name: Run Script
