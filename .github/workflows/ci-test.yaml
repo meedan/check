@@ -3,7 +3,8 @@ name: Build and Run Check Tests
 on:
   push:
     branches:
-    - '**'
+    - master
+    - develop
 
   pull_request:
     branches:
