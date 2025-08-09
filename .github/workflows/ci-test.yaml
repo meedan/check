@@ -39,11 +39,11 @@ jobs:
         GITHUB_JOB_NAME: ${{ github.job }}
       run: |
         sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-        sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
         git submodule foreach --recursive bash -c 'git checkout .'
         git submodule sync
         git submodule update --init --recursive
         sed -i '/git submodule/d' bin/first-build.sh
+        sed -i 's/--abort-on-container-exit/-d/' bin/first-build.sh
         TAB=$'\t'
         export FALLBACK_BRANCH=$([ "$GITHUB_BRANCH" == "master" ] && echo "main" && echo "master" || echo "develop")
         git submodule foreach bash -c '(git checkout "${GITHUB_BRANCH}" || git checkout main || git checkout develop || git checkout master || git checkout "${FALLBACK_BRANCH}") && git pull'
