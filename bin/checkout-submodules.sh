@@ -14,8 +14,8 @@ git submodule foreach --recursive bash -c '
       if git checkout -B "$b" "origin/$b"; then
         echo "Pulling latest changes for $b..."
         git pull
+        exit 0
       fi
-      exit 0
     else
       echo "Branch $b not found in remote."
     fi
