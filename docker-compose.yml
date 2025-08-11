@@ -217,53 +217,53 @@ services:
     depends_on:
       elasticmq:
         condition: service_healthy
-  presto-image:
-    build: presto
-    platform: linux/amd64
-    volumes:
-      - "./presto:/app"
-    env_file:
-      - presto/.env_file
-    environment:
-      ROLE: worker
-      MODEL_NAME: image.Model
-    networks:
-      - dev
-    depends_on:
-      elasticmq:
-        condition: service_healthy
-  presto-audio:
-    build: presto
-    platform: linux/amd64
-    volumes:
-      - "./presto:/app"
-    env_file:
-      - presto/.env_file
-    environment:
-      ROLE: worker
-      MODEL_NAME: audio.Model
-    networks:
-      - dev
-    depends_on:
-      elasticmq:
-        condition: service_healthy
-  presto-video:
-    build: presto
-    platform: linux/amd64
-    volumes:
-      - "./presto:/app"
-    env_file:
-      - presto/.env_file
-    environment:
-      ROLE: worker
-      MODEL_NAME: video.Model
-    networks:
-      - dev
-    depends_on:
-      elasticmq:
-        condition: service_healthy
-      minio:
-        condition: service_healthy
+  # presto-image:
+  #   build: presto
+  #   platform: linux/amd64
+  #   volumes:
+  #     - "./presto:/app"
+  #   env_file:
+  #     - presto/.env_file
+  #   environment:
+  #     ROLE: worker
+  #     MODEL_NAME: image.Model
+  #   networks:
+  #     - dev
+  #   depends_on:
+  #     elasticmq:
+  #       condition: service_healthy
+  # presto-audio:
+  #   build: presto
+  #   platform: linux/amd64
+  #   volumes:
+  #     - "./presto:/app"
+  #   env_file:
+  #     - presto/.env_file
+  #   environment:
+  #     ROLE: worker
+  #     MODEL_NAME: audio.Model
+  #   networks:
+  #     - dev
+  #   depends_on:
+  #     elasticmq:
+  #       condition: service_healthy
+  # presto-video:
+  #   build: presto
+  #   platform: linux/amd64
+  #   volumes:
+  #     - "./presto:/app"
+  #   env_file:
+  #     - presto/.env_file
+  #   environment:
+  #     ROLE: worker
+  #     MODEL_NAME: video.Model
+  #   networks:
+  #     - dev
+  #   depends_on:
+  #     elasticmq:
+  #       condition: service_healthy
+  #     minio:
+  #       condition: service_healthy
   # presto-mean-tokens:
   #   build: presto
   #   platform: linux/amd64
@@ -307,9 +307,9 @@ services:
       - redis
       - elasticsearch
       - presto-server
-      - presto-image
-      - presto-audio
-      - presto-video
+      # - presto-image
+      # - presto-audio
+      # - presto-video
     env_file:
       - alegre/.env_file
     networks:

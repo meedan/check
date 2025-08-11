@@ -57,15 +57,15 @@ services:
       BOILERPLATE_ENV: test
       PRESTO_PORT: 8000
       REDIS_DATABASE: 3
-  presto-audio:
-    environment:
-      BOILERPLATE_ENV: test
-  presto-image:
-    environment:
-      BOILERPLATE_ENV: test
-  presto-video:
-    environment:
-      BOILERPLATE_ENV: test
+  # presto-audio:
+  #   environment:
+  #     BOILERPLATE_ENV: test
+  # presto-image:
+  #   environment:
+  #     BOILERPLATE_ENV: test
+  # presto-video:
+  #   environment:
+  #     BOILERPLATE_ENV: test
   # presto-mean-tokens:
   #   environment:
   #     BOILERPLATE_ENV: test
