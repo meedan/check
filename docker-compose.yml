@@ -165,8 +165,9 @@ services:
   # otel-collector:
   #   image: otel/opentelemetry-collector-contrib
   #   volumes:
-  #     - ./pender/config/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+  #     - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
   #   environment:
+  #     x_honeycomb_team: ${X_HONEYCOMB_TEAM} # Set this env var in your shell before running docker-compose
   #     RAILS_ENV: development
   #     SERVER_PORT: 3200
   #   networks:
