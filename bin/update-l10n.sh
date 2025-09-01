@@ -78,7 +78,8 @@ case "$SERVICE" in
     # docker compose exec mark npm run transifex:upload
     # docker compose exec mark npm run transifex:download
 
-    echo '--- Done! Please review changes and push manually ---'
+    # It's safer to run the ones below manually:
+    echo 'Should be all updated - if it looks good to you, please push to `develop`:' && \
     echo "cd check-api && git commit config/locales -m 'CHECK-109: Updating l10n' && git push"
     echo "cd check-web && git commit localization -m 'CHECK-109: Updating l10n' && git push"
     ;;
