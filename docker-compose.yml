@@ -127,7 +127,7 @@ services:
       - "host.docker.internal:host-gateway"
   pender:
     env_file:
-      - .env
+      - ./pender/.env
     build: pender
     platform: linux/x86_64
     shm_size: 1G
