@@ -126,8 +126,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
   pender:
-    env_file:
-      - ./pender/.env
+    # env_file:
+    #   - ./pender/.env
     build: pender
     platform: linux/x86_64
     shm_size: 1G
