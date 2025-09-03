@@ -1,38 +1,86 @@
 #!/bin/bash
-cd check-api && git checkout develop && git pull && cd - && \
-cd check-web && git checkout develop && git pull && cd - && \
-# cd check-mark && git checkout develop && git pull && cd - && \
-# cd check-search && git checkout develop && git pull && cd - && \
 
-echo 'Updating Check API translations...' && \
-(docker compose exec api /tx push) && \
-(docker compose exec api /tx pull) && \
-# FIXME: Configure check-tiplines resource pulling
-# (docker-compose exec api bundle exec rake transifex:download_tipline) && \
+SERVICE="${1:-all}"
+ACTION="${2:-all}"
 
-echo 'Updating Check Web translations...' && \
-(docker compose exec web npm run transifex:merge-source) && \
-(docker compose exec web /tx push) && \
-(docker compose exec web /tx pull) && \
-(docker compose exec web npm run transifex:merge-translated) && \
+update_repo() {
+  local dir=$1
+  echo "Updating repo: $dir"
+  (
+    cd "$dir"
+    git checkout develop
+    git pull
+  )
+}
 
-# echo 'Updating Check Mark translations...' && \
-# (docker-compose exec mark npm run transifex:upload) && \
-# (docker-compose exec mark npm run transifex:download) && \
+update_api() {
+  case "$ACTION" in
+    push)
+      echo 'Pushing Check API translations...'
+      docker compose exec api /tx push
+      ;;
+    pull)
+      echo 'Pulling Check API translations...'
+      docker compose exec api /tx pull --all -f
+      # docker compose exec api bundle exec rake transifex:download_tipline
+      ;;
+    all|*)
+      echo 'Pushing + Pulling Check API translations...'
+      docker compose exec api /tx push
+      docker compose exec api /tx pull --all -f
+      ;;
+  esac
 
-# echo 'Updating Check Search translations...' && \
-# (docker-compose exec search npm run transifex:upload) && \
-# (docker-compose exec search npm run transifex:download) && \
+  echo 'Check API:'
+  (cd check-api && git status)
+}
 
-echo 'Done! Please check the changes below:' && \
-echo 'Check API:' && cd check-api && git status && cd - && \
-echo 'Check Web:' && cd check-web && git status && cd - && \
-# echo 'Check Mark:' && cd check-mark && git status && cd - && \
-# echo 'Check Search:' && cd check-search && git status && cd - && \
+update_web() {
+  case "$ACTION" in
+    push)
+      echo 'Pushing Check Web translations...'
+      docker compose exec web npm run transifex:merge-source
+      docker compose exec web /tx push
+      ;;
+    pull)
+      echo 'Pulling Check Web translations...'
+      docker compose exec web /tx pull --all -f
+      docker compose exec web npm run transifex:merge-translated
+      ;;
+    all|*)
+      echo 'Pushing + Pulling Check Web translations...'
+      docker compose exec web npm run transifex:merge-source
+      docker compose exec web /tx push
+      docker compose exec web /tx pull --all -f
+      docker compose exec web npm run transifex:merge-translated
+      ;;
+  esac
+  echo 'Check Web:'
+  (cd check-web && git status)
+}
 
-# It's safer to run the ones below manually:
-echo 'Should be all updated - if it looks good to you, please push to `develop`:' && \
-echo "cd check-api && git commit config/locales -m 'CHECK-109: Updating l10n' && git push && cd -" # && \
-echo "cd check-web && git commit localization -m 'CHECK-109: Updating l10n' && git push && cd -" && \
-# echo "cd check-mark && git commit src/localization -m 'CHECK-109: Updating l10n' && git push && cd -"
-# echo "cd check-search && git commit localization -m 'CHECK-109: Updating l10n' && git push && cd -"
+case "$SERVICE" in
+  check-api)
+    update_repo check-api
+    update_api
+    ;;
+  check-web)
+    update_repo check-web
+    update_web
+    ;;
+  all|*)
+    update_repo check-api
+    update_repo check-web
+
+    update_api
+    update_web
+    # echo 'Updating Check Mark translations...'
+    # docker compose exec mark npm run transifex:upload
+    # docker compose exec mark npm run transifex:download
+
+    # It's safer to run the ones below manually:
+    echo 'Should be all updated - if it looks good to you, please push to `develop`:'
+    echo "cd check-api && git commit config/locales -m 'CHECK-109: Updating l10n' && git push"
+    echo "cd check-web && git commit localization -m 'CHECK-109: Updating l10n' && git push"
+    ;;
+esac
