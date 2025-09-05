@@ -1,0 +1,35 @@
+receivers:
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: "prometheus"
+          scrape_interval: 15s
+          static_configs:
+            - targets: ["pender:3200"]
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 80
+    spike_limit_percentage: 20
+  batch:
+    timeout: 200ms
+    send_batch_size: 8192
+
+exporters:
+  otlp/metrics:
+    endpoint: "api.honeycomb.io:443" # US instance
+    #endpoint: "api.eu1.honeycomb.io:443" # EU instance
+    headers:
+      "x-honeycomb-team": ${env:x_honeycomb_team} # Honeycomb API KEY
+      "x-honeycomb-dataset": "pender"
+
+service:
+  # telemetry:
+  #   logs:
+  #     level: "debug"
+  pipelines:
+    metrics:
+      receivers: [prometheus]
+      processors: [memory_limiter, batch]
+      exporters: [otlp/metrics]
