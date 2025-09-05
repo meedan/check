@@ -162,6 +162,7 @@ services:
       SERVER_PORT: 3200
     networks:
       - dev
+  # If you want to run the OpenTelemetry Collector, uncomment the lines below
   # otel-collector:
   #   image: otel/opentelemetry-collector-contrib
   #   volumes:
