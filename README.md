@@ -49,6 +49,7 @@ This is a [Docker Compose](https://docs.docker.com/compose/) configuration that 
 - Narcissus screenshot service (container `narcissus`) at [http://localhost:8687](http://localhost:8687)
 - Fetch fact-checking service (container `fetch`) at [http://localhost:8687/about](http://localhost:8687/about)
 - Search v2 prototype application (container `search`) at [http://localhost:8001](http://localhost:8001)
+- Otel Collector – you can configure receivers, processors and exporters in the otel-collector-config.yaml
 
 ## Testing
 
