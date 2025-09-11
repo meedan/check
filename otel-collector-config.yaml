@@ -2,10 +2,10 @@ receivers:
   prometheus:
     config:
       scrape_configs:
-        - job_name: "prometheus"
+        - job_name: "pender_metrics"
           scrape_interval: 15s
           static_configs:
-            - targets: ["pender:3200"]
+            - targets: ["${env:pender_metrics_endpoint}"]
 
 processors:
   memory_limiter:
@@ -17,7 +17,7 @@ processors:
     send_batch_size: 8192
 
 exporters:
-  otlp/metrics:
+  otlp/pender_metrics:
     endpoint: "api.honeycomb.io:443" # US instance
     #endpoint: "api.eu1.honeycomb.io:443" # EU instance
     headers:
@@ -29,7 +29,7 @@ service:
   #   logs:
   #     level: "debug"
   pipelines:
-    metrics:
+    metrics/pender_metrics:
       receivers: [prometheus]
       processors: [memory_limiter, batch]
-      exporters: [otlp/metrics]
+      exporters: [otlp/pender_metrics]

@@ -168,11 +168,12 @@ services:
   #   volumes:
   #     - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
   #   environment:
+  #     pender_metrics_endpoint: "pender:3200"
   #     x_honeycomb_team: ${X_HONEYCOMB_TEAM} # Set this env var in your shell before running docker-compose
   #     RAILS_ENV: development
   #     SERVER_PORT: 3200
   #   networks:
-  #     - dev 
+  #     - dev
   web:
     build: check-web
     platform: linux/x86_64
