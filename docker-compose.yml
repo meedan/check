@@ -145,6 +145,7 @@ services:
       DEPLOY_ENV: local
       RAILS_ENV: development
       SERVER_PORT: 3200
+      DISABLE_SPRING: 1
     networks:
       - dev
   pender-background:
