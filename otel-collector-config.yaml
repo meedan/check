@@ -6,6 +6,7 @@ receivers:
           scrape_interval: 15s
           static_configs:
             - targets: ["${env:pender_metrics_endpoint}"]
+          metrics_path: /metrics
 
 processors:
   memory_limiter:
@@ -23,13 +24,33 @@ exporters:
     headers:
       "x-honeycomb-team": ${env:x_honeycomb_team} # Honeycomb API KEY
       "x-honeycomb-dataset": "pender"
+  # for debugging purposes only
+  # debug:
+  #   verbosity: normal
+
+connectors:
+  routing:
+    default_pipelines: []
+    # for debugging purposes only
+    # default_pipelines: [metrics/debug]
+    table:
+      - context: resource
+        condition: attributes["service.name"] == "pender_metrics"
+        pipelines: [metrics/pender_honeycomb]
 
 service:
   # telemetry:
   #   logs:
   #     level: "debug"
   pipelines:
-    metrics/pender_metrics:
+    metrics/prometheus:
       receivers: [prometheus]
+      exporters: [routing]
+    metrics/pender_honeycomb:
+      receivers: [routing]
       processors: [memory_limiter, batch]
       exporters: [otlp/pender_metrics]
+    # for debugging purposes only
+    # metrics/debug:
+    #   receivers: [routing]
+    #   exporters: [debug]
