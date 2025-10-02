@@ -7,6 +7,8 @@ receivers:
           static_configs:
             - targets: ["${env:pender_metrics_endpoint}"]
           metrics_path: /metrics
+          tls_config:
+            insecure_skip_verify: true
 
 processors:
   memory_limiter:
