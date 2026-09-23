@@ -61,15 +61,16 @@ services:
     networks:
       - dev
   minio:
-    image: minio/minio@sha256:fafd3af791a0c564b73d995ef3f8d7bde4d0caf25b32bec3a11dc71a9096479a
-    command: server /data
+    image: quay.io/minio/minio:latest
+    command: server /data --console-address ":9001"
     ports:
       - "9000:9000"
+      - "9001:9001"
     volumes:
       - "minio:/data"
     environment:
-      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
-      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      MINIO_ROOT_USER: AKIAIOSFODNN7EXAMPLE
+      MINIO_ROOT_PASSWORD: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     networks:
       - dev
     healthcheck:
