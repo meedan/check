@@ -12,6 +12,6 @@ check-presto-server
 check-queue_worker
 check-web
 docker.elastic.co/kibana/kibana:7.9.2
-minio/minio
+quay.io/minio/minio:latest
 redis:6.2
 softwaremill/elasticmq
